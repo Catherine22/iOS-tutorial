@@ -23,6 +23,7 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 # Sideloading
 Install your apps on your physical iPhone for free.     
 
+### Settings
 1. Ensure your xcode version matches with your iOS version on your iPhone. E.g. xcode 10.**0** -> iOS 12.**0**, xcode 10.**1** -> iOS 12.**1**      
 2. Go to xcode, you need:       
     - A unique bundle identifier
@@ -32,6 +33,13 @@ Install your apps on your physical iPhone for free.
 3. Run the app on your iPhone       
 4. On your iPhone, go to Settings -> General -> Device Management -> Trust      
 5. Run the app on your iPhone again
+
+### Debugging wirelessly through the air        
+1. Have your iPhone plug in through USB     
+2. Go to Window -> Devices and Simulators -> Find your phone and select "Connect via network"
+3. Unplug yor phone     
+4. Run the app on your iPhone
+
 
 # Course
 [Swift.org](https://swift.org/getting-started/)     
