@@ -1,3 +1,53 @@
 # iOS-tutorial
 
-[Swift.org](https://swift.org/getting-started/)
+
+# Resolution
+If we want to display beautiful, then we need to ensure that the resolution is height
+- Pixel (Pix-El, Picture Element)       
+- Point     
+- ppi - e.g. 72 ppi = pixels per inch       
+
+**1 Inch = 72 Point**       
+1x: In normal screens, 1 pixel = 1 point.       
+2x: In Retina screens, 4 pixels = 1 point.      
+3x: 9 pixels = 1 point.
+![screenshot][2]  
+
+# Useful tools
+- xcode
+![screenshot][1]        
+- [Scale images from mobile development](https://appicon.co/#image-sets)        
+- [Flat UI colors](https://flatuicolors.com/)      
+- [Canva](https://www.canva.com/)         
+
+# Sideloading
+Install your apps on your physical iPhone for free.     
+
+### Settings
+1. Ensure your xcode version matches with your iOS version on your iPhone. E.g. xcode 10.**0** -> iOS 12.**0**, xcode 10.**1** -> iOS 12.**1**      
+2. Go to xcode, you need:       
+    - A unique bundle identifier
+    - "Automatically manage signing" is ticked
+    - Create a team     
+    - Go to Product -> Destination -> Choose your device        
+3. Run the app on your iPhone       
+4. On your iPhone, go to Settings -> General -> Device Management -> Trust      
+5. Run the app on your iPhone again
+
+### Debugging wirelessly through the air        
+1. Have your iPhone plug in through USB     
+2. Go to Window -> Devices and Simulators -> Find your phone and select "Connect via network"
+3. Unplug yor phone     
+4. Run the app on your iPhone
+
+
+# Course
+[Swift.org](https://swift.org/getting-started/)     
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
+
+[Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
+
+
+
+[1]:https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png
+[2]:https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/resolution.png
