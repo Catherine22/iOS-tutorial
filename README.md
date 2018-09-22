@@ -11,11 +11,11 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 1x: In normal screens, 1 pixel = 1 point.       
 2x: In Retina screens, 4 pixels = 1 point.      
 3x: 9 pixels = 1 point.
-![screenshot][2]  
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/resolution.png)  
 
 # Useful tools
 - xcode
-![screenshot][1]        
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)        
 - [Scale images from mobile development](https://appicon.co/#image-sets)        
 - [Flat UI colors](https://flatuicolors.com/)      
 - [Canva](https://www.canva.com/)         
@@ -46,8 +46,3 @@ Install your apps on your physical iPhone for free.
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 
 [Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
-
-
-
-[1]:https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png
-[2]:https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/resolution.png
