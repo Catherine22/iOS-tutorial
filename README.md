@@ -1,5 +1,4 @@
-# iOS-tutorial
-
+# iOS Development Tutorial
 
 # Resolution
 If we want to display beautiful, then we need to ensure that the resolution is height
@@ -40,6 +39,13 @@ Install your apps on your physical iPhone for free.
 3. Unplug yor phone     
 4. Run the app on your iPhone
 
+# Swift
+
+## Overview
+![Swift cheat sheet](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/SwiftCheatSheet.png)
+1. ```var``` for Variables and ```let``` for Constants. 
+Constants take up less memory space than Variables.     
+2. 
 
 # Course
 [Swift.org](https://swift.org/getting-started/)     
