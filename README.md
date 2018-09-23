@@ -5,7 +5,7 @@
 If we want to display beautiful, then we need to ensure that the resolution is height
 - Pixel (Pix-El, Picture Element)       
 - Point     
-- ppi - e.g. 72 ppi = pixels per inch       
+- ppi - e.g. 72 ppi = 72 pixels per inch       
 
 **1 Inch = 72 Point**       
 1x: In normal screens, 1 pixel = 1 point.       
@@ -44,5 +44,4 @@ Install your apps on your physical iPhone for free.
 # Course
 [Swift.org](https://swift.org/getting-started/)     
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
-
 [Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
