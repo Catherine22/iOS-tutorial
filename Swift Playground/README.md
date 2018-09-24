@@ -1,6 +1,10 @@
 # Swift Tips
+![Swift cheat sheet](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/SwiftCheatSheet.png)
 
 ## Optional Variable
+```var``` for Variables and ```let``` for Constants. 
+Constants take up less memory space than Variables.  
+
 ### Use ```if``` and ```let``` together to work with values that might be missing.
 ```swift
 var optionalName: String? = "John"
@@ -30,7 +34,7 @@ print("\(firstName ?? " ")\(middleName ?? " ")\(lastName ?? " ")")
 // Catherine Chen
 ```
 
-## Switches
+## ```Switch```
 ```swift
 let scores = ["John": 70, "Julianne": 100, "Anna": 59, "Paul": 0]
 for (name, score) in scores {
