@@ -194,3 +194,112 @@ func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?){
 print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 // (min: Optional(1), max: Optional(10), avg: Optional(5.5))
 ```
+
+## Random
+
+Get a random loveScore (0 ≤ loveScore ≤ 100) 
+
+Either 
+```swift
+let loveScore = Int.random(in: 0...100)
+```
+
+Or
+```swift
+let loveScore = Int(arc4random_uniform(101))
+```
+
+## ```class```, ```enum``` and ```structure```
+
+- Initialization
+```swift
+class Person {
+    var name: String
+    var age: Int
+    
+    init (name: String, age: Int){
+        self.name = name
+        self.age = age
+    }
+    func saySomething() {
+        print("Hi, my name is \(name), I am \(age) years old")
+    }
+}
+
+var julianne = Person(name: "Julianne", age: 19)
+julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
+```
+- Extend
+
+Class Employee extends Person
+```swift
+class Employee: Person {
+    var dept: String
+    
+    init(name: String, age: Int, dept: String){
+        self.dept = dept
+        super.init(name: name, age: age)
+    }
+    
+    override func saySomething() -> String {
+        return "Hi, my name is \(name), I work for \(dept) department"
+    }
+}
+
+var joanne = Employee(name: "Joanne", age: 16, dept: "Accounting")
+print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting department
+```
+- Observer - ```willSet``` and ```didSet```
+```swift
+class Observer {
+    var value: String {
+        willSet {
+            // Call willSet before the value changes
+            print("Call willSet, value = \(value)")
+        }
+        
+        didSet {
+            // Call willSet after the value changes
+            print("Call didSet, new value = \(value)")
+        }
+    }
+    
+    init(value: String){
+        self.value = value
+    }
+}
+
+var osr = Observer(value: "init")
+osr.value = "new value"
+
+// Call willSet, value = init
+// Call didSet, new value = new value
+```
+
+- ```enum```
+
+1. Basic enum
+```swift
+enum Suit: String {
+    case spade, diamond, heart, club
+    func getSymbol() -> String {
+        switch self {
+        case .spade:
+            return "♠︎"
+        case .diamond:
+            return "♦︎"
+        case .heart:
+            return "♥︎"
+        case .club:
+            return "♣︎"
+        default:
+            return "?"
+        }
+    }
+}
+
+let diamond = Suit.diamond
+print(diamond.getSymbol()) // ♦ ︎
+```
+
+2. Advanced enum
