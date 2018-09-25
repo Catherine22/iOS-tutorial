@@ -194,3 +194,218 @@ func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?){
 print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 // (min: Optional(1), max: Optional(10), avg: Optional(5.5))
 ```
+
+## Random
+
+Get a random loveScore (0 ≤ loveScore ≤ 100) 
+
+Either 
+```swift
+let loveScore = Int.random(in: 0...100)
+```
+
+Or
+```swift
+let loveScore = Int(arc4random_uniform(101))
+```
+
+## ```class```, ```enum``` and ```structure```
+
+- Initialization
+```swift
+class Person {
+    var name: String
+    var age: Int
+    
+    init (name: String, age: Int){
+        self.name = name
+        self.age = age
+    }
+    func saySomething() {
+        print("Hi, my name is \(name), I am \(age) years old")
+    }
+}
+
+var julianne = Person(name: "Julianne", age: 19)
+julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
+```
+- Extend
+
+Class Employee extends Person
+```swift
+class Employee: Person {
+    var dept: String
+    
+    init(name: String, age: Int, dept: String){
+        self.dept = dept
+        super.init(name: name, age: age)
+    }
+    
+    override func saySomething() -> String {
+        return "Hi, my name is \(name), I work for \(dept) department"
+    }
+}
+
+var joanne = Employee(name: "Joanne", age: 16, dept: "Accounting")
+print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting department
+```
+- Observer - ```willSet``` and ```didSet```
+```swift
+class Observer {
+    var value: String {
+        willSet {
+            // Call willSet before the value changes
+            print("Call willSet, value = \(value)")
+        }
+        
+        didSet {
+            // Call willSet after the value changes
+            print("Call didSet, new value = \(value)")
+        }
+    }
+    
+    init(value: String){
+        self.value = value
+    }
+}
+
+var osr = Observer(value: "init")
+osr.value = "new value"
+
+// Call willSet, value = init
+// Call didSet, new value = new value
+```
+
+- ```enum```
+
+1. Basic enum
+```swift
+enum Suit: String {
+    case spade, diamond, heart, club
+    func getSymbol() -> String {
+        switch self {
+        case .spade:
+            return "♠︎"
+        case .diamond:
+            return "♦︎"
+        case .heart:
+            return "♥︎"
+        case .club:
+            return "♣︎"
+        default:
+            return "?"
+        }
+    }
+}
+
+let diamond = Suit.diamond
+print(diamond.getSymbol()) // ♦ ︎
+```
+
+2. Advanced enum
+```swift
+enum Response {
+    case success(Int, String)
+    case failure(Int, String)
+}
+func getAlbum(message: Response) {
+    switch message {
+    case let .success(code, body):
+        print("Message:\(body)")
+    case let .failure(code, errorMessage):
+        print("\(code) Error: \(errorMessage)")
+    }
+}
+
+let albums = Response.success(200, "[{\"title\":\"Taylor Swift\",\"artist\":\"Taylor Swift\",\"url\":\"https://www.amazon.com/Taylor-Swift/dp/B0014I4KH6\",\"image\":\"https://images-na.ssl-images-amazon.com/images/I/61McsadO1OL.jpg\",\"thumbnail_image\":\"https://i.imgur.com/K3KJ3w4h.jpg\"}]")
+let error = Response.failure(404, "Not Found")
+
+getAlbum(message: albums) // Message:[{"title":"Taylor Swift",...
+getAlbum(message: error) // 404 Error: Not Found
+```
+
+- ```struct```
+
+One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
+
+```swift
+struct GiftCardStruct {
+    var sn: String
+    var expiration: Double
+    var value: Double
+    
+    func showInfo() {
+        print("[struct] sn:\(sn), value:\(value)")
+    }
+}
+
+class GiftCardClass {
+    var sn: String
+    var expiration: Double
+    var value: Double
+    
+    init(sn: String, expiration: Double, value: Double){
+        self.sn = sn
+        self.expiration = expiration
+        self.value = value
+    }
+    
+    func showInfo() {
+        print("[class] sn:\(sn), value:\(value)")
+    }
+}
+
+var card1 = GiftCardClass(sn: "card1", expiration: 1924905600, value: 100.0)
+var card2 = card1
+card2.sn = "card2"
+card1.showInfo() // [class] sn:card2, value:100.0
+
+var card3 = GiftCardStruct(sn: "card3", expiration: 1924905600, value: 100.0)
+var card4 = card3
+card4.sn = "card4"
+card3.showInfo() // [struct] sn:card3, value:100.0
+```
+As we see, there are 2 differences between ```class``` and ```sturct```:        
+1. ```sturct``` is not necessary to declare its initialization      
+2. ```class``` is call-by-reference whereas ```struct``` is call-by-value
+
+## Protocols and Extension
+
+Protocol (Interface) example:
+```swift
+protocol PermissionListener {
+    var isLock: Bool { get }
+    mutating func onGrand()
+    mutating func onDeny()
+}
+```
+>```mutating``` means all the changes of its instance and any value of its instance are allowed.        
+
+Implement the protocol via a class
+```swift
+class BluetoothModule: PermissionListener {
+    var isLock: Bool = true
+    
+    func onGrand() {
+        isLock = false
+    }
+    
+    func onDeny() {
+        isLock = true
+    }
+    
+    func enableBluetooth() {
+        if(isLock){
+            print("Permission denied")
+        }
+        else{
+            print("Bluetooth on")
+        }
+    }
+}
+
+var ble = BluetoothModule()
+ble.enableBluetooth() // Permission denied
+ble.onGrand() 
+ble.enableBluetooth() // Bluetooth on
+```
