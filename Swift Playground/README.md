@@ -387,13 +387,14 @@ extension String {
         let okChars = Set("012345678")
         return self.filter { okChars.contains($0) }
     }
-    
-    var toMoney: String {
-        let okChars = Set("012345678")
-        let temp:String = self.filter { okChars.contains($0) }
+}
+
+extension Int {
+    var money: String {
+        let temp: String = String(self)
         var money: String = ""
         var count = 0
-        for (i, c) in temp.enumerated().reversed() {
+        for (_, c) in temp.enumerated().reversed() {
             count+=1
             money.append(c)
             if(count % 3 == 0) {
@@ -407,13 +408,27 @@ extension String {
         
         return String(money.reversed())
     }
+    
+    func repetitions(task: () -> Void) {
+        for _ in 0..<self {
+            task()
+        }
+    }
+    
 }
 
 var rawData =  "555-1234!@#$%^&*   \n \t ≤"
-var formattedNumber = rawData.toNumber
-var formattedMoney = rawData.toMoney
-print(formattedNumber) // 5551234
-print(formattedMoney) // 5,551,234
+var formattedPhoneNumber = rawData.toNumber
+print(formattedPhoneNumber) // 5551234
+
+var rawMoney = 3927241123
+var formattedMoney = rawMoney.money
+3.repetitions {
+    print(formattedMoney) 
+}
+// 3,927,241,123
+// 3,927,241,123
+// 3,927,241,123
 ```
 
 ## Protocols
