@@ -238,34 +238,103 @@ card3.showInfo()
 /*
  * Potocols
  */
-protocol PermissionListener {
-    var isLock: Bool { get }
-    mutating func onGrand()
-    mutating func onDeny()
+protocol Receiver {
+    // serialNumber must be unique
+    var serialNumber: Int { get set }
+    func onReceive (content: String)
 }
 
-class BluetoothModule: PermissionListener {
-    var isLock: Bool = true
+class BroadcastManager {
+    static var receivers = [Receiver]()
     
-    func onGrand() {
-        isLock = false
+    func sendMessage(content: String) {
+        notifyAllReceivers(content)
     }
     
-    func onDeny() {
-        isLock = true
+    func register(receiver: Receiver) {
+        BroadcastManager.receivers.append(receiver)
     }
     
-    func enableBluetooth() {
-        if(isLock){
-            print("Permission denied")
+    func unregister(receiver: Receiver) {
+        for (index, element) in BroadcastManager.receivers.enumerated().reversed() {
+            if(element.serialNumber == receiver.serialNumber) {
+                BroadcastManager.receivers.remove(at: index)
+            }
         }
-        else{
-            print("Bluetooth on")
+    }
+    
+    func notifyAllReceivers(_ content: String) {
+        for r in BroadcastManager.receivers {
+            r.onReceive(content: content)
         }
     }
 }
 
-var ble = BluetoothModule()
-ble.enableBluetooth()
-ble.onGrand()
-ble.enableBluetooth()
+class Inbox {
+    init() {
+        let broadcastManager = BroadcastManager()
+        let emailReceiver = MessageReceiver(0x0001)
+        
+        // register a reveicer
+        broadcastManager.register(receiver: emailReceiver)
+    }
+    
+    class MessageReceiver: Receiver {
+        var serialNumber: Int = -1
+        init (_ serialNumber: Int) {
+            self.serialNumber = serialNumber
+        }
+        
+        func onReceive (content: String) {
+            print("You got a message(\(serialNumber)): \(content)")
+        }
+    }
+}
+
+class Notification {
+    private let broadcastManager = BroadcastManager()
+    private let notificationReceiver = MessageReceiver(0x0002)
+    private var enable: Bool = false
+    
+    class MessageReceiver: Receiver {
+        var serialNumber: Int = -1
+        init (_ serialNumber: Int) {
+            self.serialNumber = serialNumber
+        }
+        
+        func onReceive (content: String) {
+            print("A notification popped up(\(serialNumber)): \(content)")
+        }
+    }
+    
+    func showNotifications(enable: Bool) {
+        if(enable && !self.enable) {
+            broadcastManager.register(receiver: notificationReceiver)
+        } else if (!enable && self.enable) {
+            broadcastManager.unregister(receiver: notificationReceiver)
+        }
+        self.enable = enable
+    }
+}
+
+class MessageCenter {
+    private let broadcastManager = BroadcastManager()
+    func sendMockMessage (content: String) {
+        broadcastManager.sendMessage(content: content)
+    }
+}
+
+var inbox = Inbox()
+var notification = Notification()
+
+var messageCenter = MessageCenter()
+messageCenter.sendMockMessage(content: "你好啊")
+
+// register another receiver
+notification.showNotifications(enable: true)
+messageCenter.sendMockMessage(content: "我是一个快乐的broadcast")
+
+// unregister the Notification receiver
+notification.showNotifications(enable: false)
+messageCenter.sendMockMessage(content: "还有谁收到我？")
+

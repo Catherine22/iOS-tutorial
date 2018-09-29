@@ -137,6 +137,18 @@ print(primeNumbers)
 (0, 10), we use ```0...10```      
 (0,10], we use ```0..<10```
 
+**Loop an array**
+> Deletion       
+Removing elements from the end of an array, or indexOutOfRange exception might happen
+```swift
+var arr = [1, 3, -10, 5, -7]
+for (index, element) in arr.enumerated().reversed() {
+    if(element < 0 ) {
+        arr.remove(at: index)
+    }
+}
+print(arr) // [1, 3, 5]
+```
 ## Function
 
 - Return one single String
@@ -371,41 +383,135 @@ As we see, there are 2 differences between ```class``` and ```sturct```:
 
 ## Protocols and Extension
 
-Protocol (Interface) example:
+Protocol (Interface) scenario 1: A local broadcast system
 ```swift
-protocol PermissionListener {
-    var isLock: Bool { get }
-    mutating func onGrand()
-    mutating func onDeny()
+protocol Receiver {
+    // serialNumber must be unique
+    var serialNumber: Int { get set }
+    func onReceive (content: String)
 }
 ```
 >```mutating``` means all the changes of its instance and any value of its instance are allowed.        
 
 Implement the protocol via a class
 ```swift
-class BluetoothModule: PermissionListener {
-    var isLock: Bool = true
-    
-    func onGrand() {
-        isLock = false
+class Register: Receiver {
+    var serialNumber: Int = -1
+    init (_ serialNumber: Int) {
+        self.serialNumber = serialNumber
     }
     
-    func onDeny() {
-        isLock = true
+    func onReceive (content: String) {
+        print("You got a message(\(serialNumber)): \(content)")
+    }
+}
+```
+     
+```swift
+class BroadcastManager {
+    var static receivers = [Receiver]()
+    
+    func sendMessage(content: String) {
+        notifyAllReceivers(content)
     }
     
-    func enableBluetooth() {
-        if(isLock){
-            print("Permission denied")
+    func register(receiver: Receiver) {
+        receivers.append(receiver)
+    }
+    
+    func unregister(receiver: Receiver) {
+        for (index, element) in receivers.enumerated().reversed() {
+            if(element.serialNumber == receiver.serialNumber) {
+                receivers.remove(at: index)
+            }
         }
-        else{
-            print("Bluetooth on")
+    }
+    
+    func notifyAllReceivers(_ content: String) {
+        for r in receivers {
+            r.onReceive(content: content)
         }
     }
 }
+```
 
-var ble = BluetoothModule()
-ble.enableBluetooth() // Permission denied
-ble.onGrand() 
-ble.enableBluetooth() // Bluetooth on
+Create 2 classes to get the message
+```swift
+class Inbox {
+    init() {
+        let broadcastManager = BroadcastManager()
+        let emailReceiver = MessageReceiver(0x0001)
+        
+        // register a receiver
+        broadcastManager.register(receiver: emailReceiver)
+    }
+    
+    class MessageReceiver: Receiver {
+        var serialNumber: Int = -1
+        init (_ serialNumber: Int) {
+            self.serialNumber = serialNumber
+        }
+        
+        func onReceive (content: String) {
+            print("You got a message(\(serialNumber)): \(content)")
+        }
+    }
+}
+```
+
+```swift
+class Notification {
+    private let broadcastManager = BroadcastManager()
+    private let notificationReceiver = MessageReceiver(0x0002)
+    private var enable: Bool = false
+    
+    class MessageReceiver: Receiver {
+        var serialNumber: Int = -1
+        init (_ serialNumber: Int) {
+            self.serialNumber = serialNumber
+        }
+        
+        func onReceive (content: String) {
+            print("A notification popped up(\(serialNumber)): \(content)")
+        }
+    }
+    
+    func showNotifications(enable: Bool) {
+        if(enable && !self.enable) {
+            broadcastManager.register(receiver: notificationReceiver)
+        } else if (!enable && self.enable) {
+            broadcastManager.unregister(receiver: notificationReceiver)
+        }
+        self.enable = enable
+    }
+}
+```
+MessageCenter is used to broadcast messages to each registered receiver
+```swift
+class MessageCenter {
+    private let broadcastManager = BroadcastManager()
+    func sendMockMessage (content: String) {
+        broadcastManager.sendMessage(content: content)
+    }
+}
+```
+Demo
+```swift
+var inbox = Inbox()
+var notification = Notification()
+
+var messageCenter = MessageCenter()
+messageCenter.sendMockMessage(content: "你好啊")
+// You got a message(1): 你好啊
+
+// register another receiver
+notification.showNotifications(enable: true)
+messageCenter.sendMockMessage(content: "我是一个快乐的broadcast")
+// You got a message(1): 我是一个快乐的broadcast
+// A notification popped up(2): 我是一个快乐的broadcast
+
+// unregister the Notification receiver
+notification.showNotifications(enable: false)
+messageCenter.sendMockMessage(content: "还有谁收到我？")
+// You got a message(1): 还有谁收到我？
 ```
