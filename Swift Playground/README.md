@@ -46,8 +46,6 @@ for (name, score) in scores {
             print("\(name) got a perfect mark!")
         case let x where x >= 60:
             print("\(name) passed the test!")
-        default:
-            print("\(name) didn't pass the test.")
         }
     }
 }
@@ -322,7 +320,7 @@ enum Response {
 }
 func getAlbum(message: Response) {
     switch message {
-    case let .success(code, body):
+    case let .success(_, body):
         print("Message:\(body)")
     case let .failure(code, errorMessage):
         print("\(code) Error: \(errorMessage)")
@@ -381,17 +379,91 @@ As we see, there are 2 differences between ```class``` and ```sturct```:
 1. ```sturct``` is not necessary to declare its initialization      
 2. ```class``` is call-by-reference whereas ```struct``` is call-by-value
 
-## Protocols and Extension
+## Extension
+Add a plug-in to user-defined classes or system classes
+```swift
+extension String {
+    var toNumber: String {
+        let okChars = Set("012345678")
+        return self.filter { okChars.contains($0) }
+    }
+    
+    var toMoney: String {
+        let okChars = Set("012345678")
+        let temp:String = self.filter { okChars.contains($0) }
+        var money: String = ""
+        var count = 0
+        for (i, c) in temp.enumerated().reversed() {
+            count+=1
+            money.append(c)
+            if(count % 3 == 0) {
+                money.append(",")
+            }
+        }
+        
+        if(money.last == ",") {
+            money.removeLast()
+        }
+        
+        return String(money.reversed())
+    }
+}
 
-Protocol (Interface) scenario 1: A local broadcast system
+var rawData =  "555-1234!@#$%^&*   \n \t ≤"
+var formattedNumber = rawData.toNumber
+var formattedMoney = rawData.toMoney
+print(formattedNumber) // 5551234
+print(formattedMoney) // 5,551,234
+```
+
+## Protocols
+### Scenario 1 - Light switch
+>```mutating``` means all the changes of its instance and any value of its instance are allowed.     
+```swift
+protocol Togglable {
+    mutating func toggle()
+}
+
+enum OnOffSwitch: Togglable {
+    case off, on
+    mutating func toggle() {
+        switch self {
+        case .off:
+            self = .on
+        case .on:
+            self = .off
+        }
+    }
+}
+
+var lightSwitch = OnOffSwitch.off // off
+lightSwitch.toggle() // on
+lightSwitch.toggle() // off
+```
+
+### Scenario 2: Initializer requirements
+Use ```required init``` to initialize
+```swift
+protocol PublicWiFiLogin {
+    init(phoneNumber: String)
+}
+
+class WiFiAccess: PublicWiFiLogin {
+    required init(phoneNumber: String) {
+        print("Phone Number: \(phoneNumber.toNumber)")
+    }
+}
+WiFiAccess(phoneNumber: "555-1234!@#$%^&*   \n \t ≤") // Phone Number: 5551234
+```
+
+### Scenario 3: A local broadcast system
 ```swift
 protocol Receiver {
     // serialNumber must be unique
     var serialNumber: Int { get set }
     func onReceive (content: String)
 }
-```
->```mutating``` means all the changes of its instance and any value of its instance are allowed.        
+```   
 
 Implement the protocol via a class
 ```swift

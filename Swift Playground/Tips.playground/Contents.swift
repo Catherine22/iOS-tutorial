@@ -167,8 +167,6 @@ enum Suit: String {
             return "♥︎"
         case .club:
             return "♣︎"
-        default:
-            return "?"
         }
     }
 }
@@ -182,7 +180,7 @@ enum Response {
 }
 func getAlbum(message: Response) {
     switch message {
-    case let .success(code, body):
+    case let .success(_, body):
         print("Message:\(body)")
     case let .failure(code, errorMessage):
         print("\(code) Error: \(errorMessage)")
@@ -235,8 +233,84 @@ card4.sn = "card4"
 card3.showInfo()
 
 
+
 /*
- * Potocols
+ * Extension
+ */
+extension String {
+    var toNumber: String {
+        let okChars = Set("012345678")
+        return self.filter { okChars.contains($0) }
+    }
+    
+    var toMoney: String {
+        let okChars = Set("012345678")
+        let temp:String = self.filter { okChars.contains($0) }
+        var money: String = ""
+        var count = 0
+        for (i, c) in temp.enumerated().reversed() {
+            count+=1
+            money.append(c)
+            if(count % 3 == 0) {
+                money.append(",")
+            }
+        }
+        
+        if(money.last == ",") {
+            money.removeLast()
+        }
+        
+        return String(money.reversed())
+    }
+}
+
+var rawData =  "555-1234!@#$%^&*   \n \t ≤"
+var formattedPhoneNumber = rawData.toNumber
+var formattedMoney = rawData.toMoney
+print(formattedPhoneNumber) // 5551234
+print(formattedMoney) // 5,551,234
+
+/*
+ * Protocols - scenario 1
+ */
+protocol Togglable {
+    mutating func toggle()
+}
+
+enum OnOffSwitch: Togglable {
+    case off, on
+    mutating func toggle() {
+        switch self {
+        case .off:
+            self = .on
+        case .on:
+            self = .off
+        }
+    }
+}
+
+var lightSwitch = OnOffSwitch.off
+lightSwitch.toggle()
+lightSwitch.toggle()
+
+
+/*
+ * Protocols - scenario 2
+ */
+protocol PublicWiFiLogin {
+    init(phoneNumber: String)
+}
+
+class WiFiAccess: PublicWiFiLogin {
+    required init(phoneNumber: String) {
+        print("Phone Number: \(phoneNumber.toNumber)")
+    }
+}
+
+WiFiAccess(phoneNumber: "555-1234!@#$%^&*   \n \t ≤")
+
+/*
+ * Potocols - scrnario 3
  */
 protocol Receiver {
     // serialNumber must be unique
@@ -337,4 +411,3 @@ messageCenter.sendMockMessage(content: "我是一个快乐的broadcast")
 // unregister the Notification receiver
 notification.showNotifications(enable: false)
 messageCenter.sendMockMessage(content: "还有谁收到我？")
-
