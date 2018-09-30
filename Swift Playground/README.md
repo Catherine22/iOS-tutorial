@@ -34,7 +34,7 @@ print("\(firstName ?? " ")\(middleName ?? " ")\(lastName ?? " ")")
 // Catherine Chen
 ```
 
-## ```Switch```
+## ```switch```
 ```swift
 let scores = ["John": 70, "Julianne": 100, "Anna": 59, "Paul": 0]
 for (name, score) in scores {
@@ -147,7 +147,7 @@ for (index, element) in arr.enumerated().reversed() {
 }
 print(arr) // [1, 3, 5]
 ```
-## Function
+## Function, ```func```
 
 - Return one single String
 ```swift
@@ -205,7 +205,7 @@ print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 // (min: Optional(1), max: Optional(10), avg: Optional(5.5))
 ```
 
-## Random
+## ```random```
 
 Get a random loveScore (0 ≤ loveScore ≤ 100) 
 
@@ -221,7 +221,7 @@ let loveScore = Int(arc4random_uniform(101))
 
 ## ```class```, ```enum``` and ```structure```
 
-- Initialization
+### Initialization, ```init```
 ```swift
 class Person {
     var name: String
@@ -239,7 +239,7 @@ class Person {
 var julianne = Person(name: "Julianne", age: 19)
 julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
 ```
-- Extend
+### ```extends```
 
 Class Employee extends Person
 ```swift
@@ -259,7 +259,7 @@ class Employee: Person {
 var joanne = Employee(name: "Joanne", age: 16, dept: "Accounting")
 print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting department
 ```
-- Observer - ```willSet``` and ```didSet```
+### Observer - ```willSet``` and ```didSet```
 ```swift
 class Observer {
     var value: String {
@@ -286,7 +286,7 @@ osr.value = "new value"
 // Call didSet, new value = new value
 ```
 
-- ```enum```
+### ```enum```
 
 1. Basic enum
 ```swift
@@ -334,7 +334,7 @@ getAlbum(message: albums) // Message:[{"title":"Taylor Swift",...
 getAlbum(message: error) // 404 Error: Not Found
 ```
 
-- ```struct```
+### ```struct```
 
 One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
 
@@ -379,7 +379,7 @@ As we see, there are 2 differences between ```class``` and ```sturct```:
 1. ```sturct``` is not necessary to declare its initialization      
 2. ```class``` is call-by-reference whereas ```struct``` is call-by-value
 
-## Extension
+## ```extension```
 Add a plug-in to user-defined classes or system classes
 ```swift
 extension String {
@@ -431,7 +431,25 @@ var formattedMoney = rawMoney.money
 // 3,927,241,123
 ```
 
-## Protocols
+### ```subscript```
+Call ```extension``` + ```subscript``` by ```xxx[ooo]```
+```swift
+extension String {
+    subscript(c: Character) -> Int {
+        var count = 0
+        for s in self {
+            if(s == c) {
+                count += 1
+            }
+        }
+        return count
+    }
+}
+var quote = "Without music, life would be a mistake"
+print("I have \(quote["e"]) \"e\" in the quote")
+```
+
+## ```protocol```
 ### Scenario 1 - Light switch
 >```mutating``` means all the changes of its instance and any value of its instance are allowed.     
 ```swift
@@ -602,3 +620,152 @@ notification.showNotifications(enable: false)
 messageCenter.sendMockMessage(content: "还有谁收到我？")
 // You got a message(1): 还有谁收到我？
 ```
+
+## Error Handling
+
+- Scenario 1
+> Tips      
+> - Define multiple errors in ```enum``` which must extend ```Error```      
+> - Normally, we don't handle all of the errors. Therefore, we use another ```try-catch``` to wrap the main ```try-catch``` statement      
+```swift
+struct Item {
+    var price: Int
+    var count: Int
+}
+
+enum VendingMachineError: Error {
+    case invalidSelection
+    case insufficientFunds(coinsNeeded: Int)
+    case outOfStock
+}
+
+class VendingMachine {
+    var inventory = [
+        "Prezels": Item(price: 7, count: 15),
+        "Chips": Item(price: 13, count: 3),
+        "Candy Bar": Item(price: 12, count: 0)
+    ]
+    
+    // coinsDeposited: How much money customers deposit
+    func vend(itemNamed name: String, coinsDeposited: Int) throws {
+        guard var item = inventory[name] else {
+            throw VendingMachineError.invalidSelection
+        }
+        
+        guard item.count > 0 else {
+            throw VendingMachineError.outOfStock
+        }
+        
+        guard item.price <= coinsDeposited else {
+            throw VendingMachineError.insufficientFunds(coinsNeeded: (item.price - coinsDeposited))
+        }
+        
+        
+        item.count -= 1
+        inventory[name] = item
+        print("Success! Depositing: $\(coinsDeposited - item.price)")
+    }
+}
+
+var vendingMachine = VendingMachine()
+
+func purchasedItem(itemNamed name: String, coinsDeposited: Int) throws {
+    do {
+        try vendingMachine.vend(itemNamed: name, coinsDeposited: coinsDeposited)
+    } catch VendingMachineError.invalidSelection {
+        print("Invalid Selection.")
+    } catch VendingMachineError.insufficientFunds(let coinsNeeded) {
+        print("Insufficient funds. Please insert an additional \(coinsNeeded) coins.")
+    }
+}
+
+do {
+    try purchasedItem(itemNamed: "Chipz", coinsDeposited: 100)
+// Invalid Selection.
+} catch {
+    print("Unexpected vending-machine-related error: \(error)")
+}
+
+do {
+    try purchasedItem(itemNamed: "Prezels", coinsDeposited: 100)
+// Success! Depositing: $93
+} catch {
+    print("Unexpected vending-machine-related error: \(error)")
+}
+
+do {
+    try purchasedItem(itemNamed: "Candy Bar", coinsDeposited: 100)
+} catch {
+    print("Unexpected vending-machine-related error: \(error)")
+// Unexpected vending-machine-related error: outOfStock
+}
+```
+
+- Scenario 2
+```swift
+extension Double {
+    // byte
+    var B: Double {
+        return self
+    }
+    // kilobyte
+    var KB: Double {
+        return self * 1024
+    }
+    // megabyte
+    var MB: Double {
+        return self.KB * 1024
+    }
+    // gigabyte
+    var GB: Double {
+        return self.MB * 1024
+    }
+    // terabyte
+    var TB: Double {
+        return self.GB * 1024
+    }
+}
+
+struct File {
+    var name: String
+    var size: Double
+}
+
+enum MemoryError: Error {
+    case InsufficientStorage
+}
+
+func saveInExternalStorage(file: File) throws -> String {
+    let mockAvailableStorageSize = 100.0.B
+    guard file.size <= mockAvailableStorageSize else {
+        throw MemoryError.InsufficientStorage
+    }
+    return "\(file.name) saved in the external storage"
+}
+
+
+func saveInInternalStorage(file: File) throws -> String {
+    let mockAvailableStorageSize = 5.0.MB
+    guard file.size <= mockAvailableStorageSize else {
+        throw MemoryError.InsufficientStorage
+    }
+    return "\(file.name) saved in the internal storage"
+}
+
+func save(file: File) -> String {
+    if let message = try? saveInExternalStorage(file: file) { return message }
+    if let message = try? saveInInternalStorage(file: file) { return message }
+    return "Failed to save"
+}
+
+var image = File(name: "Taylor Swift.png", size: 1.0.MB)
+print("Downloading \(image.name) ...") // Downloading Taylor Swift.png ...
+print("\(save(file: image))") // Taylor Swift.png saved in the internal storage
+
+var video = File(name: "Despacito.mp4", size: 5.1.MB)
+print("Downloading \(video.name) ...") // Downloading Despacito.mp4 ...
+print("\(save(file: video))") // Failed to save
+```
+
+# Reference
+[Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
