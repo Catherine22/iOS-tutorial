@@ -702,6 +702,8 @@ do {
 ```
 
 - Scenario 2
+> Ignore errors     
+> Replace ```try?``` to ```try!```
 ```swift
 extension Double {
     // byte
@@ -766,6 +768,41 @@ var video = File(name: "Despacito.mp4", size: 5.1.MB)
 print("Downloading \(video.name) ...") // Downloading Despacito.mp4 ...
 print("\(save(file: video))") // Failed to save
 ```
+
+### ```defer``` , finally
+```swift
+func doSomething() throws {
+    ...
+}
+```
+- Scenario 1
+> 1. No errors: ```try``` -> ```doSomething()``` -> ```defer```      
+> 2. Found errors: ```try``` -> ```catch``` -> ```defer```      
+```swift
+defer {
+    // Whether or not errors are found, this code block will absolutely be executed
+}
+do {
+    try doSomething()
+} catch {
+    // Handle Error here
+}
+```
+- **Scenario 2**
+> 1. No errors: ```try``` -> ```doSomething()``` -> ```defer```      
+> 2. Found errors: **```try``` -> ```defer``` -> ```catch```**      
+```swift
+do {
+    defer {
+        // Whether or not errors are found, this code block will absolutely be executed
+    }
+    try doSomething()
+} catch {
+    // Handle Error here
+}
+
+```
+
 
 # Reference
 [Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
