@@ -886,5 +886,36 @@ if zoo.peek() != nil {
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
 ```
 
+# Fibonacci
+
+1. Recursion
+```swift
+func fibonacci1 (until n: Int) -> Int {
+    if n<3 {
+        return 1
+    }
+    return fibonacci1(until: n-1) + fibonacci1(until: n-2)
+}
+```
+
+2. Loop
+```swift
+func fibonacci2 (until n: Int) -> Int {
+    if n<3 {
+        return 1
+    }
+    var n_1 = 1 // f(n-1)
+    var n_2 = 1 // f(n-2)
+    var res = 1 // f(n)
+    for _ in 3...n {
+        res = n_1 + n_2
+        n_2 = n_1
+        n_1 = res
+    }
+    return res
+}
+```
+
 # Reference
 [Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
+[Programing puzzles](https://projecteuler.net/archives)
