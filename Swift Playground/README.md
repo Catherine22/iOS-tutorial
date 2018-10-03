@@ -149,6 +149,10 @@ print(arr) // [1, 3, 5]
 ```
 ## Function, ```func```
 
+>Method vs function      
+>A method is a function that is associated with a class.     
+>So if it is within the curly braces of a class, then it is called a method.     
+
 - Return one single String
 ```swift
 func func1 () -> String {
