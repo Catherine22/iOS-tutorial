@@ -39,6 +39,13 @@ Install your apps on your physical iPhone for free.
 3. Unplug yor phone     
 4. Run the app on your iPhone
 
+# The anatomy of an app
+![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
+
+- View: What you see or what appear on the screen.      
+- ViewController: This goes behind the scene. This is the code that controls what should happen when the user taps a button, or what will happen when you have a piece of data to display on screen.        
+- Model: Model is what controls the data. It manipulates the data and prepares the date to be served up to the ViewController.
+
 # Course
 [Swift.org](https://swift.org/getting-started/)     
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
