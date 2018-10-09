@@ -17,8 +17,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var diceImageView1: UIImageView!
     @IBOutlet weak var diceImageView2: UIImageView!
     
+    @IBOutlet weak var backgroundView: UIImageView!
+    @IBOutlet weak var diceeLogoView: UIImageView!
+    @IBOutlet weak var rollView: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Resize
+        let horizontalCenter = self.view.frame.width/2
+        let sectionHeight = self.view.frame.height/4
+        diceeLogoView.center = CGPoint(x: horizontalCenter, y: sectionHeight)
+        diceImageView1.center = CGPoint(x: horizontalCenter/2, y: sectionHeight*2)
+        diceImageView2.center = CGPoint(x: horizontalCenter*3/2, y: sectionHeight*2)
+        rollView.center = CGPoint(x: horizontalCenter, y: sectionHeight*3.5)
         
         updateDiceImages()
     }
