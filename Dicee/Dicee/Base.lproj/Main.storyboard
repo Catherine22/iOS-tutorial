@@ -50,19 +50,22 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="wc4-8E-JSE" id="8aY-ud-aMx"/>
                         <outlet property="diceImageView1" destination="7CJ-XQ-BKT" id="2mL-PF-EFR"/>
                         <outlet property="diceImageView2" destination="ppK-Yv-t1N" id="jwT-CN-GQg"/>
+                        <outlet property="diceeLogoView" destination="677-Yc-c5k" id="Smq-fF-5hn"/>
+                        <outlet property="rollView" destination="ynM-2z-heS" id="laA-Mh-cns"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="190" y="143"/>
         </scene>
     </scenes>
     <resources>
         <image name="dice3" width="100" height="100"/>
         <image name="dice5" width="100" height="100"/>
         <image name="diceeLogo" width="196" height="128"/>
-        <image name="newbackground" width="444" height="414"/>
+        <image name="newbackground" width="444.5" height="414"/>
     </resources>
 </document>
