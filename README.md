@@ -14,7 +14,7 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 
 ## Auto Layout
 To get our view fit on different screens, we do     
-1. Adjust views programmatically. For example,    
+### Adjust views programmatically. For example,    
 ```swift
 class ViewController: UIViewController {
     @IBOutlet weak var diceImageView1: UIImageView!
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
   }
 ```
 
-2. Pinning
+### Pinning
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout1.png)  
 
 Steps:    
@@ -53,7 +53,7 @@ Your xcode should look like:
 ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout1_2.png)  
 
 
-3. Fix the size of views
+### Fix the size of views
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2.png)  
 Steps:    
 (1) Set the fixed height and width  ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_1.png)  
@@ -61,6 +61,24 @@ Steps:
 
 Your xcode should look like:
 ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_3.png)  
+
+### Stack View   
+Calculator for example,
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_1.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_2.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_3.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_4.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_5.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_6.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_7.png)  
+
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_8.png)  
 
 # Useful tools
 - xcode
