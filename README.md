@@ -56,8 +56,10 @@ Your xcode should look like:
 ### Fix the size of views
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2.png)  
 Steps:    
-(1) Set the fixed height and width     ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_1.png)  
-(2) Check "Horizontally in Container" and "Vertically in Container"    ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_2.png)    
+(1) Set the fixed height and width    
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_1.png)  
+(2) Check "Horizontally in Container" and "Vertically in Container"   
+![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_2.png)    
 
 Your xcode should look like:    
 ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/autolayout2_3.png)  
@@ -81,7 +83,7 @@ Calculator for example,
 ![example](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/stack_view_8.png)  
 
 # Useful tools
-- xcode
+- xcode   
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)        
 - [Scale images from mobile development](https://appicon.co/#image-sets)        
 - [Flat UI colors](https://flatuicolors.com/)      
