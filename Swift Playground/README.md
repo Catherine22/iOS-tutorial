@@ -2,7 +2,7 @@
 ![Swift cheat sheet](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/SwiftCheatSheet.png)
 
 ## Optional Variable
-```var``` for Variables and ```let``` for Constants. 
+```var``` for Variables and ```let``` for Constants.
 Constants take up less memory space than Variables.  
 
 ### Use ```if``` and ```let``` together to work with values that might be missing.
@@ -197,7 +197,7 @@ func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?){
             total! += Float(n)
         }
     }
-    
+
     if let avg = total {
         return (min, max, avg/Float(numbers.count))
     } else {
@@ -211,9 +211,9 @@ print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
 ## ```random```
 
-Get a random loveScore (0 ≤ loveScore ≤ 100) 
+Get a random loveScore (0 ≤ loveScore ≤ 100)
 
-Either 
+Either
 ```swift
 let loveScore = Int.random(in: 0...100)
 ```
@@ -225,13 +225,15 @@ let loveScore = Int(arc4random_uniform(101))
 
 ## ```class```, ```enum``` and ```structure```
 
-### Initialization, ```init```
+### Designated Initialiser, ```init```
+Every argument is supposed to be initialise
+
 ```swift
 class Person {
     var name: String
     var age: Int
-    
-    init (name: String, age: Int){
+
+    init (name: String, age: Int) {
         self.name = name
         self.age = age
     }
@@ -243,18 +245,47 @@ class Person {
 var julianne = Person(name: "Julianne", age: 19)
 julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
 ```
-### ```extends```
+### Convenience Initialiser, ```convenience init```
+Initialise with optional arguments
+
+```swift
+enum CarType {
+    case Sedan
+    case Coupe
+    case Hatchback
+}
+
+class Car {
+    var colour = "Black"
+    var typeOfCar: CarType = .Coupe
+
+    convenience init(customerChosenColour: String){
+        self.init() // Initialise the default properties
+        self.colour = customerChosenColour
+    }
+}
+
+let myCar = Car() // It works
+print(myCar.colour)
+print(myCar.typeOfCar)
+
+let someRichGuysCar = Car(customerChosenColour: "Gold") // It works as well
+print(someRichGuysCar.colour)
+print(someRichGuysCar.typeOfCar)
+```
+
+### Inheritance, ```extends```
 
 Class Employee extends Person
 ```swift
 class Employee: Person {
     var dept: String
-    
+
     init(name: String, age: Int, dept: String){
         self.dept = dept
         super.init(name: name, age: age)
     }
-    
+
     override func saySomething() -> String {
         return "Hi, my name is \(name), I work for \(dept) department"
     }
@@ -271,13 +302,13 @@ class Observer {
             // Call willSet before the value changes
             print("Call willSet, value = \(value)")
         }
-        
+
         didSet {
             // Call willSet after the value changes
             print("Call didSet, new value = \(value)")
         }
     }
-    
+
     init(value: String){
         self.value = value
     }
@@ -347,7 +378,7 @@ struct GiftCardStruct {
     var sn: String
     var expiration: Double
     var value: Double
-    
+
     func showInfo() {
         print("[struct] sn:\(sn), value:\(value)")
     }
@@ -357,13 +388,13 @@ class GiftCardClass {
     var sn: String
     var expiration: Double
     var value: Double
-    
+
     init(sn: String, expiration: Double, value: Double){
         self.sn = sn
         self.expiration = expiration
         self.value = value
     }
-    
+
     func showInfo() {
         print("[class] sn:\(sn), value:\(value)")
     }
@@ -380,7 +411,7 @@ card4.sn = "card4"
 card3.showInfo() // [struct] sn:card3, value:100.0
 ```
 As we see, there are 2 differences between ```class``` and ```sturct```:        
-1. ```sturct``` is not necessary to declare its initialization      
+1. ```sturct``` is not necessary to declare its initialiser      
 2. ```class``` is call-by-reference whereas ```struct``` is call-by-value
 
 ## ```extension```
@@ -405,20 +436,20 @@ extension Int {
                 money.append(",")
             }
         }
-        
+
         if(money.last == ",") {
             money.removeLast()
         }
-        
+
         return String(money.reversed())
     }
-    
+
     func repetitions(task: () -> Void) {
         for _ in 0..<self {
             task()
         }
     }
-    
+
 }
 
 var rawData =  "555-1234!@#$%^&*   \n \t ≤"
@@ -428,7 +459,7 @@ print(formattedPhoneNumber) // 5551234
 var rawMoney = 3927241123
 var formattedMoney = rawMoney.money
 3.repetitions {
-    print(formattedMoney) 
+    print(formattedMoney)
 }
 // 3,927,241,123
 // 3,927,241,123
@@ -478,8 +509,8 @@ lightSwitch.toggle() // on
 lightSwitch.toggle() // off
 ```
 
-### Scenario 2: Initializer requirements
-Use ```required init``` to initialize
+### Scenario 2: Initialiser requirements
+Use ```required init``` to initialise
 ```swift
 protocol PublicWiFiLogin {
     init(phoneNumber: String)
@@ -509,25 +540,25 @@ class Register: Receiver {
     init (_ serialNumber: Int) {
         self.serialNumber = serialNumber
     }
-    
+
     func onReceive (content: String) {
         print("You got a message(\(serialNumber)): \(content)")
     }
 }
 ```
-     
+
 ```swift
 class BroadcastManager {
     var static receivers = [Receiver]()
-    
+
     func sendMessage(content: String) {
         notifyAllReceivers(content)
     }
-    
+
     func register(receiver: Receiver) {
         receivers.append(receiver)
     }
-    
+
     func unregister(receiver: Receiver) {
         for (index, element) in receivers.enumerated().reversed() {
             if(element.serialNumber == receiver.serialNumber) {
@@ -535,7 +566,7 @@ class BroadcastManager {
             }
         }
     }
-    
+
     func notifyAllReceivers(_ content: String) {
         for r in receivers {
             r.onReceive(content: content)
@@ -550,17 +581,17 @@ class Inbox {
     init() {
         let broadcastManager = BroadcastManager()
         let emailReceiver = MessageReceiver(0x0001)
-        
+
         // register a receiver
         broadcastManager.register(receiver: emailReceiver)
     }
-    
+
     class MessageReceiver: Receiver {
         var serialNumber: Int = -1
         init (_ serialNumber: Int) {
             self.serialNumber = serialNumber
         }
-        
+
         func onReceive (content: String) {
             print("You got a message(\(serialNumber)): \(content)")
         }
@@ -573,18 +604,18 @@ class Notification {
     private let broadcastManager = BroadcastManager()
     private let notificationReceiver = MessageReceiver(0x0002)
     private var enable: Bool = false
-    
+
     class MessageReceiver: Receiver {
         var serialNumber: Int = -1
         init (_ serialNumber: Int) {
             self.serialNumber = serialNumber
         }
-        
+
         func onReceive (content: String) {
             print("A notification popped up(\(serialNumber)): \(content)")
         }
     }
-    
+
     func showNotifications(enable: Bool) {
         if(enable && !self.enable) {
             broadcastManager.register(receiver: notificationReceiver)
@@ -649,22 +680,22 @@ class VendingMachine {
         "Chips": Item(price: 13, count: 3),
         "Candy Bar": Item(price: 12, count: 0)
     ]
-    
+
     // coinsDeposited: How much money customers deposit
     func vend(itemNamed name: String, coinsDeposited: Int) throws {
         guard var item = inventory[name] else {
             throw VendingMachineError.invalidSelection
         }
-        
+
         guard item.count > 0 else {
             throw VendingMachineError.outOfStock
         }
-        
+
         guard item.price <= coinsDeposited else {
             throw VendingMachineError.insufficientFunds(coinsNeeded: (item.price - coinsDeposited))
         }
-        
-        
+
+
         item.count -= 1
         inventory[name] = item
         print("Success! Depositing: $\(coinsDeposited - item.price)")
@@ -819,7 +850,7 @@ func swap<T>(_ a: inout T, _ b: inout T) {
 struct Animal {
     var name: String
     var _class: String
-    
+
     static func compare (a: Animal, b: Animal) -> Int {
         if (a.name == b.name && a._class == b._class) {
             return 0
@@ -842,19 +873,19 @@ struct Stack<T> {
     mutating func push(_ item: T) {
         items.append(item)
     }
-    
+
     mutating func pop () -> T{
         return items.removeLast()
     }
-    
+
     func empty() -> Bool {
        return items.isEmpty
     }
-    
+
     func peek() -> T? {
         return items.last
     }
-    
+
     func search(_ item: T, _ compare: (_ a: T, _ b: T) -> Int) -> Int {
         for (index, value) in items.enumerated().reversed() {
             if (compare(value, item) == 0) {

@@ -61,7 +61,7 @@ print(loveScore)
 
 
 /*
- * Class
+ * Class - Designated Initialiser
  */
 class Person {
     var name: String
@@ -76,6 +76,10 @@ class Person {
         return "Hi, my name is \(name), I am \(age) years old"
     }
 }
+
+/*
+ * Class - Convenience Initialiser
+ */
 
 var julianne = Person(name: "Julianne", age: 19)
 print(julianne.saySomething())
@@ -147,11 +151,11 @@ enum Poker: Int {
     }
 }
 
-let act = Poker.ace
+let act: Poker = .ace
 print(act.rawValue)
 print(act.getDesc())
 
-let eight = Poker.eight
+let eight: Poker = .eight
 print(eight.rawValue)
 print(eight.getDesc())
 
@@ -171,7 +175,7 @@ enum Suit: String {
     }
 }
 
-let diamond = Suit.diamond
+let diamond: Suit = .diamond
 print(diamond.getSymbol())
 
 enum Response {
@@ -187,8 +191,8 @@ func getAlbum(message: Response) {
     }
 }
 
-let albums = Response.success(200, "[{\"title\":\"Taylor Swift\",\"artist\":\"Taylor Swift\",\"url\":\"https://www.amazon.com/Taylor-Swift/dp/B0014I4KH6\",\"image\":\"https://images-na.ssl-images-amazon.com/images/I/61McsadO1OL.jpg\",\"thumbnail_image\":\"https://i.imgur.com/K3KJ3w4h.jpg\"}]")
-let error = Response.failure(404, "Not Found")
+let albums: Response = .success(200, "[{\"title\":\"Taylor Swift\",\"artist\":\"Taylor Swift\",\"url\":\"https://www.amazon.com/Taylor-Swift/dp/B0014I4KH6\",\"image\":\"https://images-na.ssl-images-amazon.com/images/I/61McsadO1OL.jpg\",\"thumbnail_image\":\"https://i.imgur.com/K3KJ3w4h.jpg\"}]")
+let error: Response = .failure(404, "Not Found")
 
 getAlbum(message: albums)
 getAlbum(message: error)
