@@ -107,6 +107,8 @@ Install all the CocoaPods that we specified earlier in our Podfile
 $pod install
 ```
 
+Open xcworkspace file instead which contains all of our CocoaPods.
+
 [Podfile example](https://github.com/Catherine22/iOS-tutorial/Clima-iOS12/Podfile)
 
 # The anatomy of an app
@@ -115,6 +117,75 @@ $pod install
 - View: What you see or what appear on the screen.      
 - ViewController: This goes behind the scene. This is the code that controls what should happen when the user taps a button, or what will happen when you have a piece of data to display on screen.        
 - Model: Model is what controls the data. It manipulates the data and prepares the date to be served up to the ViewController.
+
+# Coding Style
+![Sections](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sections.png)   
+We can separate our code into describe sections by adding
+```Swift
+//MARK: - Networking
+/***************************************************************/
+
+
+
+//MARK: - JSON Parsing
+/***************************************************************/
+
+
+
+```
+
+# Applications
+- [I Am Rich](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Rich), [I Am Poor](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Poor)    
+- [Magic8Ball](https://github.com/Catherine22/iOS-tutorial/tree/master/Magic8Ball), [Dicee](https://github.com/Catherine22/iOS-tutorial/tree/master/Dicee)    
+  - Random number   
+  - AutoLayout    
+- [Quizzler](https://github.com/Catherine22/iOS-tutorial/tree/master/Quizzler-iOS12), [Destini](https://github.com/Catherine22/iOS-tutorial/tree/master/Destini-iOS12)    
+  - MVC   
+  - ProgressHUD   
+  - Alert   
+- [Xylophone](https://github.com/Catherine22/iOS-tutorial/tree/master/Xylophone-iOS12/Xylophone)    
+  - Play wav audio    
+  - ```do catch```    
+- [Stack View Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Stack%20View%20Practice), [Auto Layout Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Auto-Layout-Practice)   
+  - AutoLayout    
+  - Stack View
+
+# Tips
+### Ask the user for permissions.   
+For example, Location Permissions.
+```Swift
+let locationManager = CLLocationManager()
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  locationManager.delegate = self
+  locationManager.requestWhenInUseAuthorization();
+}
+```
+In Info.plist,     
+![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist1.png)
+
+### Load data from HTTP URL
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+  <key>NSExceptionDomains</key>
+  <dict>
+    <key>openweathermap.org</key>
+    <dict>
+      <key>NSIncludesSubdomains</key>
+      <true/>
+      <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+      <true/>
+    </dict>
+  </dict>
+</dict>
+```
+![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
+
+# Swift
+[Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
 
 # Course
 [Swift.org](https://swift.org/getting-started/)     
