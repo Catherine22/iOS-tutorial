@@ -8,19 +8,21 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 // WeatherViewController is a subclass of UIViewController and CLLocationManagerDelegate
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
-    let APP_ID = "943e6e87148c5b34bfd538139bd0cf4e"
+    let APP_ID = "943e6e87148c5b34bfd538139bd0cf4e111"
     /***Get your own App ID at https://openweathermap.org/appid ****/
     
 
     //TODO: Declare instance variables here
     let locationManager = CLLocationManager()
-
+    var weatherDataModel: WeatherDataModel!
     
     //Pre-linked IBOutlets
     @IBOutlet weak var weatherIcon: UIImageView!
@@ -51,7 +53,23 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //Write the getWeatherData method here:
     func getWeatherData(url: String, parameters: [String: String]){
-        
+        // It makes a request in the background
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            response in
+            // what should be triggered once the background processes has completed
+            if response.result.isSuccess {
+                print("Success! Got the weather data")
+                
+                let weatherJSON: JSON = JSON(response.result.value!)
+//                print(weatherJSON)
+                // When you see the 'in' key word, you are in a closure, a function inside a function,
+                // you always have to specify 'self' in front of your methods
+                self.updateWeatherData(json: weatherJSON)
+            } else {
+                print("Error: \(String(describing: response.result.error))")
+                self.cityLabel.text = "Connection issues"
+            }
+        }
     }
 
     
@@ -64,7 +82,23 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
    
     
     //Write the updateWeatherData method here:
-    
+    func updateWeatherData(json: JSON) {
+        if let tempResult = json["main"]["temp"].double {
+            let conditionResult = json["weather"][0]["id"].int!
+            weatherDataModel = WeatherDataModel(
+                temperature: Int(tempResult - 273.15),
+                condition: conditionResult,
+                city: json["name"].string!,
+                weatherIconName: weatherDataModel.updateWeatherIcon(condition: conditionResult)
+            )
+        } else if let errorMessage = json["message"].string {
+            print("Error(\(json["cod"])): \(errorMessage)")
+            cityLabel.text = "Weather unavailable"
+        }
+        else {
+            cityLabel.text = "Weather unavailable"
+        }
+    }
 
     
     

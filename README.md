@@ -167,11 +167,12 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima)    
   - Ask for permissions
   - Geo Location    
-  - Delegation
+  - Delegation    
+  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```
 
 
 # Tips
-### Ask the user for permissions.   
+### Ask the user for permissions   
 For example, Location Permissions.
 ```Swift
 let locationManager = CLLocationManager()
@@ -214,7 +215,7 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 1. Run on an iPhone device    
 2. In your simulator, click Debug - Location, select Apple's headquarter or Custom Location
 
-### Load data from HTTP URL
+### Load data from HTTP URLs   
 
 ```xml
 <key>NSAppTransportSecurity</key>
