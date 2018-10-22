@@ -134,6 +134,21 @@ We can separate our code into describe sections by adding
 
 ```
 
+# Delegation
+Let's say there's a property data in B, and we are going to pass data from class A to class B, the easiest way is to create an instance of B.
+```Swift
+class A {
+  let b = B()
+  b.data = "xxx"
+}
+```
+
+But what if we cannot access properties in class A which is provided by Apple lick ```UIButton```, ```CoreLocation``` and so forth? For example, once the ```LocationManager``` has found the user's current location, it will send out an address, and how do we pass that address from the ```LocationManager``` (class A) into our own ```ViewController``` (class B)?   
+
+That's what delegation comes in.    
+
+Once the ```LocationManager``` finds a location, it will send it out to the delegation, if the delegation happens to be nil, then nothing happens to the information. But if the delegation happens to be sat, it will handle the data from the ```LocationManager```.
+
 # Applications
 - [I Am Rich](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Rich), [I Am Poor](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Poor)    
 - [Magic8Ball](https://github.com/Catherine22/iOS-tutorial/tree/master/Magic8Ball), [Dicee](https://github.com/Catherine22/iOS-tutorial/tree/master/Dicee)    
@@ -148,7 +163,12 @@ We can separate our code into describe sections by adding
   - ```do catch```    
 - [Stack View Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Stack%20View%20Practice), [Auto Layout Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Auto-Layout-Practice)   
   - AutoLayout    
-  - Stack View
+  - Stack View    
+- [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima)    
+  - Ask for permissions
+  - Geo Location    
+  - Delegation
+
 
 # Tips
 ### Ask the user for permissions.   
@@ -164,6 +184,35 @@ override func viewDidLoad() {
 ```
 In Info.plist,     
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist1.png)
+
+**Update Locations**
+```Swift
+// Asynchronous method (It works in the background), call didUpdateLocations and didFailWithError methods to handle callbacks
+locationManager.startUpdatingLocation()
+```
+
+```Swift
+func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  // the laster the more accurate
+  let location = locations[locations.count - 1]
+  // Accuracy means the spread of possible locations.
+  // When that value is negative, that represents an invalid result
+  if (location.horizontalAccuracy > 0) {
+    // Unless you want to destroy users' battery, you should stop updating locations as soon as you get the valid data
+    locationManager.stopUpdatingLocation()
+    print("(\(location.coordinate.longitude), \(location.coordinate.latitude))")
+  }
+}
+
+func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+  // Location unavailable
+  print(error)
+}
+```
+
+If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions to fix this:    
+1. Run on an iPhone device    
+2. In your simulator, click Debug - Location, select Apple's headquarter or Custom Location
 
 ### Load data from HTTP URL
 

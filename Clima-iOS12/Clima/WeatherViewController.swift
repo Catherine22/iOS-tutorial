@@ -35,10 +35,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         // In order to use CLLocationManager and all of its capebilities, the WeatherViewController has to become a delegate of the CLLocationManager.
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         // Ask users for permission, go to info.plist or the pop-up won't appear
-        locationManager.requestWhenInUseAuthorization();
+        locationManager.requestWhenInUseAuthorization()
+        
+        // Asynchronous method (It works in the background), call didUpdateLocations and didFailWithError methods to handle callbacks
+        locationManager.startUpdatingLocation()
     }
     
     
@@ -47,7 +50,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     /***************************************************************/
     
     //Write the getWeatherData method here:
-    
+    func getWeatherData(url: String, parameters: [String: String]){
+        
+    }
 
     
     
@@ -80,11 +85,29 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     //Write the didUpdateLocations method here:
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // the laster the more accurate
+        let location = locations[locations.count - 1]
+        // Accuracy means the spread of possible locations.
+        // When that value is nagetive, that represents an invalid result
+        if (location.horizontalAccuracy > 0) {
+            // Unless you want to destroy users' battery, you should stop updating locations as soon as you get the valid data
+            locationManager.stopUpdatingLocation()
+            
+            print("(\(location.coordinate.longitude), \(location.coordinate.latitude))")
+            let longitude = String(location.coordinate.longitude)
+            let latitude = String(location.coordinate.latitude)
+            let params:[String: String] = ["lon": longitude, "lat": latitude, "appid": APP_ID]
+            getWeatherData(url: WEATHER_URL, parameters: params)
+        }
+    }
     
     
     //Write the didFailWithError method here:
-    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        cityLabel.text = "Location unavailable"
+        print(error)
+    }
     
     
 
