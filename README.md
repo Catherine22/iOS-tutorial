@@ -15,6 +15,19 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 ## Auto Layout
 [See More](https://github.com/Catherine22/iOS-tutorial/blob/master/AutoLayout.md)
 
+# Segues
+For example, I'd like to click "next" button to navigate to another page. In this case, I need segues.    
+
+1. Create a UIViewController with a "next" button   
+2. Create another UIViewController by searching "uiviewcontroller" in the object libraries.   
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue.png)    
+3. Click ```⌃``` and the "next" button, drag to another UIViewController, select "show"    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue1.png)   
+4. File - New - File to create a new Cocoa Touch Class, named "SecondViewController"    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue2.png)   
+5. Lint the segue we just created to SecondViewController   
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue3.png)   
+
 # Create Classes and Objects from Scratch
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
 
