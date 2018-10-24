@@ -17,38 +17,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WK-kl-8Jj">
-                                <rect key="frame" x="127" y="185" width="96" height="65"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type somthing" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="smN-o9-mQk">
+                                <rect key="frame" x="94" y="200" width="188" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHU-sS-y6Z">
+                                <rect key="frame" x="157" y="271" width="61" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="hlQ-KX-J3n" kind="show" id="gYe-We-MNN"/>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZES-gQ-u3f"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="smN-o9-mQk" id="hFT-eM-pOd"/>
+                        <segue destination="nex-ob-2HB" kind="show" identifier="GoToSecondScreen" id="CXe-tR-y16"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="669.60000000000002" y="26.53673163418291"/>
         </scene>
         <!--Second View Controller-->
-        <scene sceneID="xAl-EC-n13">
+        <scene sceneID="fPJ-n1-SBA">
             <objects>
-                <viewController id="hlQ-KX-J3n" customClass="SecondViewController" customModule="Segues" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="f5N-Qd-bgw">
+                <viewController id="nex-ob-2HB" customClass="SecondViewController" customModule="Segues" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cb7-t0-cmO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="57y-Eq-r2l"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKg-ZV-k7G">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019610000005" green="0.70196078429999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="MKg-ZV-k7G" firstAttribute="leading" secondItem="cb7-t0-cmO" secondAttribute="leadingMargin" id="9US-KD-qsB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MKg-ZV-k7G" secondAttribute="trailing" id="GRV-EW-RLH"/>
+                            <constraint firstItem="MKg-ZV-k7G" firstAttribute="top" secondItem="cb7-t0-cmO" secondAttribute="topMargin" id="bnF-RA-JSb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="MKg-ZV-k7G" secondAttribute="bottom" id="lw3-gX-9BE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tlD-Sc-kl2"/>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="MKg-ZV-k7G" id="oua-1I-5VY"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="97G-MG-8re" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fZc-3Y-ZPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="133"/>
+            <point key="canvasLocation" x="1610" y="27"/>
         </scene>
     </scenes>
 </document>

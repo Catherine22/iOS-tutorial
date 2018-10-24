@@ -16,6 +16,7 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 [See More](https://github.com/Catherine22/iOS-tutorial/blob/master/AutoLayout.md)
 
 # Segues
+
 For example, I'd like to click "next" button to navigate to another page. In this case, I need segues.    
 
 1. Create a UIViewController with a "next" button   
@@ -23,10 +24,26 @@ For example, I'd like to click "next" button to navigate to another page. In thi
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue.png)    
 3. Click ```⌃``` and the "next" button, drag to another UIViewController, select "show"    
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue1.png)   
-4. File - New - File to create a new Cocoa Touch Class, named "SecondViewController"    
+**Now when you click the Next button, it will jump to the second page**   
+
+4. In order to customise the second page, go to File - New - File to create a new Cocoa Touch Class, named "SecondViewController"    
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue2.png)   
-5. Lint the segue we just created to SecondViewController   
+5. Link the segue we just created to SecondViewController   
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue3.png)   
+
+## Another way to trigger segues
+
+1. Click ```⌃``` and the "View Controller" button, drag to another UIViewController, select "show"    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue4.png)   
+2. Set ```IBAction``` of the Next button, and jump to another segue by calling ```performSegue```, select the segue to name Identifier    
+
+```Swift
+@IBAction func buttonPressed(_ sender: Any) {
+  performSegue(withIdentifier: "GoToSecondScreen", sender: self)
+}
+```    
+Who initialised the segue will be the ```sender```, which in this case, will be the ```ViewController```.   
+(https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)   
 
 # Create Classes and Objects from Scratch
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
@@ -177,6 +194,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [Stack View Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Stack%20View%20Practice), [Auto Layout Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Auto-Layout-Practice)   
   - AutoLayout    
   - Stack View    
+- [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)    
+  - Segue example   
 - [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima)    
   - Ask for permissions
   - Geo Location    
