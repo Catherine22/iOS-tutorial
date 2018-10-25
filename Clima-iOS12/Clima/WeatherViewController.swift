@@ -12,7 +12,8 @@ import Alamofire
 import SwiftyJSON
 
 // WeatherViewController is a subclass of UIViewController and CLLocationManagerDelegate
-class WeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
+    
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -152,6 +153,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - Change City Delegate methods
     /***************************************************************/
+    func userEnteredANewCityName(name: String) {
+        print(name)
+    }
     
     
     //Write the userEnteredANewCityName Delegate method here:
@@ -159,11 +163,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     
     //Write the PrepareForSegue Method here
-    
-    
-    
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "changeCityName") {
+            
+            let destinationVC = segue.destination as! ChangeCityViewController
+            
+            destinationVC.delegate = self
+        }
+    }
 }
 
 

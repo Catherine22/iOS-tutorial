@@ -201,7 +201,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Geo Location    
   - Delegation    
   - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```
-
+- [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
+  - Pass data between View Controllers
 
 # Tips
 ### Ask the user for permissions   
@@ -265,6 +266,9 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 </dict>
 ```
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
+
+### Pass data between View Controllers
+
 
 # Swift
 [Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
