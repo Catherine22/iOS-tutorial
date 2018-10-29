@@ -41,9 +41,43 @@ For example, I'd like to click "next" button to navigate to another page. In thi
 @IBAction func buttonPressed(_ sender: Any) {
   performSegue(withIdentifier: "GoToSecondScreen", sender: self)
 }
+
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  if segue.identifier == "GoToSecondScreen" {
+    // We are not allowed to create a ViewController Object regularly, like 
+    // let destinationVC = SecondViewController()
+    // Instead, we do
+    let destinationVC = segue.destination as! SecondViewController
+    destinationVC.textPassedOver = textField.text
+  }
+}
 ```    
 Who initialised the segue will be the ```sender```, which in this case, will be the ```ViewController```.   
 (https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)   
+
+# Protocol and Delegate
+Inside the [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima) application, we have a ```ChangeCityDelegate``` delegate on the second ViewController.    
+```Swift
+protocol ChangeCityDelegate{
+    func userEnteredANewCityName(name: String)
+}
+```
+
+We also defined the delegate variable in the class   
+
+```Swift
+var delegate: ChangeCityDelegate?
+```
+
+While user clicks the button, sending data to the first ViewController and the second ViewController will be dismissed and go back to the first ViewController   
+
+```Swift
+if (delegate != nil) {
+  delegate?.userEnteredANewCityName(name: city)
+  // close this ViewController
+  self.dismiss(animated: true, completion: nil)
+}
+```
 
 # Create Classes and Objects from Scratch
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
@@ -202,7 +236,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Delegation    
   - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```
 - [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
-  - Pass data between View Controllers
+  - Pass data between View Controllers    
+  - Segues
 
 # Tips
 ### Ask the user for permissions   

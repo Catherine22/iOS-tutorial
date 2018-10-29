@@ -141,7 +141,7 @@ Removing elements from the end of an array, or indexOutOfRange exception might h
 ```swift
 var arr = [1, 3, -10, 5, -7]
 for (index, element) in arr.enumerated().reversed() {
-    if(element < 0 ) {
+    if element < 0 {
         arr.remove(at: index)
     }
 }
@@ -432,12 +432,12 @@ extension Int {
         for (_, c) in temp.enumerated().reversed() {
             count+=1
             money.append(c)
-            if(count % 3 == 0) {
+            if count % 3 == 0 {
                 money.append(",")
             }
         }
 
-        if(money.last == ",") {
+        if money.last == "," {
             money.removeLast()
         }
 
@@ -473,7 +473,7 @@ extension String {
     subscript(c: Character) -> Int {
         var count = 0
         for s in self {
-            if(s == c) {
+            if s == c {
                 count += 1
             }
         }
@@ -561,7 +561,7 @@ class BroadcastManager {
 
     func unregister(receiver: Receiver) {
         for (index, element) in receivers.enumerated().reversed() {
-            if(element.serialNumber == receiver.serialNumber) {
+            if element.serialNumber == receiver.serialNumber {
                 receivers.remove(at: index)
             }
         }
@@ -617,9 +617,9 @@ class Notification {
     }
 
     func showNotifications(enable: Bool) {
-        if(enable && !self.enable) {
+        if enable && !self.enable {
             broadcastManager.register(receiver: notificationReceiver)
-        } else if (!enable && self.enable) {
+        } else if !enable && self.enable {
             broadcastManager.unregister(receiver: notificationReceiver)
         }
         self.enable = enable
@@ -852,7 +852,7 @@ struct Animal {
     var _class: String
 
     static func compare (a: Animal, b: Animal) -> Int {
-        if (a.name == b.name && a._class == b._class) {
+        if a.name == b.name && a._class == b._class {
             return 0
         }
         return -1
@@ -888,7 +888,7 @@ struct Stack<T> {
 
     func search(_ item: T, _ compare: (_ a: T, _ b: T) -> Int) -> Int {
         for (index, value) in items.enumerated().reversed() {
-            if (compare(value, item) == 0) {
+            if compare(value, item) == 0 {
                 return index
             }
         }
