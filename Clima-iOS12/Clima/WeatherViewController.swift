@@ -17,7 +17,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
-    let WEATHER_URL_PARAM_BY_CITY = "%@?q=%@"
     let APP_ID = "943e6e87148c5b34bfd538139bd0cf4e"
     /***Get your own App ID at https://openweathermap.org/appid ****/
     
@@ -153,12 +152,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     //MARK: - Change City Delegate methods
     /***************************************************************/
-    func userEnteredANewCityName(name: String) {
-        print(name)
-    }
     
     
     //Write the userEnteredANewCityName Delegate method here:
+    func userEnteredANewCityName(name: String) {
+        let params:[String: String] = ["q": name, "appid": APP_ID]
+        getWeatherData(url: WEATHER_URL, parameters: params)
+    }
     
 
     
