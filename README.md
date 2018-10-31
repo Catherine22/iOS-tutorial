@@ -44,7 +44,7 @@ For example, I'd like to click "next" button to navigate to another page. In thi
 
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
   if segue.identifier == "GoToSecondScreen" {
-    // We are not allowed to create a ViewController Object regularly, like 
+    // We are not allowed to create a ViewController Object regularly, like
     // let destinationVC = SecondViewController()
     // Instead, we do
     let destinationVC = segue.destination as! SecondViewController
@@ -230,14 +230,17 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Stack View    
 - [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)    
   - Segue example   
-- [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima)    
+- [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/)    
   - Ask for permissions
   - Geo Location    
   - Delegation    
   - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```
 - [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
   - Pass data between View Controllers    
-  - Segues
+  - Segues    
+- [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)   
+  - UIPickerViewDelegate, UIPickerViewDataSource    
+  - ```Double``` error: Index out of range    
 
 # Tips
 ### Ask the user for permissions   
@@ -302,8 +305,10 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 ```
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
 
-### Pass data between View Controllers
-
+# Command Game
+```
+$emacs -batch -l dunnet
+```
 
 # Swift
 [Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
