@@ -17,7 +17,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let symbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
-    var currency = -1
+    var currencyIndex = 0
 
     //Pre-setup IBOutlets
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
@@ -30,6 +30,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
        
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
+        
+        print(currencyArray[currencyIndex])
+        let finalURL = baseURL + currencyArray[currencyIndex]
+        getPriceData(url: finalURL)
     }
 
     
@@ -52,8 +56,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // This will get called every time the picker is scrolled. When that happens it will record the row that was selected.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(currencyArray[row])
-        let finalURL = baseURL + currencyArray[row]
+        currencyIndex = row
+        print(currencyArray[currencyIndex])
+        let finalURL = baseURL + currencyArray[currencyIndex]
         getPriceData(url: finalURL)
     }
     
@@ -89,8 +94,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func updatePriceData(json : JSON) {
         if let lastPriceResult = json["last"].double {
-            print(lastPriceResult)
-            bitcoinPriceLabel.text = "\(symbolArray[currency]) \(String(lastPriceResult))"
+            bitcoinPriceLabel.text = "\(symbolArray[currencyIndex]) \(String(lastPriceResult))"
         }
     }
     
