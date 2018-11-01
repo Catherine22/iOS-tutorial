@@ -230,17 +230,17 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Stack View    
 - [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)    
   - Segue example   
+- [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
+  - Pass data between View Controllers    
+  - Segues    
 - [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/)    
   - Ask for permissions
   - Geo Location    
   - Delegation    
-  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```
-- [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
-  - Pass data between View Controllers    
-  - Segues    
+  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
 - [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)   
   - UIPickerViewDelegate, UIPickerViewDataSource    
-  - ```Double``` error: Index out of range    
+  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
 
 # Tips
 ### Ask the user for permissions   
