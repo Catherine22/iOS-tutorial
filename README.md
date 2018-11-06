@@ -84,7 +84,7 @@ if (delegate != nil) {
 
 # Useful tools
 - Xcode   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Xcode.png)        
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)        
 - [Scale images from mobile development](https://appicon.co/#image-sets)        
 - [Flat UI colors](https://flatuicolors.com/)      
 - [Canva](https://www.canva.com/)         
@@ -173,7 +173,7 @@ $pod install
 
 Open xcworkspace file instead which contains all of our CocoaPods.
 
-[Podfile example](https://github.com/Catherine22/iOS-tutorial/Clima-iOS12/Podfile)
+[Podfile example](https://github.com/Catherine22/iOS-tutorial/blob/master/Clima-iOS12/Podfile)
 
 # The anatomy of an app
 ![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
