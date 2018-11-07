@@ -6,7 +6,7 @@
 
 
 import UIKit
-
+import Firebase
 
 class LogInViewController: UIViewController {
 
@@ -16,7 +16,15 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        Analytics.setScreenName(screenName, screenClass: screenClass)
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,4 +1,5 @@
 # iOS Development Tutorial
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 
 # Resolution
 If we want to display beautiful, then we need to ensure that the resolution is height
@@ -241,6 +242,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)   
   - UIPickerViewDelegate, UIPickerViewDataSource    
   - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
+- [FlashChat](https://github.com/Catherine22/iOS-tutorial/tree/master/Flash-Chat-iOS12)   
+  - Authenticate with Firebase    
+  - Firebase Realtime Database    
+
 
 # Tips
 ### Ask the user for permissions   
@@ -313,7 +318,7 @@ $emacs -batch -l dunnet
 # Swift
 [Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
 
-# Course
+# Reference
 [Swift.org](https://swift.org/getting-started/)     
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 [Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
