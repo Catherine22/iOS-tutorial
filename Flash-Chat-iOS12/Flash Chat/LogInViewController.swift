@@ -36,6 +36,7 @@ class LogInViewController: UIViewController {
 
         
         //TODO: Log in the user
+//        Auth.auth().signIn(withEmail: <#T##String#>, password: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
         
         
     }

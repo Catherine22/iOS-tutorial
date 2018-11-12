@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 
-
 class RegisterViewController: UIViewController {
 
     
@@ -35,11 +34,9 @@ class RegisterViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
   
     @IBAction func registerPressed(_ sender: AnyObject) {
-        
 
         
         //TODO: Set up a new user on our Firbase database
