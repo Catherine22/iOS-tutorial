@@ -34,9 +34,25 @@ class LogInViewController: UIViewController {
    
     @IBAction func logInPressed(_ sender: AnyObject) {
 
-        
         //TODO: Log in the user
-//        Auth.auth().signIn(withEmail: <#T##String#>, password: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
+        if let email = emailTextfield.text {
+            if let password = passwordTextfield.text {
+                Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+                    guard let user = authResult?.user else {
+                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                        let restartAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                            self.passwordTextfield.text = ""
+                        })
+                        alert.addAction(restartAction)
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    print("\(user) log in successful!")
+                    self.performSegue(withIdentifier: "goToChat", sender: self)
+                    
+                }
+            }
+        }
         
         
     }
