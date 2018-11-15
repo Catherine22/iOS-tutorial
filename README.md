@@ -87,6 +87,88 @@ if (delegate != nil) {
 }
 ```
 
+# TableView
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView4.png)   
+
+1. Drag a TableView into your storyboard
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView1.png)   
+
+2. Create ```.xib``` file, and define the identifier and class    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView2.png)   
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView3.png)   
+
+3. The class example   
+```swift
+import UIKit
+
+class CustomMessageCell: UITableViewCell {
+    @IBOutlet var messageBackground: UIView!
+    @IBOutlet var avatarImageView: UIImageView!
+    @IBOutlet var messageBody: UILabel!
+    @IBOutlet var senderUsername: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code goes here
+    }
+}
+```
+
+4. Import the TableView in the UIViewController   
+```swift
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  @IBOutlet var messageTableView: UITableView!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    //TODO: Set yourself as the delegate and datasource here:
+    messageTableView.delegate = self
+    messageTableView.dataSource = self
+
+    //TODO: Register your MessageCell.xib file here:
+    messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+  }
+
+  //TODO: Declare cellForRowAtIndexPath here:
+  // This message gets called for every single cell that exists inside the tableView
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
+      let messageArray = ["First message", "Second message", "Third message"]
+      cell.messageBody.text = messageArray[indexPath.row]
+      return cell
+  }
+
+
+  //TODO: Declare numberOfRowsInSection here:
+  // Specify how many cells you want and what cells you want to display
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return 3
+  }
+}
+```
+
+5. Resize the cells. Let's say we want to reset the height
+```swift
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  //TODO: Set yourself as the delegate and datasource here:
+  messageTableView.delegate = self
+  messageTableView.dataSource = self
+
+  //TODO: Register your MessageCell.xib file here:
+  messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+  configureTableView()
+}
+
+//TODO: Declare configureTableView here:
+func configureTableView() {
+  messageTableView.rowHeight = UITableView.automaticDimension
+  messageTableView.estimatedRowHeight = 120.0
+}
+```
+
 # Create Classes and Objects from Scratch
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
 
@@ -255,6 +337,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Firebase Realtime Database    
   - Completion Handler    
   - Navigation ViewController   
+  - TableView
 
 
 # Tips
