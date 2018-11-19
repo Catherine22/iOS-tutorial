@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     
     
@@ -31,14 +31,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        
         //TODO: Set yourself as the delegate of the text field here:
-
+        messageTextfield.delegate = self
+        
         
         
         //TODO: Set the tapGesture here:
-        
-        
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(tableviewTapped))
+        messageTableView.addGestureRecognizer(tabGesture)
 
         //TODO: Register your MessageCell.xib file here:
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
@@ -81,7 +81,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     //TODO: Declare tableViewTapped here:
-    
+    @objc func tableviewTapped() {
+        messageTextfield.endEditing(true)
+    }
     
     
     //TODO: Declare configureTableView here:
@@ -99,12 +101,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     //TODO: Declare textFieldDidBeginEditing here:
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5) {
+            // Ensure that the hight constraint to 50 + the height of keyboard (258)
+            self.heightConstraint.constant = 308
+            
+            // Call AutoLayout to redraw the whole view
+            self.view.layoutIfNeeded()
+        }
+    }
     
     
     
     //TODO: Declare textFieldDidEndEditing here:
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5) {
+            self.heightConstraint.constant = 50
+            self.view.layoutIfNeeded()
+        }
+    }
 
     
     ///////////////////////////////////////////
@@ -117,11 +132,27 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func sendPressed(_ sender: AnyObject) {
-        
+        messageTextfield.endEditing(true)
         
         //TODO: Send the message to Firebase and save it in our database
+        messageTextfield.isEnabled = false
+        sendButton.isEnabled = false
         
-        
+        let messageDB = Database.database().reference().child("Messages")
+        let messageDictionary = ["Sender": Auth.auth().currentUser?.email,
+                                 "MessageBody": messageTextfield.text!]
+        messageDB.childByAutoId().setValue(messageDictionary) {
+            (error, reference) in
+            if error != nil {
+                print(error)
+            } else {
+                print("Message saved successfully")
+            }
+            
+            self.sendButton.isEnabled = true
+            self.messageTextfield.isEnabled = true
+            self.messageTextfield.text = ""
+        }
     }
     
     //TODO: Create the retrieveMessages method here:

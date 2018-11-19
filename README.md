@@ -337,7 +337,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Firebase Realtime Database    
   - Completion Handler    
   - Navigation ViewController   
-  - TableView
+  - TableView   
+  - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)
 
 
 # Tips
