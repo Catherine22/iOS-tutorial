@@ -14,7 +14,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // Declare instance variables here
-
+    var messageArray: [Message] = [Message]()
     
     // We've pre-linked the IBOutlets
     @IBOutlet var heightConstraint: NSLayoutConstraint!
@@ -43,6 +43,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         //TODO: Register your MessageCell.xib file here:
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
         configureTableView()
+        retrieveMessage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,8 +67,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
         
-        let messageArray = ["First message", "Second message", "Third message"]
-        cell.messageBody.text = messageArray[indexPath.row]
+        let message = Message(sender: messageArray[indexPath.row].sender, messageBody: messageArray[indexPath.row].messageBody)
+        cell.senderUsername.text = message.sender
+        cell.messageBody.text = message.messageBody
+        cell.avatarImageView.image = UIImage.init(named: "egg")
         
         return cell
     }
@@ -76,7 +79,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //TODO: Declare numberOfRowsInSection here:
     // Specify how many cells you want and what cells you want to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return messageArray.count
     }
     
     
@@ -126,7 +129,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     //MARK: - Send & Recieve from Firebase
-    
+    func retrieveMessage() {
+        let messageDB = Database.database().reference().child("Messages")
+        messageDB.observe(.childAdded) { (snapshot) in
+            // We have to convert it into a known data type. In this case, it's a dictionary ->
+            // ["Sender": Auth.auth().currentUser?.email, "MessageBody": messageTextfield.text!]
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            let sender = snapshotValue["Sender"]!
+            let text = snapshotValue["MessageBody"]!
+            
+            let message = Message(sender: sender, messageBody: text)
+            self.messageArray.append(message)
+            
+            self.configureTableView()
+            self.messageTableView.reloadData()
+        }
+        
+    }
     
     
     
@@ -141,6 +160,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let messageDB = Database.database().reference().child("Messages")
         let messageDictionary = ["Sender": Auth.auth().currentUser?.email,
                                  "MessageBody": messageTextfield.text!]
+
         messageDB.childByAutoId().setValue(messageDictionary) {
             (error, reference) in
             if error != nil {

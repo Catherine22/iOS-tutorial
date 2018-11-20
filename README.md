@@ -338,7 +338,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Completion Handler    
   - Navigation ViewController   
   - TableView   
-  - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)
+  - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
+  - ProgressHUD (Loading + alert)
 
 
 # Tips
