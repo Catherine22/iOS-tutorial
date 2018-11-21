@@ -278,7 +278,10 @@ We can separate our code into describe sections by adding
 ```Swift
 //MARK: - Networking
 /***************************************************************/
+func retrieveMessage() {
+//TODO: Retrieve messages from Firebase
 
+}
 
 
 //MARK: - JSON Parsing
