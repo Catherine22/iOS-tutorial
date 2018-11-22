@@ -1,4 +1,5 @@
 # iOS Development Tutorial
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 
 # Resolution
 If we want to display beautiful, then we need to ensure that the resolution is height
@@ -16,7 +17,6 @@ If we want to display beautiful, then we need to ensure that the resolution is h
 [See More](https://github.com/Catherine22/iOS-tutorial/blob/master/AutoLayout.md)
 
 # Segues
-
 For example, I'd like to click "next" button to navigate to another page. In this case, I need segues.    
 
 1. Create a UIViewController with a "next" button   
@@ -30,6 +30,14 @@ For example, I'd like to click "next" button to navigate to another page. In thi
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue2.png)   
 5. Link the segue we just created to SecondViewController   
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue3.png)   
+
+# Navigation Controller
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller.png)  
+
+## Create the Navigation Controller
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller1.png)  
+1. Select the initial ViewController    
+2. Editor - Embed in - Navigation Controller    
 
 ## Another way to trigger segues
 
@@ -79,12 +87,94 @@ if (delegate != nil) {
 }
 ```
 
+# TableView
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView4.png)   
+
+1. Drag a TableView into your storyboard
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView1.png)   
+
+2. Create ```.xib``` file, and define the identifier and class    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView2.png)   
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView3.png)   
+
+3. The class example   
+```swift
+import UIKit
+
+class CustomMessageCell: UITableViewCell {
+    @IBOutlet var messageBackground: UIView!
+    @IBOutlet var avatarImageView: UIImageView!
+    @IBOutlet var messageBody: UILabel!
+    @IBOutlet var senderUsername: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code goes here
+    }
+}
+```
+
+4. Import the TableView in the UIViewController   
+```swift
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  @IBOutlet var messageTableView: UITableView!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    //TODO: Set yourself as the delegate and datasource here:
+    messageTableView.delegate = self
+    messageTableView.dataSource = self
+
+    //TODO: Register your MessageCell.xib file here:
+    messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+  }
+
+  //TODO: Declare cellForRowAtIndexPath here:
+  // This message gets called for every single cell that exists inside the tableView
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
+      let messageArray = ["First message", "Second message", "Third message"]
+      cell.messageBody.text = messageArray[indexPath.row]
+      return cell
+  }
+
+
+  //TODO: Declare numberOfRowsInSection here:
+  // Specify how many cells you want and what cells you want to display
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return 3
+  }
+}
+```
+
+5. Resize the cells. Let's say we want to reset the height
+```swift
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  //TODO: Set yourself as the delegate and datasource here:
+  messageTableView.delegate = self
+  messageTableView.dataSource = self
+
+  //TODO: Register your MessageCell.xib file here:
+  messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+  configureTableView()
+}
+
+//TODO: Declare configureTableView here:
+func configureTableView() {
+  messageTableView.rowHeight = UITableView.automaticDimension
+  messageTableView.estimatedRowHeight = 120.0
+}
+```
+
 # Create Classes and Objects from Scratch
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
 
 # Useful tools
 - Xcode   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Xcode.png)        
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)        
 - [Scale images from mobile development](https://appicon.co/#image-sets)        
 - [Flat UI colors](https://flatuicolors.com/)      
 - [Canva](https://www.canva.com/)         
@@ -173,7 +263,7 @@ $pod install
 
 Open xcworkspace file instead which contains all of our CocoaPods.
 
-[Podfile example](https://github.com/Catherine22/iOS-tutorial/Clima-iOS12/Podfile)
+[Podfile example](https://github.com/Catherine22/iOS-tutorial/blob/master/Clima-iOS12/Podfile)
 
 # The anatomy of an app
 ![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
@@ -188,7 +278,10 @@ We can separate our code into describe sections by adding
 ```Swift
 //MARK: - Networking
 /***************************************************************/
+func retrieveMessage() {
+//TODO: Retrieve messages from Firebase
 
+}
 
 
 //MARK: - JSON Parsing
@@ -230,6 +323,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Stack View    
 - [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)    
   - Segue example   
+  - Navigation ViewController   
 - [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
   - Pass data between View Controllers    
   - Segues    
@@ -241,6 +335,15 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)   
   - UIPickerViewDelegate, UIPickerViewDataSource    
   - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
+- [FlashChat](https://github.com/Catherine22/iOS-tutorial/tree/master/Flash-Chat-iOS12)   
+  - Authenticate with Firebase    
+  - Firebase Realtime Database    
+  - Completion Handler    
+  - Navigation ViewController   
+  - TableView   
+  - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
+  - ProgressHUD (Loading + alert)
+
 
 # Tips
 ### Ask the user for permissions   
@@ -305,6 +408,43 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 ```
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
 
+### Completion Handler
+Callback: Do something time consuming   
+
+```Swift
+class DataManager {
+    func save(key: String, value: String, callback: (Bool, String) -> Void){
+      // Do something time consuming
+        let isSuccess = true
+        let message = "\(key) saved"
+        callback(isSuccess, message)
+    }
+}
+```
+
+```Swift
+class MyViewController: UIViewController {
+
+  func completion(isSuccess: Bool, message: String) {
+    print("isSuccess:\(isSuccess), message:\(message)")
+  }
+
+  @IBAction func registerPressed(_ sender: AnyObject) {
+    let dataManager = DataManager()
+    dataManager.save(key: "name", value: "Nick", callback: completion)
+  }
+}
+```
+
+or
+```Swift
+let dataManager = DataManager()
+dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
+  print("isSuccess:\(isSuccess), message:\(message)")
+}
+```
+
+
 # Command Game
 ```
 $emacs -batch -l dunnet
@@ -313,7 +453,7 @@ $emacs -batch -l dunnet
 # Swift
 [Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
 
-# Course
+# Reference
 [Swift.org](https://swift.org/getting-started/)     
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 [Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
