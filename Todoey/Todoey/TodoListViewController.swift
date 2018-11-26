@@ -19,9 +19,10 @@ class TodoListViewController: UITableViewController {
 
 
     //MARK - TableView Datasource Methods
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoItemCell
-        cell.title.text = itemArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
+        cell.textLabel?.text = itemArray[indexPath.row]
         return cell
     }
     
