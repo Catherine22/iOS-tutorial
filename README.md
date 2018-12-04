@@ -346,6 +346,13 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 
 
 # Tips
+### Breakpoint
+1. Set breakpoints    
+![Breakpoint1](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint1.png)   
+
+2. Step over    
+![Breakpoint2](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint2.png)   
+
 ### Ask the user for permissions   
 For example, Location Permissions.
 ```Swift
