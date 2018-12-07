@@ -1,6 +1,21 @@
 # Swift Tips
 ![Swift cheat sheet](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/SwiftCheatSheet.png)
 
+## Navigation
+- [Optional Variable](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#optional-variable)          
+- [switch](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#switch)       
+- [Loop](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#loop)       
+- [Function](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#function-func)      
+- [random](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#random)       
+- [class, enum and structure](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#class-enum-and-structure)    
+- [extension](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#extension)     
+- [protocol](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#protocol)       
+- [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
+- [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)       
+- [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
+- [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
+- [Reference](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#reference)     
+
 ## Optional Variable
 ```var``` for Variables and ```let``` for Constants.
 Constants take up less memory space than Variables.  
@@ -921,8 +936,43 @@ if zoo.peek() != nil {
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
 ```
 
-# Fibonacci
+# Singleton
 
+Solution 1: 
+```swift
+class SingletonCar {
+    var colour = "red"
+    static let shareInstance = SingletonCar()
+}
+
+let myCar2 = SingletonCar.shareInstance
+myCar2.colour = "blue"
+
+let yourCar2 = SingletonCar.shareInstance
+print("Your car is \(yourCar2.colour)") // blue
+````
+
+Solution 2: initialise anything inside initialiser
+```swift
+class SingletonCar2 {
+    static let shareInstance: SingletonCar2 = {
+        let instance = SingletonCar2()
+        
+        // setup code
+        let colour = "red"
+        
+        return instance
+    }()
+}
+
+let myCar3 = SingletonCar.shareInstance
+myCar3.colour = "black"
+
+let yourCar3 = SingletonCar.shareInstance
+print("Your car is \(yourCar3.colour)") // black
+```
+
+# Fibonacci
 1. Recursion
 ```swift
 func fibonacci1 (until n: Int) -> Int {
