@@ -342,9 +342,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Navigation ViewController   
   - TableView   
   - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
-  - ProgressHUD (Loading + alert)   
+  - ```ProgressHUD``` (Loading + alert)   
+  - Get more colours via ```ChameleonFramework```    
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
-  - Persistent data with ```UserDefaults```   
+  - Persistent object array with ```UserDefaults```   
 
 
 # Tips
@@ -458,14 +459,33 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 Persistent an array
 ```Swift
 let defaults = UserDefaults.standard
-let itemArray = ["Find Mike", "Buy Eggos", "Destory Demogorgon", "Save the world"]
-defaults.set(itemArray, forKey: "TodoListArray")
+defaults.set(0.24, forKey: "volumn")
+defaults.set(true, forKey: "musicOn")
+defaults.set("Alex", forKey: "playerName")
+defaults.set(["musket", "helmet"], forKey: "weapons")
+defaults.set(["id": "A001", "title": "kill Demogorgon"], forKey: "mission")
+defaults.set(Date(), forKey: "appLastOpenedByUser")
 ```
 
 Retrieve the array from the local storage (plist)
 ```Swift
-if let items = defaults.array(forKey: "TodoListArray") as? [String] {
-    itemArray = items
+if let volumn = defaults.float(forKey: "volumn") as? Float {
+  print("volumn:\(volumn)")
+}
+if let musicOn = defaults.bool(forKey: "musicOn") as? Bool {
+  print("musicOn:\(musicOn)")
+}
+if let playerName = defaults.string(forKey: "playerName") {
+  print("playerName:\(playerName)")
+}
+if let appLastOpenedByUser = defaults.object(forKey: "appLastOpenedByUser") {
+  print("appLastOpenedByUser:\(appLastOpenedByUser)")
+}
+if let weapons = defaults.array(forKey: "weapons") as? [String] {
+  print("weapons:\(weapons)")
+}
+if let mission = defaults.dictionary(forKey: "mission") as? Dictionary<String, String> {
+  print("mission:\(mission)")
 }
 ```
 
@@ -489,6 +509,7 @@ And the plist file is going to be actually saved in
 
 ![Todoey plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist.png)
 
+> Notice: Object array is not allowed to persistent in local storage directly. Converting the data to JSON String could solve it.
 
 The 
 # Command Game
