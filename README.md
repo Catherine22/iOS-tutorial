@@ -342,7 +342,9 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Navigation ViewController   
   - TableView   
   - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
-  - ProgressHUD (Loading + alert)
+  - ProgressHUD (Loading + alert)   
+- [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
+  - Persistent data with ```UserDefaults```   
 
 
 # Tips
@@ -451,7 +453,44 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 }
 ```
 
+### Persistent Local Data Storage
 
+Persistent an array
+```Swift
+let defaults = UserDefaults.standard
+let itemArray = ["Find Mike", "Buy Eggos", "Destory Demogorgon", "Save the world"]
+defaults.set(itemArray, forKey: "TodoListArray")
+```
+
+Retrieve the array from the local storage (plist)
+```Swift
+if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+    itemArray = items
+}
+```
+
+To print the simulator path in AppDelegate
+```Swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+    return true
+}
+```
+
+We gonna get    
+```
+/Users/ryan/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Documents
+```
+
+And the plist file is going to be actually saved in    
+```
+/Users/ryan/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Library/Preferences/com.CBB.Todoey.plist
+```
+
+![Todoey plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist.png)
+
+
+The 
 # Command Game
 ```
 $emacs -batch -l dunnet
