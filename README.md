@@ -345,7 +345,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - ```ProgressHUD``` (Loading + alert)   
   - Get more colours via ```ChameleonFramework```    
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
-  - Persistent object array with ```UserDefaults```   
+  - Persistent standard types and object array with ```UserDefaults``` and ```FileManager``` respectively.   
+  - Error handling (```guard else```, ```do catch``` and ```if try```)
+
+
 
 
 # Tips
@@ -456,6 +459,8 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 
 ### Persistent Local Data Storage
 
+**UserDefaults**    
+
 Persistent an array
 ```Swift
 let defaults = UserDefaults.standard
@@ -509,9 +514,77 @@ And the plist file is going to be actually saved in
 
 ![Todoey plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist.png)
 
-> Notice: Object array is not allowed to persistent in local storage directly. Converting the data to JSON String could solve it.
+> Notice: Object array is not allowed to persistent in local storage directly. Why not create our own plist by using ```FileManager```.    
 
-The 
+**FileManager**   
+
+Initialise the file with a reasonable name
+```Swift
+let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+```
+
+Make the object encodable
+```Swift
+import Foundation
+
+class TodoeyItem: Encodable {
+    var title: String
+    var done: Bool
+
+    init(title: String, done: Bool) {
+        self.title = title
+        self.done = done
+    }
+}
+```
+
+Encode the item array and save
+```Swift
+do {
+  let encoder = PropertyListEncoder()
+  let data = try encoder.encode(self.itemArray)
+  try data.write(to: dataFilePath!)
+  } catch {
+    print("Error encoding item array")
+  }
+```
+
+Make the object decodable (```Encodabe``` + ```Decodable``` = ```Codable```)
+```Swift
+import Foundation
+
+class TodoeyItem: Codable {
+    var title: String
+    var done: Bool
+
+    init(title: String, done: Bool) {
+        self.title = title
+        self.done = done
+    }
+}
+```
+
+Retrieve and decode the item array
+```Swift
+if let data = try? Data(contentsOf: dataFilePath!) {
+  let decoder = PropertyListDecoder()
+  do {
+    itemArray = try decoder.decode([TodoeyItem].self, from: data)
+
+    //Refresh the tableView
+    self.tableView.reloadData()
+    } catch {
+      print("Error decoding item array, \(error)")
+    }
+} else {
+  print("Error decoding item array")
+}
+```
+
+Cp. The difference between UserDefaults and FileManager plist is the type of Root directory, and that's why UserDefaults is supposed to keep standard types rather than Object.
+![UserDefaults plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist2.png)
+![FileManager plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist3.png)   
+
 # Command Game
 ```
 $emacs -batch -l dunnet

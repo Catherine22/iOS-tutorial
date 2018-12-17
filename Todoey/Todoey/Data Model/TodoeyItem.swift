@@ -17,26 +17,27 @@ class TodoeyItem: Codable {
         self.done = done
     }
     
-    func toString() -> String? {
-        do {
-            let jsonEncoder = JSONEncoder()
-            let jsonData = try jsonEncoder.encode(self)
-            return String(data: jsonData, encoding: .utf8)
-        } catch {
-            print("Could not convert TodoeyItem to JSON String")
-        }
-        return nil
-    }
-    
-    static func toObject(todoeyItemString: String) -> TodoeyItem? {
-        do {
-            let jsonDecoder = JSONDecoder()
-            if let data: Data = todoeyItemString.data(using: .utf8) {
-                return try jsonDecoder.decode(TodoeyItem.self, from: data)
-            }
-        } catch {
-            print("Could not convert String to Object")
-        }
-        return nil
-    }
+    // Deprecated: No need to encode/decode to JSON/Object to save data
+//    func toString() -> String? {
+//        do {
+//            let jsonEncoder = JSONEncoder()
+//            let jsonData = try jsonEncoder.encode(self)
+//            return String(data: jsonData, encoding: .utf8)
+//        } catch {
+//            print("Could not convert TodoeyItem to JSON String")
+//        }
+//        return nil
+//    }
+//
+//    static func toObject(todoeyItemString: String) -> TodoeyItem? {
+//        do {
+//            let jsonDecoder = JSONDecoder()
+//            if let data: Data = todoeyItemString.data(using: .utf8) {
+//                return try jsonDecoder.decode(TodoeyItem.self, from: data)
+//            }
+//        } catch {
+//            print("Could not convert String to Object")
+//        }
+//        return nil
+//    }
 }

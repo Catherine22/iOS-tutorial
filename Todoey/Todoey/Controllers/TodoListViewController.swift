@@ -11,22 +11,30 @@ import UIKit
 class TodoListViewController: UITableViewController {
     
     var itemArray:[TodoeyItem] = []
-    let defaults = UserDefaults.standard
+    // Deprecated: we don't use UserDefaults in this case
+//    let defaults = UserDefaults.standard
+    
+    // Instead of using the default plist, we're going to create our own plist.
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Deprecated: we don't use UserDefaults in this case
         // Retrieve the array from the local storage (plist)
-        var items:[TodoeyItem] = []
-        guard let stringItems = defaults.array(forKey: "TodoListArray") as? [String] else {
-            print("'TodoListArray' not found in UserDefaults")
-            return
-        }
+//        var items:[TodoeyItem] = []
+//        guard let stringItems = defaults.array(forKey: "TodoListArray") as? [String] else {
+//            print("'TodoListArray' not found in UserDefaults")
+//            return
+//        }
+//
+//        for (item) in stringItems {
+//            items.append(TodoeyItem.toObject(todoeyItemString: item)!)
+//        }
+//        itemArray = items
         
-        for (item) in stringItems {
-            items.append(TodoeyItem.toObject(todoeyItemString: item)!)
-        }
-        itemArray = items
+        print("Saved item array in \(String(describing: dataFilePath))")
+        loadItems()
     }
 
     
@@ -85,14 +93,41 @@ class TodoListViewController: UITableViewController {
     
     //MARK - Persistent the array
     func persistentData(newDataSource: [TodoeyItem]) {
-        var flatArray: [String] = []
-        for (item) in newDataSource {
-            flatArray.append(item.toString()!)
+        // Deprecated: we don't use UserDefaults in this case
+//        var flatArray: [String] = []
+//        for (item) in newDataSource {
+//            flatArray.append(item.toString()!)
+//        }
+//
+//        self.defaults.set(flatArray, forKey: "TodoListArray")
+        
+        do {
+            let encoder = PropertyListEncoder()
+            let data = try encoder.encode(self.itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding item array")
         }
-        self.defaults.set(flatArray, forKey: "TodoListArray")
         
         //Refresh the tableView
         self.tableView.reloadData()
+    }
+    
+    //MARK - Load items
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([TodoeyItem].self, from: data)
+                
+                //Refresh the tableView
+                self.tableView.reloadData()
+            } catch {
+                print("Error decoding item array, \(error)")
+            }
+        } else {
+            print("Error decoding item array")
+        }
     }
 }
 
