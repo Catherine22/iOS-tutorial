@@ -457,9 +457,10 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 }
 ```
 
-### Persistent Local Data Storage
+## 6 ways to persistent Local Data Storage
+![databases](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/databases.png)    
 
-**UserDefaults**    
+### UserDefaults    
 
 Persistent an array
 ```Swift
@@ -516,7 +517,7 @@ And the plist file is going to be actually saved in
 
 > Notice: Object array is not allowed to persistent in local storage directly. Why not create our own plist by using ```FileManager```.    
 
-**FileManager**   
+### FileManager   
 
 Initialise the file with a reasonable name
 ```Swift
@@ -584,6 +585,12 @@ if let data = try? Data(contentsOf: dataFilePath!) {
 Cp. The difference between UserDefaults and FileManager plist is the type of Root directory, and that's why UserDefaults is supposed to keep standard types rather than Object.
 ![UserDefaults plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist2.png)
 ![FileManager plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist3.png)   
+
+### Databases
+
+### Core Data
+
+
 
 # Command Game
 ```
