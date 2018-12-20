@@ -590,7 +590,99 @@ Cp. The difference between UserDefaults and FileManager plist is the type of Roo
 
 ### Core Data
 
+1. Add Core Data model, called [DataModel]      
+File -> New -> File, scroll to Core Data section    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData1.png)    
 
+
+2. In [AppDelegate]
+```Swift
+import UIKit
+import CoreData
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        self.saveContext()
+    }
+    
+    
+    // MARK: - Core Data stack
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+         */
+        let container = NSPersistentContainer(name: "YOUR_DATA_MODEL_NAME")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                
+                /*
+                 Typical reasons for an error here include:
+                 * The parent directory does not exist, cannot be created, or disallows writing.
+                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                 * The device is out of space.
+                 * The store could not be migrated to the current model version.
+                 Check the error message to determine what the actual problem was.
+                 */
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Saving support
+    
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+}
+```
+
+3. Paste the file created from step 1 to NSPersistentContainer in [AppDelegate]   
+
+```Swift
+let container = NSPersistentContainer(name: "DataModel")
+```
+4. Go to [DataModel], add Entity    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData2.png)    
+
+5. Add attributes and make them optional if you need    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData3.png)    
+
+Now you might notice that we essentially replace the TodoeyItem class with     
+TodoeyItem class:   
+
+```Swift
+import Foundation
+
+class TodoeyItem: Codable {
+    var title: String
+    var done: Bool
+    
+    init(title: String, done: Bool) {
+        self.title = title
+        self.done = done
+    }
+}
+```
 
 # Command Game
 ```
@@ -604,3 +696,6 @@ $emacs -batch -l dunnet
 [Swift.org](https://swift.org/getting-started/)     
 [iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
 [Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
+
+[AppDelegate]:<https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/AppDelegate.swift>
+[DataModel]:<https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/Data%20Model/DataModel.xcdatamodeld>
