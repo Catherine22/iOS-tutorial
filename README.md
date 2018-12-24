@@ -212,7 +212,7 @@ $pod setup --verbose
 ```
 
 2. Install new pods in my Xcode project   
-Go to your Xcode project, e.g. /Users/user/Workspace/Clima-iOS12/, initialise CocoaPods.
+Go to your Xcode project, e.g. /Users/catherine/Workspace/Clima-iOS12/, initialise CocoaPods.
 ```
 $pod init
 ```
@@ -346,6 +346,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Get more colours via ```ChameleonFramework```    
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
   - Persistent standard types and object array with ```UserDefaults``` and ```FileManager``` respectively.   
+  - Persistent data with CoreData.    
   - Error handling (```guard else```, ```do catch``` and ```if try```)
 
 
@@ -495,7 +496,7 @@ if let mission = defaults.dictionary(forKey: "mission") as? Dictionary<String, S
 }
 ```
 
-To print the simulator path in AppDelegate
+To print the simulator and application path in AppDelegate
 ```Swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
@@ -505,12 +506,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 We gonna get    
 ```
-/Users/ryan/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Documents
+/Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Documents
 ```
 
 And the plist file is going to be actually saved in    
 ```
-/Users/ryan/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Library/Preferences/com.CBB.Todoey.plist
+/Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Library/Preferences/com.CBB.Todoey.plist
 ```
 
 ![Todoey plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist.png)
@@ -657,11 +658,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
 
 3. Paste the file created from step 1 to NSPersistentContainer in [AppDelegate]   
+You might get ```CoreData: error:  Failed to load model named xxx``` if you forget to update the name.    
 
 ```Swift
 let container = NSPersistentContainer(name: "DataModel")
 ```
-4. Go to [DataModel], add Entity    
+4. Go to [DataModel], add Entity named ```MyTodoeyItem```    
 ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData2.png)    
 
 5. Add attributes and make them optional if you need    
@@ -683,6 +685,74 @@ class TodoeyItem: Codable {
     }
 }
 ```
+
+6. Change the module from 'Global namespace' to 'Current Product Module'
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)   
+
+Select Category/Extension in Codegen if you are going to customise your entities, or set 'Class Definition' as default.
+
+7. Save data    
+```Swift
+let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+let newItem = MyTodoeyItem(context: context)
+newItem.title = content
+newItem.done = false
+
+itemArray.append(newItem)
+do {
+  try context.save()
+} catch {
+  print("Error saving context \(error)")
+  }
+```
+
+8. Load data    
+```Swift
+import CoreData
+
+class TodoListViewController: UITableViewController {
+  var itemArray:[MyTodoeyItem] = []
+  func loadItems() {
+    do {
+      let request: NSFetchRequest<MyTodoeyItem> = MyTodoeyItem.fetchRequest()
+      itemArray = try context.fetch(request)
+      } catch {
+        print("Error fetching data from context \(error)")
+      }
+  }
+}
+```
+
+9. Update data    
+```Swift
+itemArray[indexPath.row].setValue("new value", forKey: "title")
+itemArray[indexPath.row].setValue(true, forKey: "done")
+do {
+  try context.save()
+} catch {
+  print("Error saving context \(error)")
+  }
+```
+
+10. Check the DB file if you want    
+To print the simulator and application path in AppDelegate
+```Swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+    return true
+}
+```
+
+Then we got
+```
+/Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Documents
+```
+
+Go to the following path to check the sqlite file via [Datum](https://itunes.apple.com/us/app/datum-free/id901631046?mt=12)
+```
+/Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Library/Application\ Support/DataModel.sqlite
+```
+
 
 # Command Game
 ```

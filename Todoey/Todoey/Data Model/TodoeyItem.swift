@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Solution 1: UserDefault
+// Solution 2: FileManager
 class TodoeyItem: Codable {
     var title: String
     var done: Bool
@@ -17,6 +19,7 @@ class TodoeyItem: Codable {
         self.done = done
     }
     
+    // Solution 1: UserDefault
     // Deprecated: No need to encode/decode to JSON/Object to save data
 //    func toString() -> String? {
 //        do {
