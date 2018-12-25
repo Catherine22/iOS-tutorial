@@ -1,5 +1,39 @@
 # iOS Development Tutorial
-[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)      
+
+# Navigation
+- [Resolution](https://github.com/Catherine22/iOS-tutorial#resolution)    
+  - [Auto Layout](https://github.com/Catherine22/iOS-tutorial#auto-layout)    
+- [Segues](https://github.com/Catherine22/iOS-tutorial#segues)    
+- [Navigation Controller](https://github.com/Catherine22/iOS-tutorial#navigation-controller)    
+  - [Create the Navigation Controller](https://github.com/Catherine22/iOS-tutorial#create-the-navigation-controller)    
+  - [Another way to trigger segues](https://github.com/Catherine22/iOS-tutorial#another-way-to-trigger-segues)    
+- [Protocol and Delegate](https://github.com/Catherine22/iOS-tutorial#protocol-and-delegate)    
+- [View](https://github.com/Catherine22/iOS-tutorial#view)    
+  - [TableView](https://github.com/Catherine22/iOS-tutorial#tableview)    
+  - [UISearchBar](https://github.com/Catherine22/iOS-tutorial#uisearchbar)    
+- [Create Classes and Objects from Scratch](https://github.com/Catherine22/iOS-tutorial#create-classes-and-objects-from-scratch)    
+- [Useful tools](https://github.com/Catherine22/iOS-tutorial#useful-tools)    
+- [Sideloading](https://github.com/Catherine22/iOS-tutorial#sideloading)    
+  - [Settings](https://github.com/Catherine22/iOS-tutorial#settings)    
+  - [Debugging wirelessly through the air](https://github.com/Catherine22/iOS-tutorial#debugging-wirelessly-through-the-air)    
+- [CocoaPods](https://github.com/Catherine22/iOS-tutorial#cocoapods)    
+  - [Podfile](https://github.com/Catherine22/iOS-tutorial#podfile)    
+- [The anatomy of an app](https://github.com/Catherine22/iOS-tutorial#the-anatomy-of-an-app)    
+- [Coding Style](https://github.com/Catherine22/iOS-tutorial#coding-style)    
+  - [MARK](https://github.com/Catherine22/iOS-tutorial#mark)    
+  - [Extension](https://github.com/Catherine22/iOS-tutorial#extension)   
+  - [Internal and external parameters](https://github.com/Catherine22/iOS-tutorial#internal-and-external-parameters)    
+- [Delegation](https://github.com/Catherine22/iOS-tutorial#delegation)    
+- [Applications](https://github.com/Catherine22/iOS-tutorial#applications)    
+- [Tips](https://github.com/Catherine22/iOS-tutorial#tips)    
+  - [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)    
+  - [Load data from HTTP URLs](https://github.com/Catherine22/iOS-tutorial#load-data-from-http-urls)    
+  - [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)    
+- [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
+- [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
+- [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
+
 
 # Resolution
 If we want to display beautiful, then we need to ensure that the resolution is height
@@ -87,7 +121,8 @@ if (delegate != nil) {
 }
 ```
 
-# TableView
+# View
+## TableView
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView4.png)   
 
 1. Drag a TableView into your storyboard
@@ -166,6 +201,34 @@ override func viewDidLoad() {
 func configureTableView() {
   messageTableView.rowHeight = UITableView.automaticDimension
   messageTableView.estimatedRowHeight = 120.0
+}
+```
+## UISearchBar
+
+1. Drag a Search Bar in to main.storyboard    
+
+2. Indicate the delegate    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/searchBar.png)    
+
+3. Implement ```UISearchBarDelegate``` in our ViewController    
+```Swift
+extension TodoListViewController: UISearchBarDelegate {
+    
+    // This method will be triggered as "Enter" is typed
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//      queryData(text: searchBar.text!)
+//    }
+
+    // This method will be triggered as users are typing
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+      // Do something as users clear the Search Bar
+      if searchBar.text?.count == 0 {
+        reloadData()
+      } else {
+        // Query data as users are typing to improve user experience.
+        queryData(text: searchBar.text!)
+      }
+    }
 }
 ```
 
@@ -273,11 +336,11 @@ Open xcworkspace file instead which contains all of our CocoaPods.
 - Model: Model is what controls the data. It manipulates the data and prepares the date to be served up to the ViewController.
 
 # Coding Style
+## MARK
 ![Sections](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sections.png)   
 We can separate our code into describe sections by adding
 ```Swift
 //MARK: - Networking
-/***************************************************************/
 func retrieveMessage() {
 //TODO: Retrieve messages from Firebase
 
@@ -285,11 +348,58 @@ func retrieveMessage() {
 
 
 //MARK: - JSON Parsing
-/***************************************************************/
 
 
 
 ```
+
+## Extension
+Instead of implement delegates directly, creating an ```extension```    
+E.g. The original code might be:
+```Swift
+class TodoListViewController: UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    <#code#>
+  }
+}
+```
+
+Split up the functionality of our ViewController, and we can have specific parts that are responsible for specific things.    
+```Swift
+class TodoListViewController {
+  
+}
+
+//MARK: - SearchBar methods
+extension TodoListViewController: UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    <#code#>
+  }
+}
+```
+
+![Extension](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/extension.png)   
+
+# Internal and external parameters
+
+Let's say we have a function
+```Swift
+func fetchRequest(request: NSFetchRequest<MyTodoeyItem>) {
+  do {
+    itemArray = try context.fetch(request)
+    } catch {
+      print("Error fetching data from context \(error)")
+    }
+  }
+```
+
+Modify 'request' parameter with an external parameter.    
+The external parameter is ```with``` whereas the internal parameter: ```request```.   
+Instead of calling the ```fetchRequest``` function with ```fetchRequest(request: request)```, we are using    
+```Swift
+fetchRequest(with: request)
+```
+
 
 # Delegation
 Let's say there's a property data in B, and we are going to pass data from class A to class B, the easiest way is to create an instance of B.
@@ -347,8 +457,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
   - Persistent standard types and object array with ```UserDefaults``` and ```FileManager``` respectively.   
   - Persistent data with CoreData.    
-  - Error handling (```guard else```, ```do catch``` and ```if try```)
-
+  - UISearchBar   
+  - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
+  - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
+  - [Swift] extension   
 
 
 
@@ -734,7 +846,27 @@ do {
   }
 ```
 
-10. Check the DB file if you want    
+10. Delete data   
+This is a little tricky, we cannot delete the item like updating data we was doing.    
+We are going to call ```context.delete()``` and ```context.save()```.
+```Swift
+// Delete data from our Core Data, then call 'context.save()' to save data
+context.delete(itemArray[indexPath.row])
+do {
+  try self.context.save()
+} catch {
+  print("Error saving context \(error)")
+}
+
+// Does nothing for our Core Date, it merely update our itemArray which is used to populate our tableView
+itemArray.remove(at: indexPath.row)
+```
+
+11. Query data
+Have a look at [NSPredicate Cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/) and [NSHelper](https://nshipster.com/nspredicate/).    
+
+
+12. Check the DB file if you want    
 To print the simulator and application path in AppDelegate
 ```Swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -753,6 +885,21 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Library/Application\ Support/DataModel.sqlite
 ```
 
+13. Edit Data model like a pro    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData5.png)   
+
+(1) Switch to Graph style   
+(2) Add a new entity    
+(3) Select the entity   
+(4) Add an attribute    
+(5) Select the attribute    
+(6) Update attribute's name and type. Check the optional box if you want
+
+**Build the relationship between Category and MyTodoeyItem**    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData6.png)   
+
+(7) Press ```Control``` and drag the Category to MyTodoeyItem   
+(8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".    
 
 # Command Game
 ```
