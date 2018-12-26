@@ -76,7 +76,6 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
         //Create a UITextField and set it to equal to the alertTextField
         var textField = UITextField()
         let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
-            print("clicked")
             
             if let content = textField.text {
                 // Solution 2: FileManager
@@ -129,13 +128,13 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
     func saveItems() {
         // Solution 3: Core Data
         do {
-            try self.context.save()
+            try context.save()
         } catch {
             print("Error saving context \(error)")
         }
         
         //Refresh the tableView
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     
