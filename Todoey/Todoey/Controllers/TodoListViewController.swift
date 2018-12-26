@@ -11,23 +11,20 @@ import CoreData
 
 class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate {
     
-    // Solution 1 & 2
-//    var itemArray:[TodoeyItem] = []
-    // Solution 1: UserDefault
-    // Deprecated: we don't use UserDefaults in this case
-//    let defaults = UserDefaults.standard
-    
-    // Solution 2: FileManager
-    // Instead of using the default plist, we're going to create our own plist.
-//    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
-    
-    // Solution 3: Core Data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var itemArray:[MyTodoeyItem] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadItems()
+    var selectedCategory: SelectedCategory? {
+        // loadItems() will be called if selectedCategory is not nil
+        didSet {
+            if selectedCategory!.queryAll {
+                loadItems()
+            } else {
+                let request: NSFetchRequest<MyTodoeyItem> = MyTodoeyItem.fetchRequest()
+                request.predicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.category!.name!)
+                request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+                loadItems(with: request)
+            }
+        }
     }
 
     
@@ -49,10 +46,8 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(itemArray[indexPath.row])
         itemArray[indexPath.row].done = !(itemArray[indexPath.row].done)
         
-        // Solution 3: Core Data
         if itemArray[indexPath.row].done {
             // Delete data from our Core Data, then call 'context.save()' to save data
             context.delete(itemArray[indexPath.row])
@@ -62,9 +57,6 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
         
         //To trigger the top tableView delegate method again once we change the item's done property
         tableView.reloadData()
-        // Solution 1 & 2
-//        persistentData(newDataSource: itemArray)
-        // Solution 3: Core Data
         saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -78,14 +70,10 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
         let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
             
             if let content = textField.text {
-                // Solution 2: FileManager
-//                self.itemArray.append(TodoeyItem(title: content, done: false))
-//                self.persistentData(newDataSource: self.itemArray)
-                
-                // Solution 3: Core Data
                 let newItem = MyTodoeyItem(context: self.context)
                 newItem.title = content
                 newItem.done = false
+                newItem.parentCategory = self.selectedCategory?.category
                 self.itemArray.append(newItem)
                 self.saveItems()
             }
@@ -98,32 +86,6 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
         }
         present(alert, animated: true, completion: nil)
     }
-    
-    //MARK: - Persistent the array
-//    func persistentData(newDataSource: [TodoeyItem]) {
-//        // Solution 1: UserDefault
-//        // Deprecated: we don't use UserDefaults in this case
-////        var flatArray: [String] = []
-////        for (item) in newDataSource {
-////            flatArray.append(item.toString()!)
-////        }
-////
-////        self.defaults.set(flatArray, forKey: "TodoListArray")
-//
-//        // Solution 2: FileManager
-//        print("Saved item array in \(String(describing: dataFilePath))")
-//        do {
-//            let encoder = PropertyListEncoder()
-//            let data = try encoder.encode(self.itemArray)
-//            try data.write(to: dataFilePath!)
-//        } catch {
-//            print("Error encoding item array")
-//        }
-//
-//
-//        //Refresh the tableView
-//        self.tableView.reloadData()
-//    }
     
     func saveItems() {
         // Solution 3: Core Data
@@ -143,36 +105,6 @@ class TodoListViewController: UITableViewController, UIPickerViewDelegate, UIIma
     // External parameter: with; Internal parameter: request
     // "= MyTodoeyItem.fetchRequest()" => Set a default value
     func loadItems(with request: NSFetchRequest<MyTodoeyItem> = MyTodoeyItem.fetchRequest()) {
-        // Solution 1: UserDefault
-        // Deprecated: we don't use UserDefaults in this case
-        // Retrieve the array from the local storage (plist)
-//        var items:[TodoeyItem] = []
-//        guard let stringItems = defaults.array(forKey: "TodoListArray") as? [String] else {
-//            print("'TodoListArray' not found in UserDefaults")
-//            return
-//        }
-//
-//        for (item) in stringItems {
-//            items.append(TodoeyItem.toObject(todoeyItemString: item)!)
-//        }
-//        itemArray = items
-        
-        // Solution 2: FileManager
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([TodoeyItem].self, from: data)
-//
-//                //Refresh the tableView
-//                self.tableView.reloadData()
-//            } catch {
-//                print("Error decoding item array, \(error)")
-//            }
-//        } else {
-//            print("Error decoding item array")
-//        }
-        
-        // Solution 3: Core Data
         do {
             itemArray = try context.fetch(request)
         } catch {
@@ -188,8 +120,10 @@ extension TodoListViewController: UISearchBarDelegate {
     
     func updateTableView(text: String) {
         let request: NSFetchRequest<MyTodoeyItem> = MyTodoeyItem.fetchRequest()
-        // You can modify an operator using the key characters c and d within square braces to specify case and diacritic insensitivity respectively
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+        // [cd]: You can modify an operator using the key characters c and d within square braces to specify case and diacritic insensitivity respectively
+        request.predicate = (selectedCategory?.queryAll == true)
+            ? NSPredicate(format: "title CONTAINS[cd] %@", text)
+            : NSPredicate(format: "parentCategory.name MATCHES %@ AND title CONTAINS[cd] %@", selectedCategory!.category!.name!, text)
         // Sort the data we get back in alphabetical order.
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
@@ -207,7 +141,14 @@ extension TodoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Reload all the data as users clear the Search Bar
         if searchBar.text?.count == 0 {
-            loadItems()
+            if selectedCategory!.queryAll {
+                loadItems()
+            } else {
+                let request: NSFetchRequest<MyTodoeyItem> = MyTodoeyItem.fetchRequest()
+                request.predicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.category!.name!)
+                request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+                loadItems(with: request)
+            }
             
             DispatchQueue.main.async {
                 // No longer have the cursor and also the keyboard should go away

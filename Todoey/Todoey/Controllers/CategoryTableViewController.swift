@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+// TableView => ["All", category1, category2, ...]
+// categoryArray => [category1, category2, ...]
 class CategoryTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -22,19 +24,21 @@ class CategoryTableViewController: UITableViewController {
     //MARK: - TableView Datasource Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        let row = categoryArray[indexPath.row]
-        cell.textLabel?.text = row.name
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "All"
+        } else {
+            cell.textLabel?.text = categoryArray[indexPath.row - 1].name
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return categoryArray.count + 1 // + 1 header
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt:\(indexPath)")
+        performSegue(withIdentifier: "GoToTodoyeItems", sender: self)
     }
-    
     
     
     //MARK: - Add new items
@@ -42,7 +46,7 @@ class CategoryTableViewController: UITableViewController {
         let alert = UIAlertController(title: "Add new Category", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var textField = UITextField()
-        let writeAction = UIAlertAction(title: "Add Category", style: .default) { (UIAlertAction) in
+        let writeAction = UIAlertAction(title: "Add", style: .default) { (UIAlertAction) in
 
             if let title = textField.text {
                 let newCategory = Category(context: self.context)
@@ -55,7 +59,7 @@ class CategoryTableViewController: UITableViewController {
         
         alert.addAction(writeAction)
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new Category"
+            alertTextField.placeholder = "Add a new Category"
             textField = alertTextField
         }
         present(alert, animated: true, completion: nil)
@@ -66,7 +70,7 @@ class CategoryTableViewController: UITableViewController {
         do {
             try context.save()
         } catch {
-            print("Error saving context \(error)")
+            print("Error saving categories \(error)")
         }
         
         //Refresh the tableView
@@ -77,8 +81,18 @@ class CategoryTableViewController: UITableViewController {
         do {
             categoryArray = try context.fetch(request)
         } catch {
-            print("Error fetching data from context \(error)")
+            print("Error loading categories \(error)")
         }
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToTodoyeItems" {
+            let destinationVC = segue.destination as! TodoListViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let queryAll = indexPath.row == 0
+                let category = queryAll ? nil : categoryArray[indexPath.row - 1]
+                destinationVC.selectedCategory = SelectedCategory(category: category, queryAll: queryAll)
+            }
+        }
     }
 }

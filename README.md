@@ -30,6 +30,11 @@
   - [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)    
   - [Load data from HTTP URLs](https://github.com/Catherine22/iOS-tutorial#load-data-from-http-urls)    
   - [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)    
+- [6 ways to persistent Local Data Storage](https://github.com/Catherine22/iOS-tutorial#6-ways-to-persistent-local-data-storage)    
+  - [UserDefaults](https://github.com/Catherine22/iOS-tutorial#userdefaults)    
+  - [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)    
+- [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
+  - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -699,7 +704,7 @@ Cp. The difference between UserDefaults and FileManager plist is the type of Roo
 ![UserDefaults plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist2.png)
 ![FileManager plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist3.png)   
 
-### Databases
+## Databases
 
 ### Core Data
 
