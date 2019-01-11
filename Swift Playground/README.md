@@ -40,7 +40,7 @@ if let name = optionalName {
 // name is nil
 ```
 
-### ```??``` - If the optional value is missing, the default value is used instead.
+### Nil Coalescing Operator(```??```) - If the optional value is missing, the default value is used instead.
 ```swift
 var firstName: String? = "Catherine"
 var middleName: String? = nil

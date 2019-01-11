@@ -35,6 +35,7 @@
   - [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)    
 - [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
   - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
+  - [Realm](https://github.com/Catherine22/iOS-tutorial#realm)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -466,6 +467,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
   - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
   - [Swift] extension   
+- [TodoeyWithRealm](https://github.com/Catherine22/iOS-tutorial/tree/master/TodoeyWithRealm)    
+  - Persistent data with Realm    
+  - [Swift] Nil coalescing operator   
+
 
 
 
@@ -905,6 +910,61 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 
 (7) Press ```Control``` and drag the Category to MyTodoeyItem   
 (8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".    
+
+### Realm
+
+0. Install, setup and configure Realm
+  - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    
+  - Download [Realm browser]() to open .realm file. The realm would be saved in:   
+```Swift
+print(Realm.Configuration.defaultConfiguration.fileURL)
+```
+
+1. Add a new piece of data   
+Create MyTodoeyItem and Category, for each Category has multiple MyTodoeyItems
+```Swift
+import Foundation
+import Realm
+
+class MyTodoeyItem: Object {
+    // dynamic is what's called a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard, which is static dispatch. This allows the property the be monitored for change at runtime, i.e. If the user change the value of title for example while the app is running, that allows Realm to dynamically update the changes in the database.
+    @objc dynamic var title: String = ""
+    @objc dynamic var done: Bool = false
+    var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
+}
+```
+
+```Swift
+import Foundation
+import Realm
+
+class Category: Object {
+    @objc dynamic var name: String = ""
+    let items = List<MyTodoeyItem>()
+}
+```
+
+Save data in the database
+```Swift
+import RealmSwift
+class CategoryTableViewController {
+    func doSomething() {
+        let data = Data()
+        data.title = "Hello, there!"
+        data.done = true
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(data)
+            }
+        } catch {
+            print("Error initialising new realm, \(error)")
+        }
+    }
+}
+```
+
+
 
 # Command Game
 ```
