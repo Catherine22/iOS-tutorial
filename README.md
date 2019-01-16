@@ -913,58 +913,73 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 
 ### Realm
 
+Realm examples:   
+[Realm example](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
+[TodoeyWithRealm](https://github.com/Catherine22/iOS-tutorial/tree/master/TodoeyWithRealm) 
+
 0. Install, setup and configure Realm
   - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    
   - Download [Realm browser]() to open .realm file. The realm would be saved in:   
 ```Swift
-print(Realm.Configuration.defaultConfiguration.fileURL)
-```
+class ViewController: UIViewController {
+    var realm: Realm? = nil
 
-1. Add a new piece of data   
-Create MyTodoeyItem and Category, for each Category has multiple MyTodoeyItems
-```Swift
-import Foundation
-import Realm
-
-class MyTodoeyItem: Object {
-    // dynamic is what's called a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard, which is static dispatch. This allows the property the be monitored for change at runtime, i.e. If the user change the value of title for example while the app is running, that allows Realm to dynamically update the changes in the database.
-    @objc dynamic var title: String = ""
-    @objc dynamic var done: Bool = false
-    var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
-}
-```
-
-```Swift
-import Foundation
-import Realm
-
-class Category: Object {
-    @objc dynamic var name: String = ""
-    let items = List<MyTodoeyItem>()
-}
-```
-
-Save data in the database
-```Swift
-import RealmSwift
-class CategoryTableViewController {
-    func doSomething() {
-        let data = Data()
-        data.title = "Hello, there!"
-        data.done = true
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        // MARK: Realm - initialising
         do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(data)
-            }
+            realm = try Realm()
         } catch {
-            print("Error initialising new realm, \(error)")
+            NSLog("Error Initialising Realm: \(error)")
         }
+
+        print(Realm.Configuration.defaultConfiguration.fileURL)
     }
 }
 ```
 
+1. Add a new piece of data   
+Create DataModel
+```Swift
+import Foundation
+import RealmSwift
 
+class DataModel: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var age: Int = 0
+}
+```
+
+2. Save data
+Save data in the database
+```Swift
+do {
+    try realm?.write {
+        let dataModel = DataModel()
+        dataModel.name = nameTextField.text!
+        dataModel.age = Int(ageTextField.text!)!
+    }
+} catch {
+    NSLog("Error writting Realm: \(error)")
+}
+```
+
+3. Update data
+```Swift
+
+```
+
+4. Read data
+```Swift
+
+```
+
+5. Delete data
+```Swift
+
+```
 
 # Command Game
 ```
