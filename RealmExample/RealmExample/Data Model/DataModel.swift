@@ -12,5 +12,4 @@ import RealmSwift
 class DataModel: Object {
     // dynamic is a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard which is a static dispatch.This allows the property "name" to be monitered for change at runtime.
     @objc dynamic var name: String = ""
-    @objc dynamic var age: Int = 0
 }

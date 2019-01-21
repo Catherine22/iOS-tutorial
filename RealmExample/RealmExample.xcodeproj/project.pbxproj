@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DBFF2DD6EA6682175337AB57 /* Pods_RealmExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BD544A081C68AAAD1EFFE71 /* Pods_RealmExample.framework */; };
+		F37D94D021F1807800810DED /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37D94CE21F1807800810DED /* PersonTableViewCell.swift */; };
+		F37D94D121F1807800810DED /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37D94CF21F1807800810DED /* PersonTableViewCell.xib */; };
 		F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */; };
 		F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFC21EF1B0500550C4D /* ViewController.swift */; };
 		F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBFE21EF1B0500550C4D /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 		4BD544A081C68AAAD1EFFE71 /* Pods_RealmExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF0BF0712B05ECCAE151556 /* Pods-RealmExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample.release.xcconfig"; sourceTree = "<group>"; };
 		C2C5AFC730DC94E9BB697D6C /* Pods-RealmExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample.debug.xcconfig"; sourceTree = "<group>"; };
+		F37D94CE21F1807800810DED /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		F37D94CF21F1807800810DED /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
 		F3CBBBF721EF1B0500550C4D /* RealmExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3CBBBFC21EF1B0500550C4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F37D94C721F1785300810DED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F37D94CE21F1807800810DED /* PersonTableViewCell.swift */,
+				F37D94CF21F1807800810DED /* PersonTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F3CBBBEE21EF1B0500550C4D = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,7 @@
 		F3CBBBF921EF1B0500550C4D /* RealmExample */ = {
 			isa = PBXGroup;
 			children = (
+				F37D94C721F1785300810DED /* Views */,
 				F3CBBC0C21EF1F5C00550C4D /* Data Model */,
 				F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */,
 				F3CBBBFC21EF1B0500550C4D /* ViewController.swift */,
@@ -161,6 +175,7 @@
 			files = (
 				F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */,
 				F3CBBC0221EF1B0C00550C4D /* Assets.xcassets in Resources */,
+				F37D94D121F1807800810DED /* PersonTableViewCell.xib in Resources */,
 				F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +238,7 @@
 			files = (
 				F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */,
 				F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */,
+				F37D94D021F1807800810DED /* PersonTableViewCell.swift in Sources */,
 				F3CBBC0E21EF1F7400550C4D /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

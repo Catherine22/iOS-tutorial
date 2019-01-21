@@ -9,57 +9,88 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var realm: Realm? = nil
-    @IBOutlet weak var logLabel: UILabel!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var personTableView: UITableView!
+    
+    
+    var itemArray: [DataModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        personTableView.delegate = self
+        personTableView.dataSource = self
+        personTableView.register(UINib(nibName: "PersonTableViewCell", bundle: nil), forCellReuseIdentifier: "personCell")
         
         // MARK: Realm - initialising
         do {
             realm = try Realm()
+            loadItems()
         } catch {
             NSLog("Error Initialising Realm: \(error)")
         }
     }
-
-    @IBAction func onReadButtonPressed(_ sender: Any) {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
+        cell.title.text = itemArray?[indexPath.row].name
+        return cell
     }
     
-    @IBAction func onDeleteButtonPressed(_ sender: Any) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemArray?.count ?? 0
     }
     
-    @IBAction func onUpdateButtonPressed(_ sender: Any) {
-    }
-    
-    @IBAction func onWriteButtonPressed(_ sender: Any) {
-        if !(nameTextField.text ?? "").isEmpty && !(ageTextField.text ?? "").isEmpty {
-            if !String.isInt(ageTextField.text!) || Int(ageTextField.text!)! < 1 {
-                popUpAlert(title: "Warning", message: "Please type a reasonable age", completion: {
-                    self.ageTextField.text = ""
-                })
-                return
-            }
+    @IBAction func onAddButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Add new Item", message: nil, preferredStyle: .alert)
+        //Create a UITextField and set it to equal to the alertTextField
+        var textField = UITextField()
+        let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
             
-            // MARK: Realm - Write
-            do {
-                try realm?.write {
-                    let dataModel = DataModel()
-                    dataModel.name = nameTextField.text!
-                    dataModel.age = Int(ageTextField.text!)!
-                }
-            } catch {
-                NSLog("Error writting Realm: \(error)")
+            if let content = textField.text {
+                self.saveItem(name: content, age: 10)
             }
-        } else {
-            popUpAlert(title: "Warning", message: "Please fill in the blanks", completion: nil)
+        }
+        
+        alert.addAction(writeAction)
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            textField = alertTextField
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: Realm - Write
+    func saveItem(name: String, age: Int) {
+        do {
+            try realm?.write {
+                let dataModel = DataModel()
+                dataModel.name = name
+                self.itemArray?.append(dataModel)
+            }
+        } catch {
+            NSLog("Error writting Realm: \(error)")
+        }
+        
+        //Refresh the tableView
+        personTableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let dataModels = realm?.objects(DataModel.self) {
+            for dataModel in dataModels {
+                itemArray?.append(dataModel)
+            }
         }
     }
+    
+    
+
+//
+//    popUpAlert(title: "Warning", message: "Please fill in the blanks", completion: nil)
     
     func popUpAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
