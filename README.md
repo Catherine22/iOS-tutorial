@@ -713,12 +713,10 @@ Cp. The difference between UserDefaults and FileManager plist is the type of Roo
 
 ### Core Data
 
-1. Add Core Data model, called [DataModel]      
-File -> New -> File, scroll to Core Data section    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData1.png)    
+1. Create a new project with CoreData   
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData0.png)    
+Or paste the following code in [AppDelegate]    
 
-
-2. In [AppDelegate]
 ```Swift
 import UIKit
 import CoreData
@@ -779,17 +777,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-3. Paste the file created from step 1 to NSPersistentContainer in [AppDelegate]   
-You might get ```CoreData: error:  Failed to load model named xxx``` if you forget to update the name.    
+2. Add a Core Data model [DataModel]      
+File -> New -> File, scroll to Core Data section    
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData1.png)    
 
+3. Match the file name to NSPersistentContainer in [AppDelegate]   
 ```Swift
 let container = NSPersistentContainer(name: "DataModel")
 ```
-4. Go to [DataModel], add Entity named ```MyTodoeyItem```    
+You might get ```CoreData: error:  Failed to load model named xxx``` if you forget to update the name.    
+
+4. Go to [DataModel], add a new Entity named ```MyTodoeyItem```    
 ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData2.png)    
 
 5. Add attributes and make them optional if you need    
 ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData3.png)    
+
+
+6. Change the module from 'Global namespace' to 'Current Product Module'
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)   
+
+7. (Optional) You could either skip this step by setting 'Class Definition' as default, or select Category/Extension in Codegen if you are going to customise your entities, i.e. You have to create classes that are identically named to you entities. 
 
 Now you might notice that we essentially replace the TodoeyItem class with     
 TodoeyItem class:   
@@ -808,12 +816,8 @@ class TodoeyItem: Codable {
 }
 ```
 
-6. Change the module from 'Global namespace' to 'Current Product Module'
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)   
 
-Select Category/Extension in Codegen if you are going to customise your entities, or set 'Class Definition' as default.
-
-7. Save data    
+8. Save data (Class name refers to the entity name)    
 ```Swift
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 let newItem = MyTodoeyItem(context: context)
@@ -824,11 +828,13 @@ itemArray.append(newItem)
 do {
   try context.save()
 } catch {
-  print("Error saving context \(error)")
+  if let error = error as NSError? {
+    fatalError("Unresolved error \(error), \(error.userInfo)")
   }
+}
 ```
 
-8. Load data    
+9. Load data    
 ```Swift
 import CoreData
 
@@ -845,7 +851,7 @@ class TodoListViewController: UITableViewController {
 }
 ```
 
-9. Update data    
+10. Update data    
 ```Swift
 itemArray[indexPath.row].setValue("new value", forKey: "title")
 itemArray[indexPath.row].setValue(true, forKey: "done")
@@ -856,7 +862,7 @@ do {
   }
 ```
 
-10. Delete data   
+11. Delete data   
 This is a little tricky, we cannot delete the item like updating data we was doing.    
 We are going to call ```context.delete()``` and ```context.save()```.
 ```Swift
@@ -872,11 +878,11 @@ do {
 itemArray.remove(at: indexPath.row)
 ```
 
-11. Query data
+12. Query data
 Have a look at [NSPredicate Cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/) and [NSHelper](https://nshipster.com/nspredicate/).    
 
 
-12. Check the DB file if you want    
+13. Check the DB file if you want    
 To print the simulator and application path in AppDelegate
 ```Swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -895,7 +901,7 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Library/Application\ Support/DataModel.sqlite
 ```
 
-13. Edit Data model like a pro    
+14. Edit Data model like a pro    
 ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData5.png)   
 
 (1) Switch to Graph style   
