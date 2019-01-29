@@ -980,8 +980,9 @@ Save data in the database
 ```Swift
 do {
     try realm?.write {
-        let item = Item()
-        item.name = "Mike"
+        let category = Category()
+        category.name = "any category"
+        realm?.add(category)
     }
 } catch {
     NSLog("Error writting Realm: \(error)")
@@ -994,8 +995,21 @@ do {
 ```
 
 4. Read data
+For example, in ViewController
 ```Swift
+var categories: Results<Category>?
+class ViewController: UIViewController {
+  override func viewDidLoad() {
+        super.viewDidLoad()
 
+        do {
+            realm = try Realm()
+            categories = realm?.objects(Category.self)
+        } catch {
+            NSLog("Error Initialising Realm: \(error)")
+        }
+  }
+}
 ```
 
 5. Delete data

@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var personTableView: UITableView!
     
     var categories: Results<Category>?
+    var cells = [Cell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // MARK: Realm - initialising
         do {
             // Realm file path
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
+//            print(Realm.Configuration.defaultConfiguration.fileURL!)
             realm = try Realm()
             loadCategories()
         } catch {
@@ -36,35 +37,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
-        var cells: [Item]?
-        var cellCounts: [Int] = []
-        categories?.forEach({ (category) in
-            category.items.forEach({ (item) in
-                cells?.append(item)
-            })
-            cellCounts.append(category.items.count)
-        })
-        cell.itemLabel.text = cells?[indexPath.row].name
-        
-        var totalItems = 0
-        var i = 0
-        while i < cellCounts.count {
-            totalItems += cellCounts[i]
-            if totalItems >= indexPath.row {
-                cell.categoryLabel.text = categories?[i].name
-                break
-            }
-            i += 1
-        }
+        cell.categoryLabel.text = cells[indexPath.row].categoryName
+        cell.itemLabel.text = cells[indexPath.row].itemName
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
-        categories?.forEach({ (category) in
-            count += category.items.count
-        })
-        return count
+        return cells.count
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
@@ -76,16 +55,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
             if let categoryName = categoryTextField.text {
                 if let itemName = itemTextField.text {
-                    // new category
-                    let category = Category()
-                    category.name = categoryName
                     
-                    // new item
-                    let item = Item()
-                    item.name = itemName
-                    category.items.append(item)
-                    
-                    self.save(category: category)
+                    // Persistant data via Realm
+                    self.save(categoryName: categoryName, itemName: itemName)
                 } else {
                     NSLog("Item cannot be nil")
                 }
@@ -107,23 +79,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: Realm - Data Manipulation Methods
-    func save(category: Category) {
+    func save(categoryName: String, itemName: String) {
         do {
             try realm?.write {
+                // individual category
+                var category = Category()
+                category.name = categoryName
+                self.categories?.forEach({ (c) in
+                    if c.name == categoryName {
+                        category = c
+                        return
+                    }
+                })
+                
+                // new item
+                let item = Item()
+                item.name = itemName
+                category.items.append(item)
                 realm?.add(category)
             }
+            
+            // Refresh the tableView
+            cells.append(Cell(categoryName: categoryName, itemName: itemName))
+            personTableView.reloadData()
         } catch {
             NSLog("Error writting Realm: \(error)")
         }
-        
-        //Refresh the tableView
-        personTableView.reloadData()
     }
     
     func loadCategories() {
+        // MARK: Realm - Data Manipulation Methods
         categories = realm?.objects(Category.self)
         
+        
         //Refresh the tableView
+        categories?.forEach({ (c) in
+            c.items.forEach({ (i) in
+                cells.append(Cell(categoryName: c.name, itemName: i.name))
+            })
+        })
         personTableView.reloadData()
     }
     

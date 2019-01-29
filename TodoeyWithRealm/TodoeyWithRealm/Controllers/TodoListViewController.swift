@@ -9,6 +9,11 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController {
+class TodoListViewController:  UITableViewController, UIPickerViewDelegate {
+    var selectedCategory: Category? {
+        didSet {
+            
+        }
+    }
 }
 
