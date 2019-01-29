@@ -14,8 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var realm: Realm? = nil
     @IBOutlet weak var personTableView: UITableView!
     
-    
-    var itemArray: [DataModel]?
+    var categories: Results<Category>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +25,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // MARK: Realm - initialising
         do {
+            // Realm file path
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
             realm = try Realm()
-            loadItems()
+            loadCategories()
         } catch {
             NSLog("Error Initialising Realm: \(error)")
         }
@@ -35,41 +36,81 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
-        cell.title.text = itemArray?[indexPath.row].name
+        var cells: [Item]?
+        var cellCounts: [Int] = []
+        categories?.forEach({ (category) in
+            category.items.forEach({ (item) in
+                cells?.append(item)
+            })
+            cellCounts.append(category.items.count)
+        })
+        cell.itemLabel.text = cells?[indexPath.row].name
+        
+        var totalItems = 0
+        var i = 0
+        while i < cellCounts.count {
+            totalItems += cellCounts[i]
+            if totalItems >= indexPath.row {
+                cell.categoryLabel.text = categories?[i].name
+                break
+            }
+            i += 1
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray?.count ?? 0
+        var count = 0
+        categories?.forEach({ (category) in
+            count += category.items.count
+        })
+        return count
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "Add new Item", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
-        var textField = UITextField()
+        var categoryTextField = UITextField()
+        var itemTextField = UITextField()
         let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
-            
-            if let content = textField.text {
-                self.saveItem(name: content, age: 10)
+            if let categoryName = categoryTextField.text {
+                if let itemName = itemTextField.text {
+                    // new category
+                    let category = Category()
+                    category.name = categoryName
+                    
+                    // new item
+                    let item = Item()
+                    item.name = itemName
+                    category.items.append(item)
+                    
+                    self.save(category: category)
+                } else {
+                    NSLog("Item cannot be nil")
+                }
+            } else {
+                NSLog("Category cannot be nil")
             }
         }
         
         alert.addAction(writeAction)
         alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new category"
+            categoryTextField = alertTextField
+        }
+        alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
-            textField = alertTextField
+            itemTextField = alertTextField
         }
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: Realm - Write
-    func saveItem(name: String, age: Int) {
+    // MARK: Realm - Data Manipulation Methods
+    func save(category: Category) {
         do {
             try realm?.write {
-                let dataModel = DataModel()
-                dataModel.name = name
-                self.itemArray?.append(dataModel)
+                realm?.add(category)
             }
         } catch {
             NSLog("Error writting Realm: \(error)")
@@ -79,12 +120,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         personTableView.reloadData()
     }
     
-    func loadItems() {
-        if let dataModels = realm?.objects(DataModel.self) {
-            for dataModel in dataModels {
-                itemArray?.append(dataModel)
-            }
-        }
+    func loadCategories() {
+        categories = realm?.objects(Category.self)
+        
+        //Refresh the tableView
+        personTableView.reloadData()
     }
     
     

@@ -947,14 +947,31 @@ class ViewController: UIViewController {
 ```
 
 1. Add a new piece of data   
-Create DataModel
+Let's say, we have some categories and items, each item belongs to one single category.   
+
+Create Category
 ```Swift
 import Foundation
 import RealmSwift
 
-class DataModel: Object {
+class Category: Object {
     @objc dynamic var name: String = ""
-    @objc dynamic var age: Int = 0
+    let items = List<Item>()
+}
+```
+
+Create Item
+```Swift
+import Foundation
+import RealmSwift
+
+class Item: Object {
+    // dynamic is a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard which is a static dispatch.This allows the property "name" to be monitered for change at runtime.
+    @objc dynamic var name: String = ""
+    
+    // If we just simpily wrote "Category", then this is just a class. In order to make it the type of "Category", we have to say ",self"
+    // property: what the parent list named in Category
+    var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
 }
 ```
 
@@ -963,9 +980,8 @@ Save data in the database
 ```Swift
 do {
     try realm?.write {
-        let dataModel = DataModel()
-        dataModel.name = nameTextField.text!
-        dataModel.age = Int(ageTextField.text!)!
+        let item = Item()
+        item.name = "Mike"
     }
 } catch {
     NSLog("Error writting Realm: \(error)")

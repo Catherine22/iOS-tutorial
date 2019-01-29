@@ -15,7 +15,8 @@
 		F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBFE21EF1B0500550C4D /* Main.storyboard */; };
 		F3CBBC0221EF1B0C00550C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */; };
 		F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0321EF1B0C00550C4D /* LaunchScreen.storyboard */; };
-		F3CBBC0E21EF1F7400550C4D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBC0D21EF1F7400550C4D /* DataModel.swift */; };
+		F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7822003E9C00CDE41B /* Item.swift */; };
+		F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7A22003EA500CDE41B /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 		F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3CBBC0421EF1B0C00550C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3CBBC0621EF1B0C00550C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3CBBC0D21EF1F7400550C4D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		F3FA2B7822003E9C00CDE41B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F3FA2B7A22003EA500CDE41B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,8 @@
 		F3CBBC0C21EF1F5C00550C4D /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				F3CBBC0D21EF1F7400550C4D /* DataModel.swift */,
+				F3FA2B7822003E9C00CDE41B /* Item.swift */,
+				F3FA2B7A22003EA500CDE41B /* Category.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -236,10 +239,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */,
 				F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */,
 				F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */,
+				F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */,
 				F37D94D021F1807800810DED /* PersonTableViewCell.swift in Sources */,
-				F3CBBC0E21EF1F7400550C4D /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
