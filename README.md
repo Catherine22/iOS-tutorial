@@ -467,9 +467,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
   - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
   - [Swift] extension   
-- [TodoeyWithRealm](https://github.com/Catherine22/iOS-tutorial/tree/master/TodoeyWithRealm)    
+- [RealmExample](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
   - Persistent data with Realm    
-  - [Swift] Nil coalescing operator   
 
 
 
@@ -921,7 +920,6 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 
 Realm examples:   
 [Realm example](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
-[TodoeyWithRealm](https://github.com/Catherine22/iOS-tutorial/tree/master/TodoeyWithRealm) 
 
 0. Install, setup and configure Realm
   - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    

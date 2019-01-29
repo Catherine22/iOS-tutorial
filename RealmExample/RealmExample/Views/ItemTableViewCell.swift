@@ -1,16 +1,15 @@
 //
-//  PersonTableViewCell.swift
+//  ItemTableViewCell.swift
 //  RealmExample
 //
-//  Created by Catherine Chen (RD-TW) on 18/01/2019.
+//  Created by Catherine Chen (RD-TW) on 29/01/2019.
 //  Copyright © 2019 Catherine Chen. All rights reserved.
 //
 
 import UIKit
 
-class PersonTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var categoryLabel: UILabel!
+class ItemTableViewCell: UITableViewCell {
+
     @IBOutlet weak var itemLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

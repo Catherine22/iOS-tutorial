@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DBFF2DD6EA6682175337AB57 /* Pods_RealmExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BD544A081C68AAAD1EFFE71 /* Pods_RealmExample.framework */; };
-		F37D94D021F1807800810DED /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37D94CE21F1807800810DED /* PersonTableViewCell.swift */; };
-		F37D94D121F1807800810DED /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37D94CF21F1807800810DED /* PersonTableViewCell.xib */; };
-		F383D4CC220053DA00CCC03F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383D4CB220053DA00CCC03F /* Cell.swift */; };
 		F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */; };
 		F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFC21EF1B0500550C4D /* ViewController.swift */; };
 		F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBFE21EF1B0500550C4D /* Main.storyboard */; };
@@ -18,15 +15,16 @@
 		F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0321EF1B0C00550C4D /* LaunchScreen.storyboard */; };
 		F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7822003E9C00CDE41B /* Item.swift */; };
 		F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7A22003EA500CDE41B /* Category.swift */; };
+		F3FA2B822200665B00CDE41B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B802200665B00CDE41B /* CategoryTableViewCell.swift */; };
+		F3FA2B832200665B00CDE41B /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FA2B812200665B00CDE41B /* CategoryTableViewCell.xib */; };
+		F3FA2B86220066AD00CDE41B /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B84220066AD00CDE41B /* ItemTableViewCell.swift */; };
+		F3FA2B87220066AD00CDE41B /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FA2B85220066AD00CDE41B /* ItemTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4BD544A081C68AAAD1EFFE71 /* Pods_RealmExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF0BF0712B05ECCAE151556 /* Pods-RealmExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample.release.xcconfig"; sourceTree = "<group>"; };
 		C2C5AFC730DC94E9BB697D6C /* Pods-RealmExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample.debug.xcconfig"; sourceTree = "<group>"; };
-		F37D94CE21F1807800810DED /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
-		F37D94CF21F1807800810DED /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
-		F383D4CB220053DA00CCC03F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		F3CBBBF721EF1B0500550C4D /* RealmExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3CBBBFC21EF1B0500550C4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +34,10 @@
 		F3CBBC0621EF1B0C00550C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3FA2B7822003E9C00CDE41B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F3FA2B7A22003EA500CDE41B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F3FA2B802200665B00CDE41B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		F3FA2B812200665B00CDE41B /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		F3FA2B84220066AD00CDE41B /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		F3FA2B85220066AD00CDE41B /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,10 @@
 		F37D94C721F1785300810DED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F37D94CE21F1807800810DED /* PersonTableViewCell.swift */,
-				F37D94CF21F1807800810DED /* PersonTableViewCell.xib */,
+				F3FA2B802200665B00CDE41B /* CategoryTableViewCell.swift */,
+				F3FA2B812200665B00CDE41B /* CategoryTableViewCell.xib */,
+				F3FA2B84220066AD00CDE41B /* ItemTableViewCell.swift */,
+				F3FA2B85220066AD00CDE41B /* ItemTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,10 +101,10 @@
 		F3CBBBF921EF1B0500550C4D /* RealmExample */ = {
 			isa = PBXGroup;
 			children = (
+				F3FA2B882200694800CDE41B /* Controllers */,
 				F37D94C721F1785300810DED /* Views */,
-				F3CBBC0C21EF1F5C00550C4D /* Data Model */,
+				F3CBBC0C21EF1F5C00550C4D /* Models */,
 				F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */,
-				F3CBBBFC21EF1B0500550C4D /* ViewController.swift */,
 				F3CBBBFE21EF1B0500550C4D /* Main.storyboard */,
 				F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */,
 				F3CBBC0321EF1B0C00550C4D /* LaunchScreen.storyboard */,
@@ -109,14 +113,21 @@
 			path = RealmExample;
 			sourceTree = "<group>";
 		};
-		F3CBBC0C21EF1F5C00550C4D /* Data Model */ = {
+		F3CBBC0C21EF1F5C00550C4D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F3FA2B7822003E9C00CDE41B /* Item.swift */,
 				F3FA2B7A22003EA500CDE41B /* Category.swift */,
-				F383D4CB220053DA00CCC03F /* Cell.swift */,
 			);
-			path = "Data Model";
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F3FA2B882200694800CDE41B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3CBBBFC21EF1B0500550C4D /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,8 +191,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */,
+				F3FA2B832200665B00CDE41B /* CategoryTableViewCell.xib in Resources */,
 				F3CBBC0221EF1B0C00550C4D /* Assets.xcassets in Resources */,
-				F37D94D121F1807800810DED /* PersonTableViewCell.xib in Resources */,
+				F3FA2B87220066AD00CDE41B /* ItemTableViewCell.xib in Resources */,
 				F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,8 +250,8 @@
 				F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */,
 				F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */,
 				F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */,
-				F37D94D021F1807800810DED /* PersonTableViewCell.swift in Sources */,
-				F383D4CC220053DA00CCC03F /* Cell.swift in Sources */,
+				F3FA2B86220066AD00CDE41B /* ItemTableViewCell.swift in Sources */,
+				F3FA2B822200665B00CDE41B /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
