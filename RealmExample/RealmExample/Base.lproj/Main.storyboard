@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fQJ-fo-19d">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Categories-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CategoryViewController" customModule="RealmExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Rs-lr-dRd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nUx-N7-Q6L"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4Rs-lr-dRd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WFa-gg-Sg3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4Rs-lr-dRd" secondAttribute="bottom" id="YH9-iS-pOa"/>
+                            <constraint firstItem="4Rs-lr-dRd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fob-zh-ayT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Rs-lr-dRd" secondAttribute="trailing" id="iQJ-nb-g1L"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Categories" id="UEX-na-0xr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="16i-sO-LiA">
+                            <connections>
+                                <action selector="onAddButtonPressed:" destination="BYZ-38-t0r" id="wbN-0z-9RR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="categoryTableView" destination="4Rs-lr-dRd" id="3LW-UR-d0c"/>
+                        <segue destination="seD-4C-pju" kind="show" identifier="GoToItemsView" id="DJJ-aa-cZx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="132.68365817091455"/>
+        </scene>
+        <!--Items-->
+        <scene sceneID="Iga-tZ-aI1">
+            <objects>
+                <viewController id="seD-4C-pju" customClass="ItemViewController" customModule="RealmExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I5l-7d-OI1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S2S-dq-NPX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BDE-A4-Iyq" firstAttribute="bottom" secondItem="S2S-dq-NPX" secondAttribute="bottom" id="3Ka-Ml-XlR"/>
+                            <constraint firstItem="S2S-dq-NPX" firstAttribute="top" secondItem="BDE-A4-Iyq" secondAttribute="top" id="LDd-hy-xsP"/>
+                            <constraint firstItem="BDE-A4-Iyq" firstAttribute="trailing" secondItem="S2S-dq-NPX" secondAttribute="trailing" id="QxO-a4-2Aj"/>
+                            <constraint firstItem="S2S-dq-NPX" firstAttribute="leading" secondItem="BDE-A4-Iyq" secondAttribute="leading" id="vd4-zw-iCj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BDE-A4-Iyq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Items" id="muO-1o-PI8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Hzm-5S-4t9">
+                            <connections>
+                                <action selector="onAddButtonPressed:" destination="seD-4C-pju" id="mrL-sG-0uy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="itemTableView" destination="S2S-dq-NPX" id="bBn-QD-tUt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aCc-b0-Lbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VGR-Lq-aSM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fQJ-fo-19d" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Z3-0R-6ds">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aKL-ht-lYd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jbj-wu-bVX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>
