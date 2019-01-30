@@ -920,8 +920,8 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 
 ### Realm
 
-Realm examples:   
-[Realm example](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
+Realm example:   
+[Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
 
 0. Install, setup and configure Realm
   - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    
