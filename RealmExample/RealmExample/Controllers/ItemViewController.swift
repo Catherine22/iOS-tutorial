@@ -17,6 +17,10 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     var items: Results<Item>?
     var queryAll: Bool?
     var selectedCategory: Category?
+    
+    // sorting rules
+    let byKeyPath = "dateCreated"
+    let ascending = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,11 +150,11 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: Realm - Data Manipulation Methods
     func loadItems() {
         if queryAll ?? false {
-            items = realm?.objects(Item.self).sorted(byKeyPath: "dateCreated", ascending: true)
+            items = realm?.objects(Item.self).sorted(byKeyPath: byKeyPath, ascending: ascending)
         } else {
             let predicate = NSPredicate(format: "name == %@", selectedCategory!.name)
             let category = realm?.objects(Category.self).filter(predicate).first
-            items = category?.items.sorted(byKeyPath: "dateCreated", ascending: true)
+            items = category?.items.sorted(byKeyPath: byKeyPath, ascending: ascending)
         }
         itemTableView.reloadData()
     }
@@ -181,7 +185,7 @@ extension ItemViewController: UISearchBarDelegate {
         } else {
             // Query data as users are typing to improve user experience.
             let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
-            queryItems(predicate: predicate, byKeyPath: "dateCreated", ascending: true)
+            queryItems(predicate: predicate, byKeyPath: byKeyPath, ascending: ascending)
         }
     }
 }

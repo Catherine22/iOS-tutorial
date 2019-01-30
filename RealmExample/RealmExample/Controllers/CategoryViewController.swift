@@ -39,18 +39,24 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     // TODO: TableView - Set up each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        cell.categoryLabel.text = categories?[indexPath.row].name
+        cell.categoryLabel.text = (indexPath.row == 0) ? "ALL" : categories?[indexPath.row - 1].name
         return cell
     }
     
     // TODO: TableView - Set up the amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 0
+        let amount = categories?.count ?? 0
+        return amount + 1 // with the first category - ALL
     }
     
     // TODO: TableView - Click event
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCategory = categories?[indexPath.row]
+        if indexPath.row == 0 {
+            queryAll = true
+        } else {
+            queryAll = false
+            selectedCategory = categories?[indexPath.row - 1]
+        }
         performSegue(withIdentifier: "GoToItemsView", sender: self)
     }
     
