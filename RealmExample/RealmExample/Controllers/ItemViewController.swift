@@ -29,6 +29,12 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         itemTableView.dataSource = self
         itemTableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
         
+        if queryAll ?? false {
+            navigationItem.title = "ALL"
+        } else {
+            navigationItem.title = selectedCategory?.name
+        }
+        
         // MARK: Realm - initialising
         do {
             realm = try Realm()
