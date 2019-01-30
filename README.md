@@ -1016,9 +1016,16 @@ class ViewController: UIViewController {
 }
 ```
 
-5. Delete data
+5. Delete data    
+Notice: no need to remove items from the Results list, Realm would automatically do it.
 ```Swift
-
+do {
+  try realm?.write {
+    realm?.delete(category)
+    }
+  } catch {
+    NSLog("Error writing Realm: \(error)")
+    }
 ```
 
 # Command Game

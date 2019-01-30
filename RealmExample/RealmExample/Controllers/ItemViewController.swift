@@ -51,11 +51,26 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    // TODO: TableView - Swipe to remove cells
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // TODO: TableView - Swipe to remove cells
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteItem(item: items![indexPath.row], at: indexPath.row)
+            itemTableView.beginUpdates()
+            itemTableView.deleteRows(at: [indexPath], with: .fade)
+            itemTableView.endUpdates()
+        }
+    }
+    
     @IBAction func onAddButtonPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Add new Item", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var itemTextField = UITextField()
-        let writeAction = UIAlertAction(title: "Add Item", style: .default) { (UIAlertAction) in
+        let writeAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             if let itemName = itemTextField.text {
                 var skipSaving = false
                 self.items?.forEach({ (item) in
@@ -75,8 +90,12 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.popUpAlert(title: "Warning", message: "Please fill in a item", completion: nil)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }
         
         alert.addAction(writeAction)
+        alert.addAction(cancelAction)
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
             itemTextField = alertTextField
@@ -112,8 +131,19 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // MARK: Realm - DataManipulation Methods
+    func deleteItem(item: Item, at index: Int) {
+        do {
+            try realm?.write {
+                realm?.delete(item)
+            }
+        } catch {
+            NSLog("Error writing Realm: \(error)")
+        }
+    }
+    
+    // MARK: Realm - Data Manipulation Methods
     func loadItems() {
-//        // MARK: Realm - Data Manipulation Methods
         if queryAll ?? false {
             let categories = realm?.objects(Category.self)
             categories?.forEach({ (category) in

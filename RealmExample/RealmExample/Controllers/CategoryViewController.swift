@@ -54,12 +54,27 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "GoToItemsView", sender: self)
     }
     
+    // TODO: TableView - Swipe to remove cells
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // TODO: TableView - Swipe to remove cells
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteCategory(category: categories![indexPath.row], at: indexPath.row)
+            categoryTableView.beginUpdates()
+            categoryTableView.deleteRows(at: [indexPath], with: .fade)
+            categoryTableView.endUpdates()
+        }
+    }
+    
     @IBAction func onAddButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "Add new Category", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var categoryTextField = UITextField()
-        let writeAction = UIAlertAction(title: "Add Category", style: .default) { (UIAlertAction) in
+        let writeAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             if let categoryName = categoryTextField.text {
                 var skipSaving = false
                 self.categories?.forEach({ (category) in
@@ -79,8 +94,12 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
                 self.popUpAlert(title: "Warning", message: "Please fill in a category", completion: nil)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }
         
         alert.addAction(writeAction)
+        alert.addAction(cancelAction)
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new category"
             categoryTextField = alertTextField
@@ -127,8 +146,19 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // MARK: Realm - DataManipulation Methods
+    func deleteCategory(category: Category, at index: Int) {
+        do {
+            try realm?.write {
+                realm?.delete(category)
+            }
+        } catch {
+            NSLog("Error writing Realm: \(error)")
+        }
+    }
+    
+    // MARK: Realm - Data Manipulation Methods
     func loadCategories() {
-        // MARK: Realm - Data Manipulation Methods
         categories = realm?.objects(Category.self)
         categoryTableView.reloadData()
     }
