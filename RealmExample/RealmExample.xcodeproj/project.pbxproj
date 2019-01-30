@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DBFF2DD6EA6682175337AB57 /* Pods_RealmExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BD544A081C68AAAD1EFFE71 /* Pods_RealmExample.framework */; };
 		F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */; };
-		F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFC21EF1B0500550C4D /* ViewController.swift */; };
+		F3CBBBFD21EF1B0500550C4D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBBBFC21EF1B0500550C4D /* CategoryViewController.swift */; };
 		F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBFE21EF1B0500550C4D /* Main.storyboard */; };
 		F3CBBC0221EF1B0C00550C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */; };
 		F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0321EF1B0C00550C4D /* LaunchScreen.storyboard */; };
@@ -19,6 +19,7 @@
 		F3FA2B832200665B00CDE41B /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FA2B812200665B00CDE41B /* CategoryTableViewCell.xib */; };
 		F3FA2B86220066AD00CDE41B /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B84220066AD00CDE41B /* ItemTableViewCell.swift */; };
 		F3FA2B87220066AD00CDE41B /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FA2B85220066AD00CDE41B /* ItemTableViewCell.xib */; };
+		F3FA2B8A22006B1D00CDE41B /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B8922006B1D00CDE41B /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,7 @@
 		C2C5AFC730DC94E9BB697D6C /* Pods-RealmExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CBBBF721EF1B0500550C4D /* RealmExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CBBBFA21EF1B0500550C4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3CBBBFC21EF1B0500550C4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3CBBBFC21EF1B0500550C4D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		F3CBBBFF21EF1B0500550C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3CBBC0421EF1B0C00550C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		F3FA2B812200665B00CDE41B /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		F3FA2B84220066AD00CDE41B /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		F3FA2B85220066AD00CDE41B /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		F3FA2B8922006B1D00CDE41B /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +127,8 @@
 		F3FA2B882200694800CDE41B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F3CBBBFC21EF1B0500550C4D /* ViewController.swift */,
+				F3CBBBFC21EF1B0500550C4D /* CategoryViewController.swift */,
+				F3FA2B8922006B1D00CDE41B /* ItemViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -246,8 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3FA2B8A22006B1D00CDE41B /* ItemViewController.swift in Sources */,
 				F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */,
-				F3CBBBFD21EF1B0500550C4D /* ViewController.swift in Sources */,
+				F3CBBBFD21EF1B0500550C4D /* CategoryViewController.swift in Sources */,
 				F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */,
 				F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */,
 				F3FA2B86220066AD00CDE41B /* ItemTableViewCell.swift in Sources */,

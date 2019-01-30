@@ -101,7 +101,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 }
 ```    
 Who initialised the segue will be the ```sender```, which in this case, will be the ```ViewController```.   
-(https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)   
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)   
 
 # Protocol and Delegate
 Inside the [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima) application, we have a ```ChangeCityDelegate``` delegate on the second ViewController.    
@@ -983,13 +983,19 @@ do {
         realm?.add(category)
     }
 } catch {
-    NSLog("Error writting Realm: \(error)")
+    NSLog("Error writing Realm: \(error)")
 }
 ```
 
 3. Update data
 ```Swift
-
+do {
+    try realm?.write {
+        // do something here
+    }
+} catch {
+    NSLog("Error writing Realm: \(error)")
+}
 ```
 
 4. Read data

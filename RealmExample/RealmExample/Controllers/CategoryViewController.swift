@@ -9,19 +9,21 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var realm: Realm? = nil
     @IBOutlet weak var categoryTableView: UITableView!
     
     var categories: Results<Category>?
+    var selectedCategory: Category?
+    var queryAll: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
-        categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "categoryCell")
+        categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         
         // MARK: Realm - initialising
         do {
@@ -34,18 +36,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    // TODO: TableView - Set up each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
         cell.categoryLabel.text = categories?[indexPath.row].name
         return cell
     }
     
+    // TODO: TableView - Set up the amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 0
     }
     
+    // TODO: TableView - Click event
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        selectedCategory = categories?[indexPath.row]
+        performSegue(withIdentifier: "GoToItemsView", sender: self)
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
@@ -94,6 +100,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(alert, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToItemsView" {
+            // We are not allowed to create a ViewController Object regularly, like
+            // let destinationVC = SecondViewController()
+            // Instead, we do
+            let destinationVC = segue.destination as! ItemViewController
+            destinationVC.queryAll = queryAll
+            destinationVC.selectedCategory = selectedCategory
+        }
+    }
+    
     // MARK: Realm - Data Manipulation Methods
     func save(categoryName: String) {
         do {
@@ -106,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Refresh the tableView
             categoryTableView.reloadData()
         } catch {
-            NSLog("Error writting Realm: \(error)")
+            NSLog("Error writing Realm: \(error)")
         }
     }
     
@@ -116,10 +133,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         categoryTableView.reloadData()
     }
     
-}
-
-extension String {
-    static func isInt(_ string: String) -> Bool {
-        return Int(string) != nil
-    }
 }
