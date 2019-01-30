@@ -14,7 +14,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var itemTableView: UITableView!
     
     var realm: Realm? = nil
-    var items: List<Item>?
+    var items: Results<Item>?
     var queryAll: Bool?
     var selectedCategory: Category?
 
@@ -121,6 +121,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
             try realm?.write {
                 let item = Item()
                 item.name = itemName
+                item.dateCreated = Date()
                 selectedCategory?.items.append(item)
             }
             
@@ -145,17 +146,42 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: Realm - Data Manipulation Methods
     func loadItems() {
         if queryAll ?? false {
-            let categories = realm?.objects(Category.self)
-            categories?.forEach({ (category) in
-                category.items.forEach({ (item) in
-                    items?.append(item)
-                })
-            })
+            items = realm?.objects(Item.self).sorted(byKeyPath: "dateCreated", ascending: true)
         } else {
-            let category = realm?.objects(Category.self).filter("name == %@", selectedCategory?.name).first
-            items = category?.items
+            let predicate = NSPredicate(format: "name == %@", selectedCategory!.name)
+            let category = realm?.objects(Category.self).filter(predicate).first
+            items = category?.items.sorted(byKeyPath: "dateCreated", ascending: true)
         }
         itemTableView.reloadData()
     }
+    
+    // MARK: Realm - Data Manipulation Methods
+    func queryItems(predicate: NSPredicate, byKeyPath: String, ascending: Bool) {
+        items = items?.filter(predicate).sorted(byKeyPath: byKeyPath, ascending: ascending)
+        itemTableView.reloadData()
+    }
 
+}
+
+extension ItemViewController: UISearchBarDelegate {
+    
+    // This method will be triggered as "Enter" is typed
+    //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    //        updateTableView(text: searchBar.text!)
+    //    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Reload all the data as users clear the Search Bar
+        if searchBar.text?.count == 0 {
+            loadItems()
+            DispatchQueue.main.async {
+                // No longer have the cursor and also the keyboard should go away
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            // Query data as users are typing to improve user experience.
+            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+            queryItems(predicate: predicate, byKeyPath: "dateCreated", ascending: true)
+        }
+    }
 }

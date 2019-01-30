@@ -456,20 +456,22 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Firebase Realtime Database    
   - Completion Handler    
   - Navigation ViewController   
-  - TableView   
+  - UITableView   
   - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
   - ```ProgressHUD``` (Loading + alert)   
   - Get more colours via ```ChameleonFramework```    
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
-  - Persistent standard types and object array with ```UserDefaults``` and ```FileManager``` respectively.   
+  - Persistent standard types and object array with ```UserDefaults``` and ```CoreData``` respectively.   
   - Persistent data with CoreData.    
   - UISearchBar   
+  - UITableView   
   - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
   - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
   - [Swift] extension   
-- [RealmExample](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
+- [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
   - Persistent data with Realm    
-
+  - UISearchBar   
+  - UITableView   
 
 
 
