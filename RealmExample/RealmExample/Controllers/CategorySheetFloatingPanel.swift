@@ -26,7 +26,11 @@ class CategorySheetFloatingPanel: UIViewController, UITableViewDelegate, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
@@ -58,7 +62,7 @@ class CategorySheetFloatingPanel: UIViewController, UITableViewDelegate, UITable
     // TODO: TableView - Click event
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         categorySheetSelection?.onCategorySelected(category: (categories?[indexPath.row])!)
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     

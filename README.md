@@ -472,6 +472,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Persistent data with Realm    
   - UISearchBar   
   - UITableView   
+  - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
 
 
 

@@ -8,5 +8,6 @@ target 'RealmExample' do
   # Pods for RealmExample
     pod 'RealmSwift'
     pod 'SwipeCellKit'
+    pod 'FloatingPanel'
 
 end

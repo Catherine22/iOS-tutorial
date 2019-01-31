@@ -8,18 +8,18 @@
 
 import UIKit
 import RealmSwift
+import FloatingPanel
 
 class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CategorySheetSelection {
     
-    
     @IBOutlet weak var itemTableView: UITableView!
     var controller: UIViewController?
+    var floatingPanelController: FloatingPanelController!
     
     var realm: Realm? = nil
     var items: Results<Item>?
     var queryAll: Bool?
     var selectedCategory: Category?
-    var onNewItemCreated = false
     
     // sorting rules
     let BY_KEY_PATH = "dateCreated"
@@ -40,16 +40,6 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
             loadItems()
         } catch {
             NSLog("Error Initialising Realm: \(error)")
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // TODO: Step3 - Pop up the alert to create a new item
-        if onNewItemCreated {
-            createNewItem()
-            onNewItemCreated = false
         }
     }
     
@@ -87,25 +77,18 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
         if queryAll ?? false {
-            // TODO: Step1 - Select a category
-            performSegue(withIdentifier: "GoToCategorySheet", sender: self)
+            popOverCategorySheet()
         } else {
             createNewItem()
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToCategorySheet" {
-            let secondVC = segue.destination as! CategorySheetFloatingPanel
-            secondVC.categorySheetSelection = self
-        }
-    }
     
     // TODO: Retrieve data from the second ViewController via protocal
     func onCategorySelected(category: Category) {
-        // TODO: Step2 - Got selected category, present a new alert while viewDidAppear finished
-        onNewItemCreated = true
+        floatingPanelController.removePanelFromParent(animated: true)
         selectedCategory = category
+        createNewItem()
     }
     
     func createNewItem() {
@@ -225,5 +208,26 @@ extension ItemViewController: UISearchBarDelegate {
             let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
             queryItems(predicate: predicate, byKeyPath: BY_KEY_PATH, ascending: ASCENDING)
         }
+    }
+}
+
+extension ItemViewController: FloatingPanelControllerDelegate {
+    func popOverCategorySheet() {
+        // Initialize a `FloatingPanelController` object.
+        floatingPanelController = FloatingPanelController()
+        
+        // Assign self as the delegate of the controller.
+        floatingPanelController.delegate = self // Optional
+        
+        // Set a content view controller.
+        let contentVC = storyboard?.instantiateViewController(withIdentifier: "CategorySheet") as! CategorySheetFloatingPanel
+        contentVC.categorySheetSelection = self
+        floatingPanelController.set(contentViewController: contentVC)
+        
+        // Track a scroll view(or the siblings) in the content view controller.
+        floatingPanelController.track(scrollView: contentVC.categoryTableView)
+        
+        // Add and show the views managed by the `FloatingPanelController` object to self.view.
+        floatingPanelController.addPanel(toParent: self)
     }
 }
