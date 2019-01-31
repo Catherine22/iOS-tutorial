@@ -12,9 +12,9 @@ import SwipeCellKit
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var realm: Realm? = nil
     @IBOutlet weak var categoryTableView: UITableView!
     
+    var realm: Realm? = nil
     var categories: Results<Category>?
     var selectedCategory: Category?
     var queryAll: Bool?
@@ -56,7 +56,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
-        
+        createNewCategory()
+    }
+    
+    func createNewCategory() {
         let alert = UIAlertController(title: "Add new Category", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var categoryTextField = UITextField()

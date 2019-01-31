@@ -9,14 +9,17 @@
 import UIKit
 import RealmSwift
 
-class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CategorySheetSelection {
+    
     
     @IBOutlet weak var itemTableView: UITableView!
+    var controller: UIViewController?
     
     var realm: Realm? = nil
     var items: Results<Item>?
     var queryAll: Bool?
     var selectedCategory: Category?
+    var onNewItemCreated = false
     
     // sorting rules
     let BY_KEY_PATH = "dateCreated"
@@ -37,6 +40,16 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
             loadItems()
         } catch {
             NSLog("Error Initialising Realm: \(error)")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // TODO: Step3 - Pop up the alert to create a new item
+        if onNewItemCreated {
+            createNewItem()
+            onNewItemCreated = false
         }
     }
     
@@ -73,6 +86,29 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
+        if queryAll ?? false {
+            // TODO: Step1 - Select a category
+            performSegue(withIdentifier: "GoToCategorySheet", sender: self)
+        } else {
+            createNewItem()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToCategorySheet" {
+            let secondVC = segue.destination as! CategorySheetFloatingPanel
+            secondVC.categorySheetSelection = self
+        }
+    }
+    
+    // TODO: Retrieve data from the second ViewController via protocal
+    func onCategorySelected(category: Category) {
+        // TODO: Step2 - Got selected category, present a new alert while viewDidAppear finished
+        onNewItemCreated = true
+        selectedCategory = category
+    }
+    
+    func createNewItem() {
         let alert = UIAlertController(title: "Add new Item", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var itemTextField = UITextField()
