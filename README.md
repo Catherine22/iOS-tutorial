@@ -80,7 +80,6 @@ For example, I'd like to click "next" button to navigate to another page. In thi
 2. Editor - Embed in - Navigation Controller    
 
 ## Another way to trigger segues
-
 1. Click ```⌃``` and the "View Controller" button, drag to another UIViewController, select "show"    
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue4.png)   
 2. Set ```IBAction``` of the Next button, and jump to another segue by calling ```performSegue```, select the segue to name Identifier    
@@ -209,7 +208,11 @@ func configureTableView() {
   messageTableView.estimatedRowHeight = 120.0
 }
 ```
+
 ## UISearchBar
+
+### UISearchBar in UIViewController
+[Example: CategorySheetFloatingPanel.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/CategorySheetFloatingPanel.swift)   
 
 1. Drag a Search Bar in to main.storyboard    
 
@@ -234,6 +237,57 @@ extension TodoListViewController: UISearchBarDelegate {
         // Query data as users are typing to improve user experience.
         queryData(text: searchBar.text!)
       }
+    }
+}
+```
+
+### UISearchBar inside NavigationController
+[Example: ItemViewController.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/ItemViewController.swift)   
+
+1. Embed your UIViewController in Navigation Controller   
+2. Implement delegates    
+```Swift
+class ItemViewController: UIViewController {
+
+  var searchController : UISearchController!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Set searchBar inside NavigationController
+    initUISearchController()
+  }
+}
+
+extension ItemViewController: UISearchControllerDelegate, UISearchBarDelegate {
+    
+    // This method will be triggered as "Enter" is typed
+    //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    //        updateTableView(text: searchBar.text!)
+    //    }
+    
+    func initUISearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = true
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Reload all the data as users clear the Search Bar
+        if searchBar.text?.count == 0 {
+            loadItems()
+            DispatchQueue.main.async {
+                // No longer have the cursor and also the keyboard should go away
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            // Query data as users are typing to improve user experience.
+        }
     }
 }
 ```
@@ -460,7 +514,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
   - ```ProgressHUD``` (Loading + alert)   
   - Get more colours via ```ChameleonFramework```    
-- [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
+- [CoreData Example](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
   - Persistent standard types and object array with ```UserDefaults``` and ```CoreData``` respectively.   
   - Persistent data with CoreData.    
   - UISearchBar   
@@ -470,12 +524,12 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - [Swift] extension   
 - [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
   - Persistent data with Realm    
-  - UISearchBar   
+  - 2 ways to use UISearchBar (put UISearchBar inside NavigationController or UIViewController)   
   - UITableView   
   - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
   - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
+  - Customise NavigationController style   
      
-
 
 
 # Tips
