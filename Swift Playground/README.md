@@ -71,6 +71,80 @@ for (name, score) in scores {
  */
 ```
 
+## Property
+
+### Function-liked property
+For example, we have a class        
+```Swift
+class Util {
+    let width = 10.0
+    let height = 20.0
+}
+```
+
+In order to calculate the area, we can create a method      
+```Swift
+func getArea() -> Double {
+        return width * height
+    }
+```
+
+Or USE PROPERTY     
+>You must:       
+>1. Set the property ```var```       
+>2. Initialise the property with its type   
+
+```Swift
+var area: Double {
+        return width * height
+    }
+```     
+
+You could also write it completely with ```get { }```
+```Swift
+var area: Double {
+        get {
+            return width * height
+        }
+    }
+```
+
+### Get-only property
+```Swift
+var E: Float {
+        get {
+            return 2.718
+        }
+    }
+```
+
+### Observer - ```willSet``` and ```didSet```
+```swift
+class Observer {
+    var value: String {
+        willSet {
+            // Call willSet before the value changes
+            print("Call willSet, value = \(value)")
+        }
+
+        didSet {
+            // Call willSet after the value changes
+            print("Call didSet, new value = \(value)")
+        }
+    }
+
+    init(value: String){
+        self.value = value
+    }
+}
+
+var osr = Observer(value: "init")
+osr.value = "new value"
+
+// Call willSet, value = init
+// Call didSet, new value = new value
+```
+
 ## Loop
 Print all prime numbers up to 100
 
@@ -308,32 +382,6 @@ class Employee: Person {
 
 var joanne = Employee(name: "Joanne", age: 16, dept: "Accounting")
 print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting department
-```
-### Observer - ```willSet``` and ```didSet```
-```swift
-class Observer {
-    var value: String {
-        willSet {
-            // Call willSet before the value changes
-            print("Call willSet, value = \(value)")
-        }
-
-        didSet {
-            // Call willSet after the value changes
-            print("Call didSet, new value = \(value)")
-        }
-    }
-
-    init(value: String){
-        self.value = value
-    }
-}
-
-var osr = Observer(value: "init")
-osr.value = "new value"
-
-// Call willSet, value = init
-// Call didSet, new value = new value
 ```
 
 ### ```enum```
