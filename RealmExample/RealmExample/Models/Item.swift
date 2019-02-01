@@ -13,6 +13,7 @@ class Item: Object {
     // dynamic is a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard which is a static dispatch.This allows the property "name" to be monitered for change at runtime.
     @objc dynamic var name: String = ""
     @objc dynamic var dateCreated: Date?
+    @objc dynamic var backgroundColorHex: String = "FFFFFF"
     
     // If we just simpily wrote "Category", then this is just a class. In order to make it the type of "Category", we have to say ",self"
     // property: what the parent list named in Category

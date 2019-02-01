@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 protocol CategorySheetSelection {
     func onCategorySelected(category: Category)
@@ -35,6 +36,7 @@ class CategorySheetFloatingPanel: UIViewController, UITableViewDelegate, UITable
         categoryTableView.dataSource = self
         categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         categoryTableView.rowHeight = 80.0
+        categoryTableView.separatorStyle = .none
         
         // MARK: Realm - initialising
         do {
@@ -51,6 +53,7 @@ class CategorySheetFloatingPanel: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
         cell.categoryLabel.text = categories?[indexPath.row].name
+        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].backgroundColorHex ?? "FFFFFF")
         return cell
     }
 

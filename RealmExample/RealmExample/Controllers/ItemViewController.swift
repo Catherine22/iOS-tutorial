@@ -31,6 +31,8 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         itemTableView.delegate = self
         itemTableView.dataSource = self
         itemTableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
+        itemTableView.rowHeight = 80.0
+        itemTableView.separatorStyle = .none
         
         navigationItem.title = (queryAll ?? false) ? "ALL" : selectedCategory?.name
         
@@ -46,7 +48,8 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // TODO: TableView - Set up each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
-       cell.itemLabel.text = items?[indexPath.row].name
+        cell.itemLabel.text = items?[indexPath.row].name
+        cell.backgroundColor = UIColor(hexString: items?[indexPath.row].backgroundColorHex ?? "FFFFFF")
         return cell
     }
     
@@ -147,6 +150,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let item = Item()
                 item.name = itemName
                 item.dateCreated = Date()
+                item.backgroundColorHex = UIColor.randomFlat.hexValue()
                 selectedCategory?.items.append(item)
             }
             
