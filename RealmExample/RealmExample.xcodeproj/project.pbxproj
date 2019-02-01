@@ -13,6 +13,7 @@
 		F3CBBC0021EF1B0500550C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBFE21EF1B0500550C4D /* Main.storyboard */; };
 		F3CBBC0221EF1B0C00550C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */; };
 		F3CBBC0521EF1B0C00550C4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBC0321EF1B0C00550C4D /* LaunchScreen.storyboard */; };
+		F3DCA68B2202EA72005EDC16 /* CategorySheetFloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DCA68A2202EA72005EDC16 /* CategorySheetFloatingPanel.swift */; };
 		F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7822003E9C00CDE41B /* Item.swift */; };
 		F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B7A22003EA500CDE41B /* Category.swift */; };
 		F3FA2B822200665B00CDE41B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2B802200665B00CDE41B /* CategoryTableViewCell.swift */; };
@@ -33,6 +34,7 @@
 		F3CBBC0121EF1B0C00550C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3CBBC0421EF1B0C00550C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3CBBC0621EF1B0C00550C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3DCA68A2202EA72005EDC16 /* CategorySheetFloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySheetFloatingPanel.swift; sourceTree = "<group>"; };
 		F3FA2B7822003E9C00CDE41B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F3FA2B7A22003EA500CDE41B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F3FA2B802200665B00CDE41B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				F3CBBBFC21EF1B0500550C4D /* CategoryViewController.swift */,
 				F3FA2B8922006B1D00CDE41B /* ItemViewController.swift */,
+				F3DCA68A2202EA72005EDC16 /* CategorySheetFloatingPanel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,13 +214,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RealmExample/Pods-RealmExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FloatingPanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -253,6 +262,7 @@
 				F3FA2B7922003E9C00CDE41B /* Item.swift in Sources */,
 				F3CBBBFD21EF1B0500550C4D /* CategoryViewController.swift in Sources */,
 				F3CBBBFB21EF1B0500550C4D /* AppDelegate.swift in Sources */,
+				F3DCA68B2202EA72005EDC16 /* CategorySheetFloatingPanel.swift in Sources */,
 				F3FA2B7B22003EA500CDE41B /* Category.swift in Sources */,
 				F3FA2B86220066AD00CDE41B /* ItemTableViewCell.swift in Sources */,
 				F3FA2B822200665B00CDE41B /* CategoryTableViewCell.swift in Sources */,

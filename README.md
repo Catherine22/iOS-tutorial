@@ -456,20 +456,25 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Firebase Realtime Database    
   - Completion Handler    
   - Navigation ViewController   
-  - TableView   
+  - UITableView   
   - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
   - ```ProgressHUD``` (Loading + alert)   
   - Get more colours via ```ChameleonFramework```    
 - [Todoey](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
-  - Persistent standard types and object array with ```UserDefaults``` and ```FileManager``` respectively.   
+  - Persistent standard types and object array with ```UserDefaults``` and ```CoreData``` respectively.   
   - Persistent data with CoreData.    
   - UISearchBar   
+  - UITableView   
   - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
   - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
   - [Swift] extension   
-- [RealmExample](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
+- [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
   - Persistent data with Realm    
-
+  - UISearchBar   
+  - UITableView   
+  - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
+  - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
+     
 
 
 
@@ -918,8 +923,8 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 
 ### Realm
 
-Realm examples:   
-[Realm example](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
+Realm example:   
+[Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
 
 0. Install, setup and configure Realm
   - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    

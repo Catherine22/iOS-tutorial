@@ -8,15 +8,22 @@
 
 import UIKit
 import RealmSwift
+import FloatingPanel
 
-class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CategorySheetSelection {
     
     @IBOutlet weak var itemTableView: UITableView!
+    var controller: UIViewController?
+    var floatingPanelController: FloatingPanelController!
     
     var realm: Realm? = nil
-    var items: List<Item>?
+    var items: Results<Item>?
     var queryAll: Bool?
     var selectedCategory: Category?
+    
+    // sorting rules
+    let BY_KEY_PATH = "dateCreated"
+    let ASCENDING = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +31,10 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         itemTableView.delegate = self
         itemTableView.dataSource = self
         itemTableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
+        itemTableView.rowHeight = 80.0
+        itemTableView.separatorStyle = .none
+        
+        navigationItem.title = (queryAll ?? false) ? "ALL" : selectedCategory?.name
         
         // MARK: Realm - initialising
         do {
@@ -37,7 +48,10 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // TODO: TableView - Set up each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
-       cell.itemLabel.text = items?[indexPath.row].name
+        let backgroundColor = getBackgroundColor(index: indexPath.row)
+        cell.itemLabel.text = items?[indexPath.row].name
+        cell.backgroundColor = backgroundColor
+        cell.itemLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: backgroundColor, isFlat: true)
         return cell
     }
     
@@ -67,6 +81,43 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func onAddButtonPressed(_ sender: Any) {
+        if queryAll ?? false {
+            popOverCategorySheet()
+        } else {
+            createNewItem()
+        }
+    }
+    
+    func getBackgroundColor(index: Int) -> UIColor {
+        let defaultColor = UIColor.white
+        if queryAll ?? false {
+            if let item = items?[index] {
+                let predicate = NSPredicate(format: "name == %@", item.parentCategoryName)
+                let parentCategory = realm?.objects(Category.self).filter(predicate).first
+                if let solidColor = parentCategory?.backgroundColorHex {
+                    let gradient = CGFloat(index) / CGFloat(items?.count ?? 0)
+                    return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
+                }
+            }
+            
+        } else {
+            if let solidColor = selectedCategory?.backgroundColorHex {
+                let gradient = CGFloat(index) / CGFloat(items?.count ?? 0)
+                return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
+            }
+        }
+        return defaultColor
+    }
+    
+    
+    // TODO: Retrieve data from the second ViewController via protocal
+    func onCategorySelected(category: Category) {
+        floatingPanelController.removePanelFromParent(animated: true)
+        selectedCategory = category
+        createNewItem()
+    }
+    
+    func createNewItem() {
         let alert = UIAlertController(title: "Add new Item", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var itemTextField = UITextField()
@@ -121,6 +172,8 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
             try realm?.write {
                 let item = Item()
                 item.name = itemName
+                item.dateCreated = Date()
+                item.parentCategoryName = (selectedCategory?.name)!
                 selectedCategory?.items.append(item)
             }
             
@@ -145,17 +198,63 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: Realm - Data Manipulation Methods
     func loadItems() {
         if queryAll ?? false {
-            let categories = realm?.objects(Category.self)
-            categories?.forEach({ (category) in
-                category.items.forEach({ (item) in
-                    items?.append(item)
-                })
-            })
+            items = realm?.objects(Item.self).sorted(byKeyPath: BY_KEY_PATH, ascending: ASCENDING)
         } else {
-            let category = realm?.objects(Category.self).filter("name == %@", selectedCategory?.name).first
-            items = category?.items
+            let predicate = NSPredicate(format: "name == %@", selectedCategory!.name)
+            let category = realm?.objects(Category.self).filter(predicate).first
+            items = category?.items.sorted(byKeyPath: BY_KEY_PATH, ascending: ASCENDING)
         }
         itemTableView.reloadData()
     }
+    
+    // MARK: Realm - Data Manipulation Methods
+    func queryItems(predicate: NSPredicate, byKeyPath: String, ascending: Bool) {
+        items = items?.filter(predicate).sorted(byKeyPath: byKeyPath, ascending: ascending)
+        itemTableView.reloadData()
+    }
 
+}
+
+extension ItemViewController: UISearchBarDelegate {
+    
+    // This method will be triggered as "Enter" is typed
+    //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    //        updateTableView(text: searchBar.text!)
+    //    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Reload all the data as users clear the Search Bar
+        if searchBar.text?.count == 0 {
+            loadItems()
+            DispatchQueue.main.async {
+                // No longer have the cursor and also the keyboard should go away
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            // Query data as users are typing to improve user experience.
+            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+            queryItems(predicate: predicate, byKeyPath: BY_KEY_PATH, ascending: ASCENDING)
+        }
+    }
+}
+
+extension ItemViewController: FloatingPanelControllerDelegate {
+    func popOverCategorySheet() {
+        // Initialize a `FloatingPanelController` object.
+        floatingPanelController = FloatingPanelController()
+        
+        // Assign self as the delegate of the controller.
+        floatingPanelController.delegate = self // Optional
+        
+        // Set a content view controller.
+        let contentVC = storyboard?.instantiateViewController(withIdentifier: "CategorySheet") as! CategorySheetFloatingPanel
+        contentVC.categorySheetSelection = self
+        floatingPanelController.set(contentViewController: contentVC)
+        
+        // Track a scroll view(or the siblings) in the content view controller.
+        floatingPanelController.track(scrollView: contentVC.categoryTableView)
+        
+        // Add and show the views managed by the `FloatingPanelController` object to self.view.
+        floatingPanelController.addPanel(toParent: self)
+    }
 }

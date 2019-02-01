@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class CategoryTableViewCell: UITableViewCell {
+class CategoryTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var categoryLabel: UILabel!
     override func awakeFromNib() {

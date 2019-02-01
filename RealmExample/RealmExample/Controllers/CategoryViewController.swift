@@ -8,12 +8,14 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
+import ChameleonFramework
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var realm: Realm? = nil
     @IBOutlet weak var categoryTableView: UITableView!
     
+    var realm: Realm? = nil
     var categories: Results<Category>?
     var selectedCategory: Category?
     var queryAll: Bool?
@@ -24,6 +26,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
+        categoryTableView.rowHeight = 80.0
+        categoryTableView.separatorStyle = .none
         
         // MARK: Realm - initialising
         do {
@@ -36,41 +40,28 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // TODO: TableView - Set up each cell
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        cell.categoryLabel.text = categories?[indexPath.row].name
-        return cell
-    }
-    
     // TODO: TableView - Set up the amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 0
+        let amount = categories?.count ?? 0
+        return amount + 1 // with the first category - ALL
     }
     
     // TODO: TableView - Click event
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCategory = categories?[indexPath.row]
+        if indexPath.row == 0 {
+            queryAll = true
+        } else {
+            queryAll = false
+            selectedCategory = categories?[indexPath.row - 1]
+        }
         performSegue(withIdentifier: "GoToItemsView", sender: self)
     }
     
-    // TODO: TableView - Swipe to remove cells
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    // TODO: TableView - Swipe to remove cells
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            deleteCategory(category: categories![indexPath.row], at: indexPath.row)
-            categoryTableView.beginUpdates()
-            categoryTableView.deleteRows(at: [indexPath], with: .fade)
-            categoryTableView.endUpdates()
-        }
-    }
-    
     @IBAction func onAddButtonPressed(_ sender: Any) {
-        
+        createNewCategory()
+    }
+    
+    func createNewCategory() {
         let alert = UIAlertController(title: "Add new Category", message: nil, preferredStyle: .alert)
         //Create a UITextField and set it to equal to the alertTextField
         var categoryTextField = UITextField()
@@ -136,6 +127,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             try realm?.write {
                 let category = Category()
                 category.name = categoryName
+                category.backgroundColorHex = UIColor.randomFlat.hexValue()
                 realm?.add(category)
             }
             
@@ -163,4 +155,37 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         categoryTableView.reloadData()
     }
     
+}
+
+extension CategoryViewController: SwipeTableViewCellDelegate {
+    
+    // TODO: TableView - Set up each cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
+        cell.categoryLabel.text = (indexPath.row == 0) ? "ALL" : categories?[indexPath.row - 1].name
+        cell.backgroundColor = (indexPath.row == 0) ? UIColor.white : UIColor(hexString: categories?[indexPath.row - 1].backgroundColorHex ?? "FFFFFF")
+        cell.delegate = self
+        return cell
+    }
+    
+    // TODO: TableView - Handle swiping action
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        // skip ALL
+        if indexPath.row == 0 {
+            return nil
+        }
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            let index = indexPath.row - 1
+            self.deleteCategory(category: self.categories![index], at: index)
+            self.categoryTableView.beginUpdates()
+            self.categoryTableView.deleteRows(at: [indexPath], with: .fade)
+            self.categoryTableView.endUpdates()
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "trash-icon")
+        
+        return [deleteAction]
+    }
 }

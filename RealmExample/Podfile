@@ -7,5 +7,8 @@ target 'RealmExample' do
 
   # Pods for RealmExample
     pod 'RealmSwift'
+    pod 'SwipeCellKit'
+    pod 'FloatingPanel'
+    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 
 end
