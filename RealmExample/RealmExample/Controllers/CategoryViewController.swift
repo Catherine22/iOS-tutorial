@@ -40,6 +40,21 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    
+    // This method will be called when viewDidLoad() has run
+    override func viewWillAppear(_ animated: Bool) {
+        let color = UIColor.randomFlat
+        let contrastingColor = UIColor(contrastingBlackOrWhiteColorOn: color, isFlat: true)
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation controller does not exist")
+        }
+        navBar.prefersLargeTitles = false
+        navBar.barTintColor = color
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: contrastingColor]
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: contrastingColor]
+        navBar.tintColor = contrastingColor
+    }
+    
     // TODO: TableView - Set up the amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let amount = categories?.count ?? 0
@@ -163,7 +178,7 @@ extension CategoryViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
         cell.categoryLabel.text = (indexPath.row == 0) ? "ALL" : categories?[indexPath.row - 1].name
-        cell.backgroundColor = (indexPath.row == 0) ? UIColor.white : UIColor(hexString: categories?[indexPath.row - 1].backgroundColorHex ?? "FFFFFF")
+        cell.backgroundColor = (indexPath.row == 0) ? UIColor.white : UIColor(hexString: categories?[indexPath.row - 1].backgroundColorHex ?? UIColor.white.hexValue())
         cell.delegate = self
         return cell
     }

@@ -60,22 +60,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S2S-dq-NPX">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAf-Va-aIQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="seD-4C-pju" id="OUh-d7-6FG"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BDE-A4-Iyq" firstAttribute="bottom" secondItem="S2S-dq-NPX" secondAttribute="bottom" id="3Ka-Ml-XlR"/>
-                            <constraint firstItem="S2S-dq-NPX" firstAttribute="top" secondItem="BDE-A4-Iyq" secondAttribute="top" constant="44" id="LDd-hy-xsP"/>
+                            <constraint firstItem="S2S-dq-NPX" firstAttribute="top" secondItem="BDE-A4-Iyq" secondAttribute="top" id="LDd-hy-xsP"/>
                             <constraint firstItem="BDE-A4-Iyq" firstAttribute="trailing" secondItem="S2S-dq-NPX" secondAttribute="trailing" id="QxO-a4-2Aj"/>
                             <constraint firstItem="S2S-dq-NPX" firstAttribute="leading" secondItem="BDE-A4-Iyq" secondAttribute="leading" id="vd4-zw-iCj"/>
                         </constraints>

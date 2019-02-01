@@ -14,6 +14,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var itemTableView: UITableView!
     var controller: UIViewController?
+    var searchController : UISearchController!
     var floatingPanelController: FloatingPanelController!
     
     var realm: Realm? = nil
@@ -27,7 +28,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         itemTableView.delegate = self
         itemTableView.dataSource = self
         itemTableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
@@ -43,6 +44,24 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch {
             NSLog("Error Initialising Realm: \(error)")
         }
+        
+        // Set searchBar inside NavigationController
+        initUISearchController()
+    }
+    
+    
+    // This method will be called when viewDidLoad() has run
+    override func viewWillAppear(_ animated: Bool) {
+        let color = (queryAll ?? false) ? UIColor.white : UIColor(hexString: selectedCategory?.backgroundColorHex ?? UIColor.white.hexValue())
+        let contrastingColor = UIColor(contrastingBlackOrWhiteColorOn: color!, isFlat: true)
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation controller does not exist")
+        }
+        navBar.prefersLargeTitles = true
+        navBar.barTintColor = color
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: contrastingColor]
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: contrastingColor]
+        navBar.tintColor = contrastingColor
     }
     
     // TODO: TableView - Set up each cell
@@ -99,10 +118,9 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
                     return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
                 }
             }
-            
         } else {
             if let solidColor = selectedCategory?.backgroundColorHex {
-                let gradient = CGFloat(index) / CGFloat(items?.count ?? 0)
+                let gradient = CGFloat(index + 1) / CGFloat(items?.count ?? 0)
                 return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
             }
         }
@@ -215,12 +233,23 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 }
 
-extension ItemViewController: UISearchBarDelegate {
+extension ItemViewController: UISearchControllerDelegate, UISearchBarDelegate {
     
     // This method will be triggered as "Enter" is typed
     //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     //        updateTableView(text: searchBar.text!)
     //    }
+    
+    func initUISearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = true
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Reload all the data as users clear the Search Bar
