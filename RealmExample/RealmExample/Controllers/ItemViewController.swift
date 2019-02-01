@@ -48,8 +48,10 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
     // TODO: TableView - Set up each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
+        let backgroundColor = getBackgroundColor(index: indexPath.row)
         cell.itemLabel.text = items?[indexPath.row].name
-        cell.backgroundColor = UIColor(hexString: items?[indexPath.row].backgroundColorHex ?? "FFFFFF")
+        cell.backgroundColor = backgroundColor
+        cell.itemLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: backgroundColor, isFlat: true)
         return cell
     }
     
@@ -84,6 +86,27 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             createNewItem()
         }
+    }
+    
+    func getBackgroundColor(index: Int) -> UIColor {
+        let defaultColor = UIColor.white
+        if queryAll ?? false {
+            if let item = items?[index] {
+                let predicate = NSPredicate(format: "name == %@", item.parentCategoryName)
+                let parentCategory = realm?.objects(Category.self).filter(predicate).first
+                if let solidColor = parentCategory?.backgroundColorHex {
+                    let gradient = CGFloat(index) / CGFloat(items?.count ?? 0)
+                    return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
+                }
+            }
+            
+        } else {
+            if let solidColor = selectedCategory?.backgroundColorHex {
+                let gradient = CGFloat(index) / CGFloat(items?.count ?? 0)
+                return UIColor(hexString: solidColor)?.darken(byPercentage: gradient) ?? defaultColor
+            }
+        }
+        return defaultColor
     }
     
     
@@ -150,7 +173,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let item = Item()
                 item.name = itemName
                 item.dateCreated = Date()
-                item.backgroundColorHex = UIColor.randomFlat.hexValue()
+                item.parentCategoryName = (selectedCategory?.name)!
                 selectedCategory?.items.append(item)
             }
             

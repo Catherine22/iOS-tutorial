@@ -473,8 +473,8 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - UISearchBar   
   - UITableView   
   - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
-  - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework)   
-  
+  - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
+     
 
 
 
