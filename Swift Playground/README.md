@@ -11,7 +11,8 @@
 - [extension](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#extension)     
 - [protocol](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#protocol)       
 - [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
-- [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)       
+- [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)         
+- [Access Levels](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#access-levels)       
 - [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
 - [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
 - [Reference](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#reference)     
@@ -72,7 +73,6 @@ for (name, score) in scores {
 ```
 
 ## Property
-
 ### Function-liked property
 For example, we have a class        
 ```Swift
@@ -236,8 +236,8 @@ for (index, element) in arr.enumerated().reversed() {
 }
 print(arr) // [1, 3, 5]
 ```
-## Function, ```func```
 
+## Function, ```func```
 >Method vs function      
 >A method is a function that is associated with a class.     
 >So if it is within the curly braces of a class, then it is called a method.     
@@ -299,7 +299,6 @@ print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 ```
 
 ## ```random```
-
 Get a random loveScore (0 ≤ loveScore ≤ 100)
 
 Either
@@ -313,7 +312,6 @@ let loveScore = Int(arc4random_uniform(101))
 ```
 
 ## ```class```, ```enum``` and ```structure```
-
 ### Designated Initialiser, ```init```
 Every argument is supposed to be initialise
 
@@ -334,6 +332,7 @@ class Person {
 var julianne = Person(name: "Julianne", age: 19)
 julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
 ```
+
 ### Convenience Initialiser, ```convenience init```
 Initialise with optional arguments
 
@@ -364,7 +363,6 @@ print(someRichGuysCar.typeOfCar)
 ```
 
 ### Inheritance, ```extends```
-
 Class Employee extends Person
 ```swift
 class Employee: Person {
@@ -385,7 +383,6 @@ print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting dep
 ```
 
 ### ```enum```
-
 1. Basic enum
 ```swift
 enum Suit: String {
@@ -433,7 +430,6 @@ getAlbum(message: error) // 404 Error: Not Found
 ```
 
 ### ```struct```
-
 One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
 
 ```swift
@@ -720,7 +716,6 @@ messageCenter.sendMockMessage(content: "还有谁收到我？")
 ```
 
 ## Error Handling
-
 - Scenario 1
 > Tips      
 > - Define multiple errors in ```enum``` which must extend ```Error```      
@@ -929,6 +924,7 @@ print("a:\(elephant), b:\(snack)") // a:Animal(name: "Snake", _class: "Reptilia"
 swap(&elephant, &snack)
 print("a:\(elephant), b:\(snack)") // a:Animal(name: "Elephant", _class: " ‎Mammalia"), b:Animal(name: "Snake", _class: "Reptilia")
 ```
+
 ### Scenario 2: Define a generic stack
 ```swift
 struct Stack<T> {
@@ -984,8 +980,17 @@ if zoo.peek() != nil {
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
 ```
 
-# Singleton
+# Access Levels
+Three common levels:        
+- private       
+- fileprivate       
+- internal (default)
 
+SDK packaging levels:       
+- public        
+- open
+
+# Singleton
 Solution 1: 
 ```swift
 class SingletonCar {
