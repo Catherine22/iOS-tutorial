@@ -64,3 +64,21 @@ print("We should buy \(pizzaCalculator.numberOfPizza) pizzas for \(9) people")
 
 pizzaCalculator.numberOfPizza = 15
 print("Now we have \(15) pizzas in the house, we can invite \(pizzaCalculator.numberOfPeople!) people")
+
+
+// Tuple
+let tuple1 = ("Martin", 10)
+print("tuple1(name: \(tuple1.0), age: \(tuple1.1)")
+
+let tuple2 = (name: "Martin", age: 12)
+print("tuple2(name: \(tuple2.name), age: \(tuple2.age)")
+
+var tuple3: (name: String, age: Int)?
+tuple3 = (name: "Martin", age: 18)
+print("tuple3(name: \(tuple3?.name), age: \(tuple3?.age)")
+
+
+var isValid: Bool? = false
+if isValid ?? isValid == true {
+    
+}

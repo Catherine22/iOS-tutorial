@@ -50,6 +50,27 @@ print("\(firstName ?? " ")\(middleName ?? " ")\(lastName ?? " ")")
 // Catherine Chen
 ```
 
+### Tips
+- Optional Bool
+```swift
+var isValid: Bool? = true
+
+// check if isValid == true
+if isValid ?? isValid == true {
+
+}
+```
+
+- Optional value
+```swift
+var number: Int? = 5
+
+// check if number is not nil
+if let n = number {
+
+}
+```
+
 ## ```switch```
 ```swift
 let scores = ["John": 70, "Julianne": 100, "Anna": 59, "Paul": 0]
@@ -143,6 +164,19 @@ osr.value = "new value"
 
 // Call willSet, value = init
 // Call didSet, new value = new value
+```
+
+### Tuple
+```swift
+let tuple1 = ("Martin", 10)
+print("tuple1(name: \(tuple1.0), age: \(tuple1.1)")
+
+let tuple2 = (name: "Martin", age: 12)
+print("tuple2(name: \(tuple2.name), age: \(tuple2.age)")
+
+var tuple3: (name: String, age: Int)?
+tuple3 = (name: "Martin", age: 18)
+print("tuple3(name: \(tuple3?.name), age: \(tuple3?.age)")
 ```
 
 ## Loop
@@ -268,7 +302,7 @@ print(func3("func3", type: "String")) // func3
 
 - Return a tuple
 ```swift
-func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?){
+func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?) {
     var min: Int? = nil
     var max: Int? = nil
     var total: Float? = nil
@@ -313,7 +347,7 @@ let loveScore = Int(arc4random_uniform(101))
 
 ## ```class```, ```enum``` and ```structure```
 ### Designated Initialiser, ```init```
-Every argument is supposed to be initialise
+Every argument is supposed to be initialised
 
 ```swift
 class Person {
@@ -430,7 +464,25 @@ getAlbum(message: error) // 404 Error: Not Found
 ```
 
 ### ```struct```
-One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
+```struct``` vs. ```class```        
+
+**structs**
+- Live on Stack     
+- Value type        
+- Deep copies       
+- True immutable        
+- No memory leaks       
+- Treadsafe     
+
+**class**
+- Live on Heap     
+- Reference type       
+- Has inheritance       
+- Work with objective-C code
+
+
+> When we initialise a new class, it will get allocated some memory and be saved somewhere in the heap. In order to find it in the heap, this class also has a reference in the stack.      
+> One of the most important differences between ```struct``` and ```class``` is that ```struct``` is always copied when they are passed around in your code, but ```class``` is passed by reference.        
 
 ```swift
 struct GiftCardStruct {
@@ -894,6 +946,51 @@ do {
     // Handle Error here
 }
 
+```
+
+### ```guard let else``` vs. ```if let```
+For example, we have 3 optional variables:
+```swift
+var name: String? = "Martin"
+var age: Int? = 12
+var gender: String? = "M"
+```
+
+With ```if let``` statements, the code would be:
+```swift
+if let n = name {
+    if let a = age {
+        if let g = gender {
+            print("name: \(n), age: \(a), gender: \(g)")
+        } else {
+            print("gender is empty")
+        }
+    } else {
+        print("age is empty")
+    }
+} else {
+    print("name is empty")
+}
+```
+
+With ```guard let``` statements, the code becomes more readable:
+```swift
+guard let n = name else {
+    print("name is empty")
+    return
+}
+
+guard let a = age else {
+    print("age is empty")
+    return
+}
+
+guard let g = gender else {
+    print("gender is empty")
+    return
+}
+
+print("name: \(n), age: \(a), gender: \(g)")
 ```
 
 ## Generics

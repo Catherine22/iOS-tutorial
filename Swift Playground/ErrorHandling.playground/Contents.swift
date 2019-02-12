@@ -139,3 +139,52 @@ print("\(save(file: image))")
 var video = File(name: "Despacito.mp4", size: 5.1.MB)
 print("Downloading \(video.name) ...")
 print("\(save(file: video))")
+
+
+/*
+ * guard let vs. if let
+ */
+var name: String? = "Martin"
+var age: Int? = 12
+var gender: String? = "M"
+
+// if let
+func checkInfo() {
+    if let n = name {
+        if let a = age {
+            if let g = gender {
+                print("name: \(n), age: \(a), gender: \(g)")
+            } else {
+                print("gender is empty")
+            }
+        } else {
+            print("age is empty")
+        }
+    } else {
+        print("name is empty")
+    }
+}
+
+// code with guard let statements
+func checkInfo2() {
+    guard let n = name else {
+        print("name is empty")
+        return
+    }
+    
+    guard let a = age else {
+        print("age is empty")
+        return
+    }
+    
+    guard let g = gender else {
+        print("gender is empty")
+        return
+    }
+    
+    print("name: \(n), age: \(a), gender: \(g)")
+}
+
+checkInfo()
+checkInfo2()
+

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CalculatorLogic {
+struct CalculatorLogic {
     private var history: [String] = []
     let OPERATORS = ["+", "-", "×", "÷"]
     let DEFAULT_VALUE = 0
@@ -19,8 +19,12 @@ class CalculatorLogic {
         return history[history.count - 1]
     }
     
-    func addNewRecord(_ value: String) {
+    mutating func addNewRecord(_ value: String) {
         history.append(value)
+    }
+    
+    mutating func clearHistory() {
+        history.removeAll()
     }
     
     func convertToAnotherSign(_ value: Double) -> Double {
@@ -31,14 +35,11 @@ class CalculatorLogic {
         return value / 100
     }
     
-    func clearHistory() {
-        history.removeAll()
-    }
-    
-    func calculate() -> Double? {
+    mutating func calculate() -> Double? {
         if OPERATORS.contains(history.last!) {
             history.removeLast()
         }
+        
         print("calculating: \(history)")
         if varifyHistory() {
             var temp: [String] = []

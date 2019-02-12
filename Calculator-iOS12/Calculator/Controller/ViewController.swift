@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
-    let calculatorLogic = CalculatorLogic()
+    var calculatorLogic = CalculatorLogic()
     private var isFinishedTypingNumber = true
     private var displayValue: Double {
         get {
