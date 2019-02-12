@@ -7,12 +7,12 @@ class Observer {
     var value: String {
         willSet {
             // Call willSet before the value changes
-            print("Call willSet, value = \(value)")
+            print("Calling willSet, value = \(value), new value = \(newValue)")
         }
         
         didSet {
             // Call willSet after the value changes
-            print("Call didSet, new value = \(value)")
+            print("Calling didSet, new value = \(value), old value = \(oldValue)")
         }
     }
     
@@ -21,5 +21,5 @@ class Observer {
     }
 }
 
-var osr = Observer(value: "init")
-osr.value = "new value"
+var osr = Observer(value: "A")
+osr.value = "B"

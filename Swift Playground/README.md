@@ -11,7 +11,8 @@
 - [extension](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#extension)     
 - [protocol](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#protocol)       
 - [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
-- [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)       
+- [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)         
+- [Access Levels](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#access-levels)       
 - [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
 - [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
 - [Reference](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#reference)     
@@ -49,6 +50,27 @@ print("\(firstName ?? " ")\(middleName ?? " ")\(lastName ?? " ")")
 // Catherine Chen
 ```
 
+### Tips
+- Optional Bool
+```swift
+var isValid: Bool? = true
+
+// check if isValid == true
+if isValid ?? isValid == true {
+
+}
+```
+
+- Optional value
+```swift
+var number: Int? = 5
+
+// check if number is not nil
+if let n = number {
+
+}
+```
+
 ## ```switch```
 ```swift
 let scores = ["John": 70, "Julianne": 100, "Anna": 59, "Paul": 0]
@@ -69,6 +91,92 @@ for (name, score) in scores {
  * Paul passed the test of course, because he is the son of the headmaster
  * Anna didn't pass the test.
  */
+```
+
+## Property
+### Function-liked property
+For example, we have a class        
+```Swift
+class Util {
+    let width = 10.0
+    let height = 20.0
+}
+```
+
+In order to calculate the area, we can create a method      
+```Swift
+func getArea() -> Double {
+        return width * height
+    }
+```
+
+Or USE PROPERTY     
+>You must:       
+>1. Set the property ```var```       
+>2. Initialise the property with its type   
+
+```Swift
+var area: Double {
+        return width * height
+    }
+```     
+
+You could also write it completely with ```get { }```
+```Swift
+var area: Double {
+        get {
+            return width * height
+        }
+    }
+```
+
+### Get-only property
+```Swift
+var E: Float {
+        get {
+            return 2.718
+        }
+    }
+```
+
+### Observer - ```willSet``` and ```didSet```
+```swift
+class Observer {
+    var value: String {
+        willSet {
+            // Call willSet before the value changes
+            print("Call willSet, value = \(value)")
+        }
+
+        didSet {
+            // Call willSet after the value changes
+            print("Call didSet, new value = \(value)")
+        }
+    }
+
+    init(value: String){
+        self.value = value
+    }
+}
+
+var osr = Observer(value: "init")
+osr.value = "new value"
+
+// Call willSet, value = init
+// Call didSet, new value = new value
+```
+
+### Tuple
+```swift
+let tuple1 = ("Martin", 10)
+print("tuple1(name: \(tuple1.0), age: \(tuple1.1)")
+
+let tuple2 = (name: "Martin", age: 12)
+print("tuple2(name: \(tuple2.name), age: \(tuple2.age)")
+
+var tuple3: (name: String, age: Int)?
+tuple3 = (name: "Martin", age: 18)
+print("tuple3(name: \(tuple3?.name), age: \(tuple3?.age)")
 ```
 
 ## Loop
@@ -162,8 +270,8 @@ for (index, element) in arr.enumerated().reversed() {
 }
 print(arr) // [1, 3, 5]
 ```
-## Function, ```func```
 
+## Function, ```func```
 >Method vs function      
 >A method is a function that is associated with a class.     
 >So if it is within the curly braces of a class, then it is called a method.     
@@ -194,7 +302,7 @@ print(func3("func3", type: "String")) // func3
 
 - Return a tuple
 ```swift
-func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?){
+func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?) {
     var min: Int? = nil
     var max: Int? = nil
     var total: Float? = nil
@@ -225,7 +333,6 @@ print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 ```
 
 ## ```random```
-
 Get a random loveScore (0 ≤ loveScore ≤ 100)
 
 Either
@@ -239,9 +346,8 @@ let loveScore = Int(arc4random_uniform(101))
 ```
 
 ## ```class```, ```enum``` and ```structure```
-
 ### Designated Initialiser, ```init```
-Every argument is supposed to be initialise
+Every argument is supposed to be initialised
 
 ```swift
 class Person {
@@ -260,6 +366,7 @@ class Person {
 var julianne = Person(name: "Julianne", age: 19)
 julianne.saySomething() // Hi, my name is Julianne, I am 19 years old
 ```
+
 ### Convenience Initialiser, ```convenience init```
 Initialise with optional arguments
 
@@ -290,7 +397,6 @@ print(someRichGuysCar.typeOfCar)
 ```
 
 ### Inheritance, ```extends```
-
 Class Employee extends Person
 ```swift
 class Employee: Person {
@@ -309,35 +415,8 @@ class Employee: Person {
 var joanne = Employee(name: "Joanne", age: 16, dept: "Accounting")
 print(joanne.saySomething()) // Hi, my name is Joanne, I work for Accounting department
 ```
-### Observer - ```willSet``` and ```didSet```
-```swift
-class Observer {
-    var value: String {
-        willSet {
-            // Call willSet before the value changes
-            print("Call willSet, value = \(value)")
-        }
-
-        didSet {
-            // Call willSet after the value changes
-            print("Call didSet, new value = \(value)")
-        }
-    }
-
-    init(value: String){
-        self.value = value
-    }
-}
-
-var osr = Observer(value: "init")
-osr.value = "new value"
-
-// Call willSet, value = init
-// Call didSet, new value = new value
-```
 
 ### ```enum```
-
 1. Basic enum
 ```swift
 enum Suit: String {
@@ -385,8 +464,25 @@ getAlbum(message: error) // 404 Error: Not Found
 ```
 
 ### ```struct```
+```struct``` vs. ```class```        
 
-One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
+**structs**
+- Live on Stack     
+- Value type        
+- Deep copies       
+- True immutable        
+- No memory leaks       
+- Treadsafe     
+
+**class**
+- Live on Heap     
+- Reference type       
+- Has inheritance       
+- Work with objective-C code
+
+
+> When we initialise a new class, it will get allocated some memory and be saved somewhere in the heap. In order to find it in the heap, this class also has a reference in the stack.      
+> One of the most important differences between ```struct``` and ```class``` is that ```struct``` is always copied when they are passed around in your code, but ```class``` is passed by reference.        
 
 ```swift
 struct GiftCardStruct {
@@ -672,7 +768,6 @@ messageCenter.sendMockMessage(content: "还有谁收到我？")
 ```
 
 ## Error Handling
-
 - Scenario 1
 > Tips      
 > - Define multiple errors in ```enum``` which must extend ```Error```      
@@ -853,6 +948,51 @@ do {
 
 ```
 
+### ```guard let else``` vs. ```if let```
+For example, we have 3 optional variables:
+```swift
+var name: String? = "Martin"
+var age: Int? = 12
+var gender: String? = "M"
+```
+
+With ```if let``` statements, the code would be:
+```swift
+if let n = name {
+    if let a = age {
+        if let g = gender {
+            print("name: \(n), age: \(a), gender: \(g)")
+        } else {
+            print("gender is empty")
+        }
+    } else {
+        print("age is empty")
+    }
+} else {
+    print("name is empty")
+}
+```
+
+With ```guard let``` statements, the code becomes more readable:
+```swift
+guard let n = name else {
+    print("name is empty")
+    return
+}
+
+guard let a = age else {
+    print("age is empty")
+    return
+}
+
+guard let g = gender else {
+    print("gender is empty")
+    return
+}
+
+print("name: \(n), age: \(a), gender: \(g)")
+```
+
 ## Generics
 ### Scenario 1: Swap 2 generic types
 ```swift
@@ -881,6 +1021,7 @@ print("a:\(elephant), b:\(snack)") // a:Animal(name: "Snake", _class: "Reptilia"
 swap(&elephant, &snack)
 print("a:\(elephant), b:\(snack)") // a:Animal(name: "Elephant", _class: " ‎Mammalia"), b:Animal(name: "Snake", _class: "Reptilia")
 ```
+
 ### Scenario 2: Define a generic stack
 ```swift
 struct Stack<T> {
@@ -936,8 +1077,17 @@ if zoo.peek() != nil {
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
 ```
 
-# Singleton
+# Access Levels
+Three common levels:        
+- private       
+- fileprivate       
+- internal (default)
 
+SDK packaging levels:       
+- public        
+- open
+
+# Singleton
 Solution 1: 
 ```swift
 class SingletonCar {
