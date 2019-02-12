@@ -413,6 +413,11 @@ func retrieveMessage() {
 
 ```
 
+## Fold code block
+```
+⌘ + ⌥ + ←
+```
+
 ## Extension
 Instead of implement delegates directly, creating an ```extension```    
 E.g. The original code might be:
