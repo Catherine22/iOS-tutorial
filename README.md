@@ -36,6 +36,10 @@
 - [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
   - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
   - [Realm](https://github.com/Catherine22/iOS-tutorial#realm)    
+- [Machine Learning](https://github.com/Catherine22/iOS-tutorial#machine-learning)    
+  - [Supervised Learning](https://github.com/Catherine22/iOS-tutorial#supervised-learning)    
+  - [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)    
+  - [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -534,8 +538,12 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
   - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
   - Customise NavigationController style   
+- [Calculator](https://github.com/Catherine22/iOS-tutorial/tree/master/Calculator)    
+  - Swift tips: struct, if-let statement and guard-let statement    
+- [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
+  - UIImagePickerController (Pick out images from users' photos or camera)   
+  - CoreML    
      
-
 
 # Tips
 ### Breakpoint
@@ -556,6 +564,7 @@ override func viewDidLoad() {
   locationManager.requestWhenInUseAuthorization();
 }
 ```
+
 In Info.plist,     
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist1.png)
 
@@ -587,6 +596,8 @@ func locationManager(_ manager: CLLocationManager, didFailWithError error: Error
 If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions to fix this:    
 1. Run on an iPhone device    
 2. In your simulator, click Debug - Location, select Apple's headquarter or Custom Location
+
+Another example, in order to launch users' camera or open their photo albums, you need ```Privacy - Camera Usage Description``` and ```Privacy - Photo Library Usage Description```.
 
 ### Load data from HTTP URLs   
 
@@ -981,7 +992,6 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 (8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".    
 
 ### Realm
-
 Realm example:   
 [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
 
@@ -1091,6 +1101,25 @@ do {
     NSLog("Error writing Realm: \(error)")
     }
 ```
+
+# Machine Learning
+Machine Learning is usual split into 2 broke categories - Supervised Machine Learning or Unsupervised Machine Learning.   
+
+## Supervised Learning
+
+## Unsupervised Learning
+
+## CoreML
+1. Load a pre-trained model, i.e., no training   
+2. Make predictions   
+3. Not encrypted
+
+Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)     
+1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
+
+2. 
+
+
 
 # Command Game
 ```
