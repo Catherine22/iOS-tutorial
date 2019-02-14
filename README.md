@@ -1116,8 +1116,8 @@ Machine Learning is usual split into 2 broke categories - Supervised Machine Lea
 
 Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)     
 1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
-
-2. 
+2. Drag .mlmodel file into your project   
+3. 
 
 
 
