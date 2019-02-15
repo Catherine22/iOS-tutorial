@@ -12,6 +12,7 @@
 - [protocol](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#protocol)       
 - [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
 - [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)         
+- [Associated Types](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#associated-types)     
 - [Access Levels](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#access-levels)       
 - [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
 - [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
@@ -1075,6 +1076,56 @@ if zoo.peek() != nil {
     print("Empty zoo")
 }
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
+```
+
+## Associated Types
+Until now, we know that ```class```, ```struct``` and ```enum``` are allowed to be generic.     
+But what about a generic ```protocol```?        
+
+Let's say, we have a WeightCalculable protocol, the type of weight could be ```Int```, ```Double``` or whatever, we don't care.     
+1. Create the protocol with associatedtype.
+```Swift
+protocol WeightCalculable {
+    
+    //为weight 属性定义的类型别名
+    associatedtype WeightType
+    var weight : WeightType {get}
+}
+```
+
+2. Implement the protocol
+```Swift
+// WeightType is Double
+struct MobilePhone: WeightCalculable {
+    typealias WeightType = Double
+    
+    var weight : WeightType
+    init(weight: WeightType) {
+        self.weight = weight
+    }
+}
+
+// WeightType is Int
+struct Car: WeightCalculable {
+    typealias WeightType = Int
+    
+    var weight : WeightType
+    init(weight: WeightType) {
+        self.weight = weight
+    }
+}
+```
+
+3. We will get
+```Swift
+let mobilePhone = MobilePhone(weight: 0.5)
+let car = Car(weight: 2000)
+
+print("mobile phone weighs \(mobilePhone.weight) kg")
+print("car weighs \(car.weight) kg")
+
+//mobile phone weighs 0.5 kg
+//car weighs 2000 kg
 ```
 
 # Access Levels
