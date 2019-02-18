@@ -7,7 +7,35 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 class NetworkManager {
+    let url = "https://jsonplaceholder.typicode.com/todos/1"
     
+    //MARK: Alamofire + SwiftyJSON
+    func getJsonPlaceholderByAloamofire() {
+        let params:[String: String] = [:]
+        
+        // It makes a request in the background
+        Alamofire.request(url, method: .get, parameters: params).responseJSON {
+            response in
+            // what should be triggered once the background processes has completed
+            if response.result.isSuccess {
+                let result: JSON = JSON(response.result.value!)
+                print(result)
+            } else {
+                fatalError("Error: \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    //MARK: URLSession
+    func getJsonPlaceholderByURLSession() {
+        GetUser().execute(onSuccess: { (jsonPlaceHolder) in
+            print(jsonPlaceHolder)
+        }) { (errorType) in
+            print(errorType.errorMessage())
+        }
+    }
 }

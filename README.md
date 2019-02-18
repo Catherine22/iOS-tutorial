@@ -36,6 +36,9 @@
 - [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
   - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
   - [Realm](https://github.com/Catherine22/iOS-tutorial#realm)    
+- [Network Communication](https://github.com/Catherine22/iOS-tutorial#network-communication)    
+  - [Alamofire](https://github.com/Catherine22/iOS-tutorial#alamofire)    
+  - [URLSession](https://github.com/Catherine22/iOS-tutorial#urlsession)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -1091,6 +1094,85 @@ do {
     NSLog("Error writing Realm: \(error)")
     }
 ```
+
+# Network Communication
+You could either use popular third-party CocoasPods like Alamofire or ```URLSession```    
+The following features are included in 
+[IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/IOOperations)   
+- SSL certificate validation    
+- Generic request/response types with associatedtype   
+
+## Alamofire
+- Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)    
+
+
+## URLSession
+- Generic request/response types with ```associatedtype```    
+
+
+
+### ATS, App Transport Security
+Since iOS 9.0, app must follow App Transport Security:    
+1. At least TLS 1.2   
+2. HTTP is not allowed    
+3. Apple will heavily censor when app infringes ATS settings (```NSAllowsArbitraryLoads```).
+
+[Info.plist settings](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity):    
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <!-- network related constants -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <!-- lift ATS restriction -->
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <!-- lift ATS restriction of AV Foundation -->
+        <key>NSAllowsArbitraryLoadsInMedia</key>
+        <true/>
+        <!-- lift ATS restriction of WebView -->
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
+        <!-- to support localhost -->
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+        <!-- to support minimum TLS version, could be TLSv1.0、TLSv1.1、TLSv1.2. Default value = TLSv1.2 -->
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+
+
+        <!-- define special cases -->
+         <key>NSExceptionDomains</key>
+         <dict>
+            <key>sdk_domain.com</key>
+            <dict>
+                <!-- to support HTTP -->
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+        </dict>
+        <key>your_domain.com</key>
+        <dict>
+            <key>NSExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+            <!-- apply all of the domain exceptions to every subdomain of your domain -->
+            <key>NSIncludesSubdomains</key>
+            <true/>
+        </dict>
+    </dict>
+    </dict>
+
+
+</dict>
+</plist>
+```
+
+**Third Party keys**
+NSThirdPartyExceptionAllowsInsecureHTTPLoads
+NSThirdPartyExceptionMinimumTLSVersion
+NSThirdPartyExceptionRequiresForwardSecrecy
 
 # Command Game
 ```
