@@ -13,15 +13,9 @@ import Security
 class URLSessionNetworkDispatcher: NSObject, URLSessionDelegate {
     static let shared = URLSessionNetworkDispatcher()
     
-    // MARK: Handling authentication changes (https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge)
-    // Not working (https://stackoverflow.com/questions/26268445/authentication-challenge-method-is-not-called-when-using-nsurlsession-custom-del)
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
         print("dddd [URLSessionDelegate] didReceive challenge")
-        setAuthentication(session, didReceive: challenge, completionHandler: completionHandler)
-    }
-    
-    private func setAuthentication(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        //Reference: https://stackoverflow.com/questions/34223291/ios-certificate-pinning-with-swift-and-nsurlsession
         if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
             guard let serverTrust = challenge.protectionSpace.serverTrust else {
                 Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
@@ -97,9 +91,7 @@ extension URLSessionNetworkDispatcher: NetworkDispatcher {
         let configuration = URLSession.shared.configuration
         configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
         
-//        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        let urlSession = URLSession(configuration: configuration)
-        
+        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         urlSession.dataTask(with: url) { (d, r, e) in
             if let error = e {
                 Logger.shared.error("\(error)")

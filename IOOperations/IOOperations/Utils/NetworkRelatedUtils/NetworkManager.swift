@@ -49,7 +49,7 @@ class NetworkManager: SessionDelegate {
         
         
         // It makes a request in the background
-        Alamofire.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
+        sessionManager.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
             response in
             // what should be triggered once the background processes has completed
             if response.result.isSuccess {
