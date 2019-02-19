@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let networkManager = NetworkManager()
-//        networkManager.getReposByAloamofire()
+        networkManager.getReposByAloamofire()
         networkManager.getReposByURLSession()
     }
 }

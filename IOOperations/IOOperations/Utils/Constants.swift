@@ -44,7 +44,7 @@ class Constants {
         }
     }
     
-    let ARBITRARY_LOADS_ALLOWED = true // must syncronise this value to info.plist as well
+    let ARBITRARY_LOADS_ALLOWED = false // must syncronise this value to info.plist as well
     let DOMAIN = "api.github.com"
     let URL = "https://api.github.com/users/Catherine22/repos"
     let CERTIFICATES_PATH = Bundle.main.path(forResource: "Certificates", ofType: "bundle")

@@ -128,6 +128,7 @@ extension URLSessionNetworkDispatcher: NetworkDispatcher {
                 return
             }
 
+            print(httpUrlResponse)
             print(_data)
             onSuccess(_data)
         }).resume()
