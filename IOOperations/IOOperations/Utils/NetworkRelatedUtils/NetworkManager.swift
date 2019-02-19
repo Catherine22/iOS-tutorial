@@ -15,35 +15,8 @@ class NetworkManager: SessionDelegate {
     var sessionManager: SessionManager?
     override init() {
         super.init()
-        // certificates pinning
-        guard let bundlePath = Constants.shared.CERTIFICATES_PATH else {
-            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
-            return
-        }
         
-        let bundle = Bundle(path: bundlePath)
-        guard let crtPath = bundle?.url(forResource: Constants.shared.CERTIFICATES[0], withExtension: Constants.shared.CERTIFICATES_FILE_TYPE) else {
-            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
-            return
-        }
-        
-        guard let localCertificate = NSData(contentsOf: crtPath) else {
-            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
-            return
-        }
-        
-        let serverTrustPolicy = ServerTrustPolicy.pinCertificates(
-            certificates: [SecCertificateCreateWithData(nil, localCertificate)!],
-            validateCertificateChain: true,
-            validateHost: true
-        )
-        
-        let serverTrustPolicies = [
-            Constants.shared.DOMAIN: serverTrustPolicy
-        ]
-        
-        let serverTrustPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
-        sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: self, serverTrustPolicyManager: serverTrustPolicyManager)
+        certificatePinning()
     }
     
     override func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
@@ -94,14 +67,51 @@ class NetworkManager: SessionDelegate {
         // Pinning failed
         completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
     }
+    
+    private func certificatePinning() {
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        
+        if Constants.shared.ARBITRARY_LOADS_ALLOWED {
+            sessionManager = Alamofire.SessionManager(configuration: configuration, delegate: self, serverTrustPolicyManager: nil)
+            return
+        }
+        guard let bundlePath = Constants.shared.CERTIFICATES_PATH else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+        
+        let bundle = Bundle(path: bundlePath)
+        guard let crtPath = bundle?.url(forResource: Constants.shared.CERTIFICATES[0], withExtension: Constants.shared.CERTIFICATES_FILE_TYPE) else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+        
+        guard let localCertificate = NSData(contentsOf: crtPath) else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+        
+        let serverTrustPolicy = ServerTrustPolicy.pinCertificates(
+            certificates: [SecCertificateCreateWithData(nil, localCertificate)!],
+            validateCertificateChain: true,
+            validateHost: true
+        )
+        
+        let serverTrustPolicies = [
+            Constants.shared.DOMAIN: serverTrustPolicy
+        ]
+        
+        let serverTrustPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
+        sessionManager = Alamofire.SessionManager(configuration: configuration, delegate: self, serverTrustPolicyManager: serverTrustPolicyManager)
+    }
 }
 
 extension NetworkManager {
     //MARK: Alamofire + SwiftyJSON
-    func getWeatherByAloamofire() {
+    func getReposByAloamofire() {
         // request parameters
         let params:[String: String] = [:]
-        
         
         // It makes a request in the background
         sessionManager?.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
@@ -117,9 +127,9 @@ extension NetworkManager {
     }
     
     //MARK: URLSession
-    func getWeatherByURLSession() {
-        GetWeather().execute(onSuccess: { (weather) in
-            print(weather)
+    func getReposByURLSession() {
+        GetRepos().execute(onSuccess: { (repos) in
+            print(repos)
         }) { (errorType) in
             fatalError(errorType.errorMessage())
         }

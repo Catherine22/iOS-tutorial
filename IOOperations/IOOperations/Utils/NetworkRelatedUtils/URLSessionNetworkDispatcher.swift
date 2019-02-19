@@ -9,13 +9,12 @@
 import Foundation
 import Security
 
-// TODO check if delegate works
 class URLSessionNetworkDispatcher: NSObject, URLSessionDelegate {
     static let shared = URLSessionNetworkDispatcher()
+    var urlSession: URLSession?
     
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
-        print("dddd [URLSessionDelegate] didReceive challenge")
         if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
             guard let serverTrust = challenge.protectionSpace.serverTrust else {
                 Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
@@ -66,6 +65,7 @@ class URLSessionNetworkDispatcher: NSObject, URLSessionDelegate {
 }
 
 extension URLSessionNetworkDispatcher: NetworkDispatcher {
+    
 
     func dispatch(request: RequestModel, onSuccess: @escaping (Data) -> Void, onError: @escaping (Constants.ErrorTypes) -> Void) {
         
@@ -73,11 +73,18 @@ extension URLSessionNetworkDispatcher: NetworkDispatcher {
             onError(Constants.ErrorTypes.INVALID_PATH)
             return
         }
-        
         var urlRequest = URLRequest(url: url)
+        
+        // TODO: Set headers
+        urlRequest.addValue("en;q=1.0", forHTTPHeaderField: "Accept-Language")
+        urlRequest.addValue("gzip;q=1.0, compress;q=0.5", forHTTPHeaderField: "Accept-Encoding")
+        urlRequest.addValue("IOOperations/1.0 (com.CBB.IOOperations; build:1; iOS 12.1.0)", forHTTPHeaderField: "User-Agent")
+        urlRequest.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8", forHTTPHeaderField: "Accept")
+        
+        // TODO: Set methods
         urlRequest.httpMethod = request.method?.rawValue ?? HTTPMethod.GET.rawValue
         
-        
+        // TODO: Set body
         if let params = request.params {
             do {
                 // TODO GET params
@@ -88,26 +95,42 @@ extension URLSessionNetworkDispatcher: NetworkDispatcher {
             }
         }
         
-        let configuration = URLSession.shared.configuration
+        // TODO: Set URLSession configuration
+        let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        if Constants.shared.ARBITRARY_LOADS_ALLOWED {
+            urlSession = URLSession(configuration: configuration)
+        } else {
+            urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        }
         
-        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        urlSession.dataTask(with: url) { (d, r, e) in
-            if let error = e {
-                Logger.shared.error("\(error)")
+        // TODO: Connect
+        urlSession?.dataTask(with: urlRequest, completionHandler: { (data, urlResponse, error) in
+            if let _error = error {
+                Logger.shared.error("\(_error)")
                 onError(Constants.ErrorTypes.URL_SESSION_FAILED)
                 return
             }
-            
-            guard let data = d else {
+
+            guard let _data = data else {
                 onError(Constants.ErrorTypes.NIL_RESPONSE_DATA)
                 return
             }
-            
-            // check code like 500 here
-            onSuccess(data)
-            
-            }.resume()
+
+            guard let httpUrlResponse = urlResponse as? HTTPURLResponse else {
+                onError(Constants.ErrorTypes.NIL_RESPONSE_DATA)
+                return
+            }
+
+            let statusCode = httpUrlResponse.statusCode
+            if (statusCode != 200) {
+                onError(Constants.ErrorTypes.httpError(statusCode, httpUrlResponse.description))
+                return
+            }
+
+            print(_data)
+            onSuccess(_data)
+        }).resume()
     }
-    
+
 }

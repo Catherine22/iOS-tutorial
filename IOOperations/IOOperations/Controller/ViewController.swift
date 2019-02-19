@@ -14,8 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let networkManager = NetworkManager()
-        networkManager.getWeatherByAloamofire()
-//        networkManager.getWeatherByURLSession()
+//        networkManager.getReposByAloamofire()
+        networkManager.getReposByURLSession()
     }
 }
 

@@ -44,10 +44,9 @@ class Constants {
         }
     }
     
-//    let DOMAIN = "api.openweathermap.org"
-//    let URL = "https://api.openweathermap.org/data/2.5/weather?id=2172797&appid=943e6e87148c5b34bfd538139bd0cf4e"
+    let ARBITRARY_LOADS_ALLOWED = true // must syncronise this value to info.plist as well
     let DOMAIN = "api.github.com"
-    let URL = "https://api.github.com/users/catherine22/repos"
+    let URL = "https://api.github.com/users/Catherine22/repos"
     let CERTIFICATES_PATH = Bundle.main.path(forResource: "Certificates", ofType: "bundle")
     let CERTIFICATES = ["github"]
     let CERTIFICATES_FILE_TYPE = "crt"
