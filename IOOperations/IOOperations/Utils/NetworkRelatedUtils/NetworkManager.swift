@@ -13,7 +13,7 @@ import SwiftyJSON
 class NetworkManager: SessionDelegate {
     
     //MARK: Alamofire + SwiftyJSON
-    func getJsonPlaceholderByAloamofire() {
+    func getWeatherByAloamofire() {
         // request parameters
         let params:[String: String] = [:]
         
@@ -49,7 +49,7 @@ class NetworkManager: SessionDelegate {
         
         
         // It makes a request in the background
-        sessionManager.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
+        Alamofire.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
             response in
             // what should be triggered once the background processes has completed
             if response.result.isSuccess {
@@ -62,9 +62,9 @@ class NetworkManager: SessionDelegate {
     }
     
     //MARK: URLSession
-    func getJsonPlaceholderByURLSession() {
-        GetUser().execute(onSuccess: { (jsonPlaceHolder) in
-            print(jsonPlaceHolder)
+    func getWeatherByURLSession() {
+        GetWeather().execute(onSuccess: { (weather) in
+            print(weather)
         }) { (errorType) in
             fatalError(errorType.errorMessage())
         }

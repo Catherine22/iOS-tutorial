@@ -1099,12 +1099,16 @@ do {
 You could either use popular third-party CocoasPods like Alamofire or ```URLSession```    
 The following features are included in 
 [IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/IOOperations)   
-- SSL certificate validation    
-  - (Check SSL online)[https://www.ssllabs.com/ssltest/]    
-  - Save certificates (starting from -----BEGIN CERTIFICATE-----) as .pem file or load from String directly   
-  - Convert .pem file to .crt file via ```openssl x509 -outform der -in xxxx.pem -out xxxx.crt```   
+- SSL certificate validation (Read the documentation: [HTTPS Server Trust Evaluation](https://developer.apple.com/library/archive/technotes/tn2232/_index.html))    
+  - Using ```openssl s_client -connect www.apple.com:443```   
+  - Get the full certificate by ```openssl s_client -showcerts -host www.apple.com -port 443```   
+  - Copying the text (the -----BEGIN CERTIFICATE----- line through to the -----END CERTIFICATE----- line) into a text file with the .pem extension
 
 - Generic request/response types with associatedtype   
+
+Tools you might need:   
+  - (Check SSL online)[https://www.ssllabs.com/ssltest/]    
+  - Convert .pem file to .crt file via ```openssl x509 -outform der -in xxxx.pem -out xxxx.crt```   
 
 ## Alamofire
 - Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)    

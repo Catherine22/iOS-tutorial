@@ -44,9 +44,9 @@ class Constants {
         }
     }
     
-    let DOMAIN = "jsonplaceholder.typicode.com"
-    let URL = "https://jsonplaceholder.typicode.com/todos/1"
+    let DOMAIN = "api.openweathermap.org"
+    let URL = "https://api.openweathermap.org/data/2.5/weather?id=2172797&appid=943e6e87148c5b34bfd538139bd0cf4e"
     let CERTIFICATES_PATH = Bundle.main.path(forResource: "Certificates", ofType: "bundle")
-    let CERTIFICATES = ["sni233425"]
+    let CERTIFICATES = ["OpenWeatherMap"]
     let CERTIFICATES_FILE_TYPE = "crt"
 }

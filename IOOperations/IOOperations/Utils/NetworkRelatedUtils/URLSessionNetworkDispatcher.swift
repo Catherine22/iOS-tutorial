@@ -10,14 +10,11 @@ import Foundation
 import Security
 
 // TODO check if delegate works
-class URLSessionNetworkDispatcher: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
+class URLSessionNetworkDispatcher: NSObject, URLSessionDelegate {
     static let shared = URLSessionNetworkDispatcher()
     
-    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        print("dddd [URLSessionTaskDelegate] didReceive challenge")
-        setAuthentication(session, didReceive: challenge, completionHandler: completionHandler)
-    }
-
+    // MARK: Handling authentication changes (https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge)
+    // Not working (https://stackoverflow.com/questions/26268445/authentication-challenge-method-is-not-called-when-using-nsurlsession-custom-del)
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         print("dddd [URLSessionDelegate] didReceive challenge")
         setAuthentication(session, didReceive: challenge, completionHandler: completionHandler)
@@ -100,7 +97,8 @@ extension URLSessionNetworkDispatcher: NetworkDispatcher {
         let configuration = URLSession.shared.configuration
         configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
         
-        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+//        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let urlSession = URLSession(configuration: configuration)
         
         urlSession.dataTask(with: url) { (d, r, e) in
             if let error = e {

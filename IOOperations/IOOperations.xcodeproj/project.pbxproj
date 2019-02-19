@@ -22,8 +22,8 @@
 		F3356166221A493300251FEC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356165221A493300251FEC /* Logger.swift */; };
 		F3356168221A494500251FEC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356167221A494500251FEC /* Constants.swift */; };
 		F335616A221A4CA600251FEC /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356169221A4CA600251FEC /* NetworkDispatcher.swift */; };
-		F335616D221A5C6D00251FEC /* Jsonplaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616C221A5C6D00251FEC /* Jsonplaceholder.swift */; };
-		F335616F221A5FC400251FEC /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616E221A5FC400251FEC /* GetUser.swift */; };
+		F335616D221A5C6D00251FEC /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616C221A5C6D00251FEC /* Weather.swift */; };
+		F335616F221A5FC400251FEC /* GetWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616E221A5FC400251FEC /* GetWeather.swift */; };
 		F3356171221A7BE400251FEC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3356170221A7BE400251FEC /* Default-568h@2x.png */; };
 		F3356178221AA63000251FEC /* Certificates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3356177221AA63000251FEC /* Certificates.bundle */; };
 /* End PBXBuildFile section */
@@ -48,8 +48,8 @@
 		F3356165221A493300251FEC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F3356167221A494500251FEC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F3356169221A4CA600251FEC /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
-		F335616C221A5C6D00251FEC /* Jsonplaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jsonplaceholder.swift; sourceTree = "<group>"; };
-		F335616E221A5FC400251FEC /* GetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUser.swift; sourceTree = "<group>"; };
+		F335616C221A5C6D00251FEC /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		F335616E221A5FC400251FEC /* GetWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeather.swift; sourceTree = "<group>"; };
 		F3356170221A7BE400251FEC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F3356177221AA63000251FEC /* Certificates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Certificates.bundle; path = ../../../../Dev/Certificates.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,7 +170,7 @@
 		F3356172221A7E5700251FEC /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				F335616E221A5FC400251FEC /* GetUser.swift */,
+				F335616E221A5FC400251FEC /* GetWeather.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -178,7 +178,7 @@
 		F3356173221A7E6600251FEC /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				F335616C221A5C6D00251FEC /* Jsonplaceholder.swift */,
+				F335616C221A5C6D00251FEC /* Weather.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -316,8 +316,8 @@
 				F3356168221A494500251FEC /* Constants.swift in Sources */,
 				F33561622216D02900251FEC /* URLSessionNetworkDispatcher.swift in Sources */,
 				F33561412216A7D800251FEC /* AppDelegate.swift in Sources */,
-				F335616F221A5FC400251FEC /* GetUser.swift in Sources */,
-				F335616D221A5C6D00251FEC /* Jsonplaceholder.swift in Sources */,
+				F335616F221A5FC400251FEC /* GetWeather.swift in Sources */,
+				F335616D221A5C6D00251FEC /* Weather.swift in Sources */,
 				F33561492216A7D800251FEC /* IOOperations.xcdatamodeld in Sources */,
 				F335615E2216CDDD00251FEC /* RequestType.swift in Sources */,
 			);

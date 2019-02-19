@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GetUser: RequestType {
-    typealias ResponseType = Jsonplaceholder
-    let requestModel = RequestModel(path: "https://jsonplaceholder.typicode.com/todos/1")
+struct GetWeather: RequestType {
+    typealias ResponseType = Weather
+    let requestModel = RequestModel(path: Constants.shared.URL)
 }

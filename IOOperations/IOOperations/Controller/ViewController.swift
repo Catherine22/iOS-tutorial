@@ -14,8 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let networkManager = NetworkManager()
-//        networkManager.getJsonPlaceholderByAloamofire()
-        networkManager.getJsonPlaceholderByURLSession()
+        networkManager.getWeatherByAloamofire()
+//        networkManager.getWeatherByURLSession()
     }
 }
 
