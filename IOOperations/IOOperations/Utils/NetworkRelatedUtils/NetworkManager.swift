@@ -10,15 +10,46 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class NetworkManager {
-    let url = "https://jsonplaceholder.typicode.com/todos/1"
+class NetworkManager: SessionDelegate {
     
     //MARK: Alamofire + SwiftyJSON
     func getJsonPlaceholderByAloamofire() {
+        // request parameters
         let params:[String: String] = [:]
         
+        // certificates pinning
+        guard let bundlePath = Constants.shared.CERTIFICATES_PATH else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+        
+        let bundle = Bundle(path: bundlePath)
+        guard let crtPath = bundle?.url(forResource: Constants.shared.CERTIFICATES[0], withExtension: Constants.shared.CERTIFICATES_FILE_TYPE) else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+        
+        guard let localCertificate = NSData(contentsOf: crtPath) else {
+            Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+            return
+        }
+
+        let serverTrustPolicy = ServerTrustPolicy.pinCertificates(
+            certificates: [SecCertificateCreateWithData(nil, localCertificate)!],
+            validateCertificateChain: true,
+            validateHost: true
+        )
+        
+        let serverTrustPolicies = [
+            Constants.shared.DOMAIN: serverTrustPolicy
+        ]
+        
+        let serverTrustPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
+        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: self, serverTrustPolicyManager: serverTrustPolicyManager)
+        
+        
         // It makes a request in the background
-        Alamofire.request(url, method: .get, parameters: params).responseJSON {
+        sessionManager.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
             response in
             // what should be triggered once the background processes has completed
             if response.result.isSuccess {
@@ -35,7 +66,7 @@ class NetworkManager {
         GetUser().execute(onSuccess: { (jsonPlaceHolder) in
             print(jsonPlaceHolder)
         }) { (errorType) in
-            print(errorType.errorMessage())
+            fatalError(errorType.errorMessage())
         }
     }
 }

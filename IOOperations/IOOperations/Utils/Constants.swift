@@ -20,6 +20,7 @@ class Constants {
         case FAILED_TO_DECODE_JSON
         case NIL_RESPONSE_DATA
         case URL_SESSION_FAILED
+        case CERTIFICATES_NOT_FOUND
         
         case httpError(Int, String)
         
@@ -35,9 +36,17 @@ class Constants {
                 return "Nil response data"
             case .URL_SESSION_FAILED:
                 return "URLSession error"
+            case .CERTIFICATES_NOT_FOUND:
+                return "Certificates not found"
             default:
                 return "Undefined Error"
             }
         }
     }
+    
+    let DOMAIN = "jsonplaceholder.typicode.com"
+    let URL = "https://jsonplaceholder.typicode.com/todos/1"
+    let CERTIFICATES_PATH = Bundle.main.path(forResource: "Certificates", ofType: "bundle")
+    let CERTIFICATES = ["sni233425"]
+    let CERTIFICATES_FILE_TYPE = "crt"
 }

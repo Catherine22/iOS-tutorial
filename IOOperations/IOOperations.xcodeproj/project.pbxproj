@@ -25,6 +25,7 @@
 		F335616D221A5C6D00251FEC /* Jsonplaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616C221A5C6D00251FEC /* Jsonplaceholder.swift */; };
 		F335616F221A5FC400251FEC /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616E221A5FC400251FEC /* GetUser.swift */; };
 		F3356171221A7BE400251FEC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3356170221A7BE400251FEC /* Default-568h@2x.png */; };
+		F3356178221AA63000251FEC /* Certificates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3356177221AA63000251FEC /* Certificates.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +51,7 @@
 		F335616C221A5C6D00251FEC /* Jsonplaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jsonplaceholder.swift; sourceTree = "<group>"; };
 		F335616E221A5FC400251FEC /* GetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUser.swift; sourceTree = "<group>"; };
 		F3356170221A7BE400251FEC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F3356176221A9F7D00251FEC /* COMODOECCDomainValidationSecureServerCA2.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = COMODOECCDomainValidationSecureServerCA2.crt; path = ../../../../Downloads/COMODOECCDomainValidationSecureServerCA2.crt; sourceTree = "<group>"; };
+		F3356177221AA63000251FEC /* Certificates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Certificates.bundle; path = ../../../../Dev/Certificates.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +86,6 @@
 		F33561342216A7D800251FEC = {
 			isa = PBXGroup;
 			children = (
-				F3356175221A9F4300251FEC /* Certificates */,
 				F3356170221A7BE400251FEC /* Default-568h@2x.png */,
 				F335613F2216A7D800251FEC /* IOOperations */,
 				F335613E2216A7D800251FEC /* Products */,
@@ -105,6 +105,7 @@
 		F335613F2216A7D800251FEC /* IOOperations */ = {
 			isa = PBXGroup;
 			children = (
+				F3356177221AA63000251FEC /* Certificates.bundle */,
 				F335615A2216B16900251FEC /* Utils */,
 				F33561572216AFF300251FEC /* Controller */,
 				F33561562216AFED00251FEC /* Model */,
@@ -182,14 +183,6 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
-		F3356175221A9F4300251FEC /* Certificates */ = {
-			isa = PBXGroup;
-			children = (
-				F3356176221A9F7D00251FEC /* COMODOECCDomainValidationSecureServerCA2.crt */,
-			);
-			path = Certificates;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,6 +246,7 @@
 				F335614E2216A7DB00251FEC /* LaunchScreen.storyboard in Resources */,
 				F3356171221A7BE400251FEC /* Default-568h@2x.png in Resources */,
 				F335614B2216A7DB00251FEC /* Assets.xcassets in Resources */,
+				F3356178221AA63000251FEC /* Certificates.bundle in Resources */,
 				F33561462216A7D800251FEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

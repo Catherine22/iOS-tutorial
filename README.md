@@ -1100,6 +1100,10 @@ You could either use popular third-party CocoasPods like Alamofire or ```URLSess
 The following features are included in 
 [IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/IOOperations)   
 - SSL certificate validation    
+  - (Check SSL online)[https://www.ssllabs.com/ssltest/]    
+  - Save certificates (starting from -----BEGIN CERTIFICATE-----) as .pem file or load from String directly   
+  - Convert .pem file to .crt file via ```openssl x509 -outform der -in xxxx.pem -out xxxx.crt```   
+
 - Generic request/response types with associatedtype   
 
 ## Alamofire

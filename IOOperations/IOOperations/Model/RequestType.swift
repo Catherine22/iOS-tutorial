@@ -17,6 +17,7 @@ extension RequestType {
     func execute (dispatcher: NetworkDispatcher = URLSessionNetworkDispatcher.shared, onSuccess: @escaping (ResponseType) -> Void, onError: @escaping (Constants.ErrorTypes) -> Void
         ) {
         dispatcher.dispatch(request: self.requestModel, onSuccess: { (response) in
+            print("response:\(response)")
             do {
                 let jsonDecoder = JSONDecoder()
                 let rawData = try jsonDecoder.decode(ResponseType.self, from: response)
