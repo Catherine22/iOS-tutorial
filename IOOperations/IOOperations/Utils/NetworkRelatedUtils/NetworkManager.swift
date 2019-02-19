@@ -12,11 +12,9 @@ import SwiftyJSON
 
 class NetworkManager: SessionDelegate {
     
-    //MARK: Alamofire + SwiftyJSON
-    func getWeatherByAloamofire() {
-        // request parameters
-        let params:[String: String] = [:]
-        
+    var sessionManager: SessionManager?
+    override init() {
+        super.init()
         // certificates pinning
         guard let bundlePath = Constants.shared.CERTIFICATES_PATH else {
             Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
@@ -33,7 +31,7 @@ class NetworkManager: SessionDelegate {
             Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
             return
         }
-
+        
         let serverTrustPolicy = ServerTrustPolicy.pinCertificates(
             certificates: [SecCertificateCreateWithData(nil, localCertificate)!],
             validateCertificateChain: true,
@@ -45,11 +43,68 @@ class NetworkManager: SessionDelegate {
         ]
         
         let serverTrustPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
-        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: self, serverTrustPolicyManager: serverTrustPolicyManager)
+        sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: self, serverTrustPolicyManager: serverTrustPolicyManager)
+    }
+    
+    override func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
+            guard let serverTrust = challenge.protectionSpace.serverTrust else {
+                Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+                return
+            }
+            
+            var secresult = SecTrustResultType.invalid
+            let status = SecTrustEvaluate(serverTrust, &secresult)
+            if(errSecSuccess == status) {
+                guard let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
+                    Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+                    return
+                }
+                
+                let serverCertificateData = SecCertificateCopyData(serverCertificate)
+                let data = CFDataGetBytePtr(serverCertificateData);
+                let size = CFDataGetLength(serverCertificateData);
+                let cert1 = NSData(bytes: data, length: size)
+                
+                // certificates pinning
+                guard let bundlePath = Constants.shared.CERTIFICATES_PATH else {
+                    Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+                    return
+                }
+                
+                let bundle = Bundle(path: bundlePath)
+                guard let crtPath = bundle?.url(forResource: Constants.shared.CERTIFICATES[0], withExtension: Constants.shared.CERTIFICATES_FILE_TYPE) else {
+                    Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+                    return
+                }
+                
+                guard let localCertificate = NSData(contentsOf: crtPath) else {
+                    Logger.shared.error(Constants.ErrorTypes.CERTIFICATES_NOT_FOUND.errorMessage())
+                    return
+                }
+                
+                if cert1.isEqual(to: localCertificate as Data) {
+                    completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:serverTrust))
+                    return
+                }
+            }
+        }
+        
+        // Pinning failed
+        completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+    }
+}
+
+extension NetworkManager {
+    //MARK: Alamofire + SwiftyJSON
+    func getWeatherByAloamofire() {
+        // request parameters
+        let params:[String: String] = [:]
         
         
         // It makes a request in the background
-        sessionManager.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
+        sessionManager?.request(Constants.shared.URL, method: .get, parameters: params).responseJSON {
             response in
             // what should be triggered once the background processes has completed
             if response.result.isSuccess {
