@@ -333,6 +333,89 @@ print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 // (min: Optional(1), max: Optional(10), avg: Optional(5.5))
 ```
 
+### Closure
+
+Closure is basically a function without function name.
+
+```function```
+```Swift
+func f(argu1: String, _ argu2: Int) -> Bool {
+    return true
+}
+
+let result = f(argu1: "a", 10)
+// result = ture
+```
+
+```closure``` 
+```Swift
+func f1(argu1: String, _ argu2: Int) -> Bool {
+    return true
+}
+```
+
+- Style 1
+```Swift
+c(argu1: "a", 10, completion: { (result) -> Void in
+    print("style1: \(result)")
+    // result = ture
+})
+```
+
+You could simplify style 1
+```Swift
+c(argu1: "a", 10) { (result) in
+    print("style2: \(result)")
+    // result = ture
+}
+```
+
+and simplify again
+```Swift
+c(argu1: "a", 10) {
+    print("style3: \($0)")
+    // result = ture
+}
+```
+
+```@escaping```
+Modify variables outside the function via ```@escaping``` if you want
+```Swift
+var functionalVar: ((String) -> ())?
+func trimString(content: String, result: @escaping (String) -> ()) {
+    // delay for 2 seconds
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        functionalVar = result
+        result(content.replacingOccurrences(of: "\\s", with: "", options: .regularExpression))
+
+    }
+}
+trimString(content: "i  n pu t ") { (newString) in
+    print(newString)
+}
+```
+
+Nested closure example
+```Swift
+func showFormattedString(content: String, completion: ((String) -> Void)? = nil) {
+    trimString(content: content) { (formattedString) in
+        print(formattedString)
+        if completion != nil {
+            completion!(formattedString)
+        }
+    }
+}
+
+showFormattedString(content: "i  n pu t ") { (formattedString) in
+    print("show \(formattedString)")
+}
+
+//output:
+//input
+//show input
+```
+
+
 ## ```random```
 Get a random loveScore (0 ≤ loveScore ≤ 100)
 
