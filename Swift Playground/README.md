@@ -12,6 +12,7 @@
 - [protocol](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#protocol)       
 - [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
 - [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)         
+- [Associated Types](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#associated-types)     
 - [Access Levels](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#access-levels)       
 - [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
 - [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
@@ -331,6 +332,89 @@ func func4 (numbers: [Int]) -> (min: Int?, max: Int?, avg: Float?) {
 print(func4(name: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 // (min: Optional(1), max: Optional(10), avg: Optional(5.5))
 ```
+
+### Closure
+
+Closure is basically a function without function name.
+
+```function```
+```Swift
+func f(argu1: String, _ argu2: Int) -> Bool {
+    return true
+}
+
+let result = f(argu1: "a", 10)
+// result = ture
+```
+
+```closure``` 
+```Swift
+func f1(argu1: String, _ argu2: Int) -> Bool {
+    return true
+}
+```
+
+- Style 1
+```Swift
+c(argu1: "a", 10, completion: { (result) -> Void in
+    print("style1: \(result)")
+    // result = ture
+})
+```
+
+You could simplify style 1
+```Swift
+c(argu1: "a", 10) { (result) in
+    print("style2: \(result)")
+    // result = ture
+}
+```
+
+and simplify again
+```Swift
+c(argu1: "a", 10) {
+    print("style3: \($0)")
+    // result = ture
+}
+```
+
+```@escaping```
+Modify variables outside the function via ```@escaping``` if you want
+```Swift
+var functionalVar: ((String) -> ())?
+func trimString(content: String, result: @escaping (String) -> ()) {
+    // delay for 2 seconds
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        functionalVar = result
+        result(content.replacingOccurrences(of: "\\s", with: "", options: .regularExpression))
+
+    }
+}
+trimString(content: "i  n pu t ") { (newString) in
+    print(newString)
+}
+```
+
+Nested closure example
+```Swift
+func showFormattedString(content: String, completion: ((String) -> Void)? = nil) {
+    trimString(content: content) { (formattedString) in
+        print(formattedString)
+        if completion != nil {
+            completion!(formattedString)
+        }
+    }
+}
+
+showFormattedString(content: "i  n pu t ") { (formattedString) in
+    print("show \(formattedString)")
+}
+
+//output:
+//input
+//show input
+```
+
 
 ## ```random```
 Get a random loveScore (0 ≤ loveScore ≤ 100)
@@ -1075,6 +1159,56 @@ if zoo.peek() != nil {
     print("Empty zoo")
 }
 // Top animal: Animal(name: "Snake", _class: "Reptilia")
+```
+
+## Associated Types
+Until now, we know that ```class```, ```struct``` and ```enum``` are allowed to be generic.     
+But what about a generic ```protocol```?        
+
+Let's say, we have a WeightCalculable protocol, the type of weight could be ```Int```, ```Double``` or whatever, we don't care.     
+1. Create the protocol with associatedtype.
+```Swift
+protocol WeightCalculable {
+    
+    //为weight 属性定义的类型别名
+    associatedtype WeightType
+    var weight : WeightType {get}
+}
+```
+
+2. Implement the protocol
+```Swift
+// WeightType is Double
+struct MobilePhone: WeightCalculable {
+    typealias WeightType = Double
+    
+    var weight : WeightType
+    init(weight: WeightType) {
+        self.weight = weight
+    }
+}
+
+// WeightType is Int
+struct Car: WeightCalculable {
+    typealias WeightType = Int
+    
+    var weight : WeightType
+    init(weight: WeightType) {
+        self.weight = weight
+    }
+}
+```
+
+3. We will get
+```Swift
+let mobilePhone = MobilePhone(weight: 0.5)
+let car = Car(weight: 2000)
+
+print("mobile phone weighs \(mobilePhone.weight) kg")
+print("car weighs \(car.weight) kg")
+
+//mobile phone weighs 0.5 kg
+//car weighs 2000 kg
 ```
 
 # Access Levels
