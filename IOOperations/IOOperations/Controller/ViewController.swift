@@ -13,9 +13,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkManager = NetworkManager()
-        networkManager.getReposByAloamofire()
-        networkManager.getReposByURLSession()
+        let githubModule = GithubModule()
+        githubModule.getAlamofireRepo(onSuccess: {
+            self.popUpResponseAlert(message: "Succeed!")
+        },onFail: { (error) in
+            self.popUpResponseAlert(message: "\(error)")
+        })
+    }
+    
+    func popUpResponseAlert(message: String) {
+        let alert = UIAlertController(title: "Response", message: message, preferredStyle: .alert)
+        let restartAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            
+        }
+        alert.addAction(restartAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

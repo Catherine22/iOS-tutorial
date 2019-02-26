@@ -1,56 +1,63 @@
+// To parse the JSON, add this file to your project and do:
 //
-//  Jsonplaceholder.swift
-//  IOOperations
+//   let repo = try? newJSONDecoder().decode(Repo.self, from: jsonData)
 //
-//  Created by Catherine Chen (RD-TW) on 19/02/2019.
-//  Copyright © 2019 Catherine Chen. All rights reserved.
+// To parse values from Alamofire responses:
 //
+//   Alamofire.request(url).responseRepo { response in
+//     if let repo = response.result.value {
+//       ...
+//     }
+//   }
 
 import Foundation
+import Alamofire
 
-struct Repo: Codable {
-    let id: Int
-    let nodeID, name, fullName: String
-    let repoPrivate: Bool
-    let owner: Owner
-    let htmlURL: String
+typealias Repo = [RepoElement]
+
+struct RepoElement: Codable {
+    let id: Int?
+    let nodeID, name, fullName: String?
+    let repoPrivate: Bool?
+    let owner: Owner?
+    let htmlURL: String?
     let description: String?
-    let fork: Bool
-    let url, forksURL: String
-    let keysURL, collaboratorsURL: String
-    let teamsURL, hooksURL: String
-    let issueEventsURL: String
-    let eventsURL: String
-    let assigneesURL, branchesURL: String
-    let tagsURL: String
-    let blobsURL, gitTagsURL, gitRefsURL, treesURL: String
-    let statusesURL: String
-    let languagesURL, stargazersURL, contributorsURL, subscribersURL: String
-    let subscriptionURL: String
-    let commitsURL, gitCommitsURL, commentsURL, issueCommentURL: String
-    let contentsURL, compareURL: String
-    let mergesURL: String
-    let archiveURL: String
-    let downloadsURL: String
-    let issuesURL, pullsURL, milestonesURL, notificationsURL: String
-    let labelsURL, releasesURL: String
-    let deploymentsURL: String
-    let createdAt, updatedAt, pushedAt: Date
-    let gitURL, sshURL: String
-    let cloneURL: String
-    let svnURL: String
+    let fork: Bool?
+    let url, forksURL: String?
+    let keysURL, collaboratorsURL: String?
+    let teamsURL, hooksURL: String?
+    let issueEventsURL: String?
+    let eventsURL: String?
+    let assigneesURL, branchesURL: String?
+    let tagsURL: String?
+    let blobsURL, gitTagsURL, gitRefsURL, treesURL: String?
+    let statusesURL: String?
+    let languagesURL, stargazersURL, contributorsURL, subscribersURL: String?
+    let subscriptionURL: String?
+    let commitsURL, gitCommitsURL, commentsURL, issueCommentURL: String?
+    let contentsURL, compareURL: String?
+    let mergesURL: String?
+    let archiveURL: String?
+    let downloadsURL: String?
+    let issuesURL, pullsURL, milestonesURL, notificationsURL: String?
+    let labelsURL, releasesURL: String?
+    let deploymentsURL: String?
+    let createdAt, updatedAt, pushedAt: Date?
+    let gitURL, sshURL: String?
+    let cloneURL: String?
+    let svnURL: String?
     let homepage: String?
-    let size, stargazersCount, watchersCount: Int
-    let language: Language?
-    let hasIssues, hasProjects, hasDownloads, hasWiki: Bool
-    let hasPages: Bool
-    let forksCount: Int
+    let size, stargazersCount, watchersCount: Int?
+    let language: String?
+    let hasIssues, hasProjects, hasDownloads, hasWiki: Bool?
+    let hasPages: Bool?
+    let forksCount: Int?
     let mirrorURL: JSONNull?
-    let archived: Bool
-    let openIssuesCount: Int
+    let archived: Bool?
+    let openIssuesCount: Int?
     let license: License?
-    let forks, openIssues, watchers: Int
-    let defaultBranch: DefaultBranch
+    let forks, openIssues, watchers: Int?
+    let defaultBranch: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -124,25 +131,10 @@ struct Repo: Codable {
     }
 }
 
-enum DefaultBranch: String, Codable {
-    case develop = "develop"
-    case master = "master"
-}
-
-enum Language: String, Codable {
-    case c = "C++"
-    case java = "Java"
-    case javaScript = "JavaScript"
-    case python = "Python"
-    case swift = "Swift"
-}
-
 struct License: Codable {
-    let key: Key
-    let name: Name
-    let spdxID: SpdxID
-    let url: String
-    let nodeID: LicenseNodeID
+    let key, name, spdxID: String?
+    let url: String?
+    let nodeID: String?
     
     enum CodingKeys: String, CodingKey {
         case key, name
@@ -152,37 +144,19 @@ struct License: Codable {
     }
 }
 
-enum Key: String, Codable {
-    case apache20 = "apache-2.0"
-}
-
-enum Name: String, Codable {
-    case apacheLicense20 = "Apache License 2.0"
-}
-
-enum LicenseNodeID: String, Codable {
-    case mDc6TGljZW5ZZTI = "MDc6TGljZW5zZTI="
-}
-
-enum SpdxID: String, Codable {
-    case apache20 = "Apache-2.0"
-}
-
 struct Owner: Codable {
-    let login: Login
-    let id: Int
-    let nodeID: OwnerNodeID
-    let avatarURL: String
-    let gravatarID: String
-    let url, htmlURL, followersURL: String
-    let followingURL: FollowingURL
-    let gistsURL: GistsURL
-    let starredURL: StarredURL
-    let subscriptionsURL, organizationsURL, reposURL: String
-    let eventsURL: EventsURL
-    let receivedEventsURL: String
-    let type: TypeEnum
-    let siteAdmin: Bool
+    let login: String?
+    let id: Int?
+    let nodeID: String?
+    let avatarURL: String?
+    let gravatarID: String?
+    let url, htmlURL, followersURL: String?
+    let followingURL, gistsURL, starredURL: String?
+    let subscriptionsURL, organizationsURL, reposURL: String?
+    let eventsURL: String?
+    let receivedEventsURL: String?
+    let type: String?
+    let siteAdmin: Bool?
     
     enum CodingKeys: String, CodingKey {
         case login, id
@@ -205,57 +179,44 @@ struct Owner: Codable {
     }
 }
 
-enum EventsURL: String, Codable {
-    case httpsAPIGithubCOMUsersCatherine22EventsPrivacy = "https://api.github.com/users/Catherine22/events{/privacy}"
-}
-
-enum FollowingURL: String, Codable {
-    case httpsAPIGithubCOMUsersCatherine22FollowingOtherUser = "https://api.github.com/users/Catherine22/following{/other_user}"
-}
-
-enum GistsURL: String, Codable {
-    case httpsAPIGithubCOMUsersCatherine22GistsGistID = "https://api.github.com/users/Catherine22/gists{/gist_id}"
-}
-
-enum Login: String, Codable {
-    case catherine22 = "Catherine22"
-}
-
-enum OwnerNodeID: String, Codable {
-    case mdq6VXNlcjExNjU4OTc5 = "MDQ6VXNlcjExNjU4OTc5"
-}
-
-enum StarredURL: String, Codable {
-    case httpsAPIGithubCOMUsersCatherine22StarredOwnerRepo = "https://api.github.com/users/Catherine22/starred{/owner}{/repo}"
-}
-
-enum TypeEnum: String, Codable {
-    case user = "User"
-}
-
-// MARK: Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-    
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
+fileprivate func newJSONDecoder() -> JSONDecoder {
+    let decoder = JSONDecoder()
+    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+        decoder.dateDecodingStrategy = .iso8601
     }
-    
-    public var hashValue: Int {
-        return 0
+    return decoder
+}
+
+fileprivate func newJSONEncoder() -> JSONEncoder {
+    let encoder = JSONEncoder()
+    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+        encoder.dateEncodingStrategy = .iso8601
     }
-    
-    public init() {}
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+    return encoder
+}
+
+// MARK: - Alamofire response handlers
+
+extension DataRequest {
+    fileprivate func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
+        return DataResponseSerializer { _, response, data, error in
+            guard error == nil else { return .failure(error!) }
+            
+            guard let data = data else {
+                return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
+            }
+            
+            return Result { try newJSONDecoder().decode(T.self, from: data) }
         }
     }
     
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
+    @discardableResult
+    fileprivate func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
+        return response(queue: queue, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
+    }
+    
+    @discardableResult
+    func responseRepo(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Repo>) -> Void) -> Self {
+        return responseDecodable(queue: queue, completionHandler: completionHandler)
     }
 }

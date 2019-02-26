@@ -14,19 +14,30 @@
 		F33561492216A7D800251FEC /* IOOperations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F33561472216A7D800251FEC /* IOOperations.xcdatamodeld */; };
 		F335614B2216A7DB00251FEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F335614A2216A7DB00251FEC /* Assets.xcassets */; };
 		F335614E2216A7DB00251FEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F335614C2216A7DB00251FEC /* LaunchScreen.storyboard */; };
-		F33561592216B03600251FEC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33561582216B03600251FEC /* NetworkManager.swift */; };
-		F335615C2216B18800251FEC /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335615B2216B18800251FEC /* RequestModel.swift */; };
-		F335615E2216CDDD00251FEC /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335615D2216CDDD00251FEC /* RequestType.swift */; };
-		F33561622216D02900251FEC /* URLSessionNetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33561612216D02900251FEC /* URLSessionNetworkDispatcher.swift */; };
-		F33561642216D12300251FEC /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33561632216D12300251FEC /* CustomError.swift */; };
+		F33561592216B03600251FEC /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33561582216B03600251FEC /* HttpClient.swift */; };
 		F3356166221A493300251FEC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356165221A493300251FEC /* Logger.swift */; };
 		F3356168221A494500251FEC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356167221A494500251FEC /* Constants.swift */; };
-		F335616A221A4CA600251FEC /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3356169221A4CA600251FEC /* NetworkDispatcher.swift */; };
 		F335616D221A5C6D00251FEC /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616C221A5C6D00251FEC /* Repo.swift */; };
-		F335616F221A5FC400251FEC /* GetRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335616E221A5FC400251FEC /* GetRepos.swift */; };
 		F3356171221A7BE400251FEC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3356170221A7BE400251FEC /* Default-568h@2x.png */; };
-		F3356178221AA63000251FEC /* Certificates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3356177221AA63000251FEC /* Certificates.bundle */; };
+		F35B4B0022253CF700F8EBDC /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4AFF22253CF700F8EBDC /* JSONNull.swift */; };
+		F35B4B0222253DA900F8EBDC /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B0122253DA900F8EBDC /* URLBuilder.swift */; };
+		F35B4B0422253E1400F8EBDC /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B0322253E1400F8EBDC /* CustomError.swift */; };
+		F35B4B072225404800F8EBDC /* GithubModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B062225404800F8EBDC /* GithubModule.swift */; };
+		F35B4B0C2225430900F8EBDC /* Certificates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F35B4B0A222542F100F8EBDC /* Certificates.bundle */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F35B4AFE22253CE300F8EBDC /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		17082160B2D12DD05AEF360F /* Pods-IOOperations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOOperations.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOOperations/Pods-IOOperations.release.xcconfig"; sourceTree = "<group>"; };
@@ -40,18 +51,16 @@
 		F335614A2216A7DB00251FEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F335614D2216A7DB00251FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F335614F2216A7DB00251FEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F33561582216B03600251FEC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		F335615B2216B18800251FEC /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
-		F335615D2216CDDD00251FEC /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
-		F33561612216D02900251FEC /* URLSessionNetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkDispatcher.swift; sourceTree = "<group>"; };
-		F33561632216D12300251FEC /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		F33561582216B03600251FEC /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		F3356165221A493300251FEC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F3356167221A494500251FEC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F3356169221A4CA600251FEC /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		F335616C221A5C6D00251FEC /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
-		F335616E221A5FC400251FEC /* GetRepos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepos.swift; sourceTree = "<group>"; };
 		F3356170221A7BE400251FEC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F3356177221AA63000251FEC /* Certificates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Certificates.bundle; path = ../../../../Dev/Certificates.bundle; sourceTree = "<group>"; };
+		F35B4AFF22253CF700F8EBDC /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
+		F35B4B0122253DA900F8EBDC /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
+		F35B4B0322253E1400F8EBDC /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		F35B4B062225404800F8EBDC /* GithubModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubModule.swift; sourceTree = "<group>"; };
+		F35B4B0A222542F100F8EBDC /* Certificates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Certificates.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +114,7 @@
 		F335613F2216A7D800251FEC /* IOOperations */ = {
 			isa = PBXGroup;
 			children = (
-				F3356177221AA63000251FEC /* Certificates.bundle */,
+				F35B4B0A222542F100F8EBDC /* Certificates.bundle */,
 				F335615A2216B16900251FEC /* Utils */,
 				F33561572216AFF300251FEC /* Controller */,
 				F33561562216AFED00251FEC /* Model */,
@@ -115,6 +124,7 @@
 				F335614C2216A7DB00251FEC /* LaunchScreen.storyboard */,
 				F335614F2216A7DB00251FEC /* Info.plist */,
 				F33561472216A7D800251FEC /* IOOperations.xcdatamodeld */,
+				F35B4B062225404800F8EBDC /* GithubModule.swift */,
 			);
 			path = IOOperations;
 			sourceTree = "<group>";
@@ -131,10 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				F3356173221A7E6600251FEC /* Responses */,
-				F3356172221A7E5700251FEC /* Requests */,
-				F335615B2216B18800251FEC /* RequestModel.swift */,
-				F335615D2216CDDD00251FEC /* RequestType.swift */,
-				F33561632216D12300251FEC /* CustomError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,35 +156,28 @@
 		F335615A2216B16900251FEC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F335616B221A5BBA00251FEC /* NetworkRelatedUtils */,
+				F335616B221A5BBA00251FEC /* Network */,
 				F3356165221A493300251FEC /* Logger.swift */,
 				F3356167221A494500251FEC /* Constants.swift */,
+				F35B4B0322253E1400F8EBDC /* CustomError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F335616B221A5BBA00251FEC /* NetworkRelatedUtils */ = {
+		F335616B221A5BBA00251FEC /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F33561582216B03600251FEC /* NetworkManager.swift */,
-				F33561612216D02900251FEC /* URLSessionNetworkDispatcher.swift */,
-				F3356169221A4CA600251FEC /* NetworkDispatcher.swift */,
+				F33561582216B03600251FEC /* HttpClient.swift */,
+				F35B4B0122253DA900F8EBDC /* URLBuilder.swift */,
 			);
-			path = NetworkRelatedUtils;
-			sourceTree = "<group>";
-		};
-		F3356172221A7E5700251FEC /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				F335616E221A5FC400251FEC /* GetRepos.swift */,
-			);
-			path = Requests;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		F3356173221A7E6600251FEC /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				F335616C221A5C6D00251FEC /* Repo.swift */,
+				F35B4AFF22253CF700F8EBDC /* JSONNull.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -195,6 +194,7 @@
 				F335613A2216A7D800251FEC /* Frameworks */,
 				F335613B2216A7D800251FEC /* Resources */,
 				60D9B0447F3767AC2D7457CB /* [CP] Embed Pods Frameworks */,
+				F35B4AFE22253CE300F8EBDC /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
@@ -243,10 +243,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35B4B0C2225430900F8EBDC /* Certificates.bundle in Resources */,
 				F335614E2216A7DB00251FEC /* LaunchScreen.storyboard in Resources */,
 				F3356171221A7BE400251FEC /* Default-568h@2x.png in Resources */,
 				F335614B2216A7DB00251FEC /* Assets.xcassets in Resources */,
-				F3356178221AA63000251FEC /* Certificates.bundle in Resources */,
 				F33561462216A7D800251FEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,19 +307,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F335615C2216B18800251FEC /* RequestModel.swift in Sources */,
-				F33561642216D12300251FEC /* CustomError.swift in Sources */,
-				F33561592216B03600251FEC /* NetworkManager.swift in Sources */,
-				F335616A221A4CA600251FEC /* NetworkDispatcher.swift in Sources */,
+				F35B4B0022253CF700F8EBDC /* JSONNull.swift in Sources */,
+				F33561592216B03600251FEC /* HttpClient.swift in Sources */,
+				F35B4B072225404800F8EBDC /* GithubModule.swift in Sources */,
+				F35B4B0222253DA900F8EBDC /* URLBuilder.swift in Sources */,
 				F33561432216A7D800251FEC /* ViewController.swift in Sources */,
 				F3356166221A493300251FEC /* Logger.swift in Sources */,
+				F35B4B0422253E1400F8EBDC /* CustomError.swift in Sources */,
 				F3356168221A494500251FEC /* Constants.swift in Sources */,
-				F33561622216D02900251FEC /* URLSessionNetworkDispatcher.swift in Sources */,
 				F33561412216A7D800251FEC /* AppDelegate.swift in Sources */,
-				F335616F221A5FC400251FEC /* GetRepos.swift in Sources */,
 				F335616D221A5C6D00251FEC /* Repo.swift in Sources */,
 				F33561492216A7D800251FEC /* IOOperations.xcdatamodeld in Sources */,
-				F335615E2216CDDD00251FEC /* RequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

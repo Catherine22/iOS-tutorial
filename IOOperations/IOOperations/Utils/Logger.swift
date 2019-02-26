@@ -1,8 +1,8 @@
 //
 //  Logger.swift
-//  IOOperations
+//  IOOperation
 //
-//  Created by Catherine Chen (RD-TW) on 18/02/2019.
+//  Created by Catherine Chen (RD-TW) on 19/02/2019.
 //  Copyright © 2019 Catherine Chen. All rights reserved.
 //
 
@@ -16,28 +16,20 @@ class Logger {
     }
     
     func log (_ tag: String, _ message: String) {
-        log("[\(tag)] \(message)")
-    }
-    
-    func log (_ message: String) {
         if Constants.shared.SHOW_LOG {
             NSLog(message)
         }
         persistant(message)
     }
     
-    func error (_ tag: String, _ message: String) {
-        error("[\(tag)] \(message)")
-    }
-    
-    func error (_ message: String) {
+    func error (_ tag: String, _ error: CustomError) {
         if Constants.shared.SHOW_LOG {
-            NSLog("error: \(message)")
+            NSLog("error: \(error)")
         }
-        persistant(message)
+        persistant("error: \(error)")
     }
     
-    func persistant(_ message: String) {
+    private func persistant(_ message: String) {
         if Constants.shared.KEEP_LOG {
             // save logs
         }

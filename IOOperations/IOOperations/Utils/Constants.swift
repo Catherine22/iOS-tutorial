@@ -45,9 +45,14 @@ class Constants {
     }
     
     let ARBITRARY_LOADS_ALLOWED = false // must syncronise this value to info.plist as well
-    let DOMAIN = "api.github.com"
-    let URL = "https://api.github.com/users/Catherine22/repos"
+    let URL_SCHEME = "https"
+    let URL = "api.github.com"
+    let PATH = (
+        USERS: "users",
+        ALAMOFIRE: "Alamofire",
+        REPOS: "repos"
+    )
     let CERTIFICATES_PATH = Bundle.main.path(forResource: "Certificates", ofType: "bundle")
-    let CERTIFICATES = ["github"]
+    let CERTIFICATE = "github"
     let CERTIFICATES_FILE_TYPE = "crt"
 }
