@@ -36,7 +36,7 @@
 - [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
   - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
   - [Realm](https://github.com/Catherine22/iOS-tutorial#realm)    
-- [Network Communication](https://github.com/Catherine22/iOS-tutorial#network-communication)    
+- [Network Connection](https://github.com/Catherine22/iOS-tutorial#network-connection)    
   - [Alamofire](https://github.com/Catherine22/iOS-tutorial#alamofire)    
   - [URLSession](https://github.com/Catherine22/iOS-tutorial#urlsession)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
@@ -1095,10 +1095,10 @@ do {
     }
 ```
 
-# Network Communication
-You could either use popular third-party CocoasPods like Alamofire or ```URLSession```    
+# Network Connection
+You could either use ```URLSession``` or popular third-party SDK like Alamofire    
 The following features are included in 
-[IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/IOOperations)   
+[IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations)   
 - SSL certificate validation (Read the documentation: [HTTPS Server Trust Evaluation](https://developer.apple.com/library/archive/technotes/tn2232/_index.html))    
   - Using ```openssl s_client -connect www.apple.com:443```   
   - Get the full certificate by ```openssl s_client -showcerts -host www.apple.com -port 443```   
@@ -1111,12 +1111,13 @@ Tools you might need:
   - Convert .pem file to .crt file via ```openssl x509 -outform der -in xxxx.pem -out xxxx.crt```   
 
 ## Alamofire
-- Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)    
+- [Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)    
 
 
 ## URLSession
 - Generic request/response types with ```associatedtype```    
 
+Check how exactly SSL pinning does on [HttpClient.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations/Utils/Network/HttpClient.swift)
 
 
 ### ATS, App Transport Security
