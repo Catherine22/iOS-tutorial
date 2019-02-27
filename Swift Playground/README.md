@@ -13,7 +13,9 @@
 - [Error Handling](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#error-handling)       
 - [Generics](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#generics)         
 - [Access Levels](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#access-levels)       
-- [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
+- [Design Pattern](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#design-pattern)        
+        - [Singleton](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#singleton)     
+        - [Builder Pattern](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#builder-pattern)        
 - [Fibonacci](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#fibonacci)     
 - [Reference](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground#reference)     
 
@@ -1087,7 +1089,9 @@ SDK packaging levels:
 - public        
 - open
 
-# Singleton
+
+# Design Pattern
+## Singleton
 Solution 1: 
 ```swift
 class SingletonCar {
@@ -1121,6 +1125,7 @@ myCar3.colour = "black"
 let yourCar3 = SingletonCar.shareInstance
 print("Your car is \(yourCar3.colour)") // black
 ```
+
 
 # Fibonacci
 1. Recursion

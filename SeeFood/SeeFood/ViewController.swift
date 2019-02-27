@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreML
-import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -30,6 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+        self.navigationItem.title = ""
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -37,46 +37,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = userPickedImage
+            imagePicker.dismiss(animated: true, completion: nil)
             
-            guard let ciimage = CIImage(image: userPickedImage) else {
-                fatalError("Error converting UIImage to CIImage")
-            }
+            let visualRecognitionFactory = VisualRecognitionFactory()
+            var model = visualRecognitionFactory.getModel(model: VisualRecognitionFactory.Model.WatsonVisualRecognition) // or Inceptionv3
+            model.delegate = self
+            model.detect(uiimage: userPickedImage)
             
-            detect(ciimage: ciimage)
-        }
-        
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
-    
-    func detect(ciimage: CIImage) {
-        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
-            fatalError("Loading CoreML model failed")
-        }
-        
-        let request = VNCoreMLRequest(model: model) { (request, error) in
-            guard let results = request.results as? [VNClassificationObservation] else {
-                fatalError("Model failed to process image")
-            }
-            
-//            print(results)
-            if let firstResult = results.first {
-                print("This might be \(firstResult.identifier)")
-                if (firstResult.identifier.contains("hotdog")) {
-                    self.navigationItem.title = "Hotdog!"
-                } else {
-                    self.navigationItem.title = "Not Hotdog!"
-                }
-            }
-        }
-        
-        let handler = VNImageRequestHandler(ciImage: ciimage)
-        do {
-            try handler.perform([request])
-        } catch {
-            fatalError("Error performing: \(error)")
         }
         
     }
-    
 }
 
+extension ViewController: DetectionDelegate {
+    func onResult(isHotDog: Bool) {
+        DispatchQueue.main.async {
+            if isHotDog == true {
+                self.navigationItem.title = "Hotdog!"
+            } else {
+                self.navigationItem.title = "Not Hotdog!"
+            }
+        }
+    }
+}

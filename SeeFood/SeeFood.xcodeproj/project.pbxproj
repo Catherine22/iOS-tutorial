@@ -14,7 +14,34 @@
 		F33561262213EC0400251FEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33561252213EC0400251FEC /* Assets.xcassets */; };
 		F33561292213EC0400251FEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33561272213EC0400251FEC /* LaunchScreen.storyboard */; };
 		F33561312214057B00251FEC /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F33561302214057B00251FEC /* Inceptionv3.mlmodel */; };
+		F35B4B0E22262B2B00F8EBDC /* VisualRecognitionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B0D22262B2B00F8EBDC /* VisualRecognitionFactory.swift */; };
+		F35B4B1022262BD400F8EBDC /* Inceptionv3Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B0F22262BD400F8EBDC /* Inceptionv3Model.swift */; };
+		F35B4B1222262CA300F8EBDC /* DetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B1122262CA300F8EBDC /* DetectionDelegate.swift */; };
+		F35B4B1422262DA400F8EBDC /* VisualRecognitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B1322262DA400F8EBDC /* VisualRecognitionDelegate.swift */; };
+		F35B4B1722263C9400F8EBDC /* WatsonVisualRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B4B1622263C9400F8EBDC /* WatsonVisualRecognition.swift */; };
+		F35B4B1B2226434F00F8EBDC /* VisualRecognitionV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B182226434F00F8EBDC /* VisualRecognitionV3.framework */; };
+		F35B4B1C2226434F00F8EBDC /* VisualRecognitionV3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B182226434F00F8EBDC /* VisualRecognitionV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F35B4B1D2226434F00F8EBDC /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B192226434F00F8EBDC /* SVProgressHUD.framework */; };
+		F35B4B1E2226434F00F8EBDC /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B192226434F00F8EBDC /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F35B4B1F2226434F00F8EBDC /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B1A2226434F00F8EBDC /* RestKit.framework */; };
+		F35B4B202226434F00F8EBDC /* RestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F35B4B1A2226434F00F8EBDC /* RestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F35B4B212226435000F8EBDC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F35B4B1E2226434F00F8EBDC /* SVProgressHUD.framework in Embed Frameworks */,
+				F35B4B1C2226434F00F8EBDC /* VisualRecognitionV3.framework in Embed Frameworks */,
+				F35B4B202226434F00F8EBDC /* RestKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F33561182213EC0200251FEC /* SeeFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeeFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +53,14 @@
 		F33561282213EC0400251FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F335612A2213EC0400251FEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33561302214057B00251FEC /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		F35B4B0D22262B2B00F8EBDC /* VisualRecognitionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualRecognitionFactory.swift; sourceTree = "<group>"; };
+		F35B4B0F22262BD400F8EBDC /* Inceptionv3Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inceptionv3Model.swift; sourceTree = "<group>"; };
+		F35B4B1122262CA300F8EBDC /* DetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionDelegate.swift; sourceTree = "<group>"; };
+		F35B4B1322262DA400F8EBDC /* VisualRecognitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualRecognitionDelegate.swift; sourceTree = "<group>"; };
+		F35B4B1622263C9400F8EBDC /* WatsonVisualRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatsonVisualRecognition.swift; sourceTree = "<group>"; };
+		F35B4B182226434F00F8EBDC /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
+		F35B4B192226434F00F8EBDC /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		F35B4B1A2226434F00F8EBDC /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35B4B1D2226434F00F8EBDC /* SVProgressHUD.framework in Frameworks */,
+				F35B4B1B2226434F00F8EBDC /* VisualRecognitionV3.framework in Frameworks */,
+				F35B4B1F2226434F00F8EBDC /* RestKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +80,9 @@
 		F335610F2213EC0200251FEC = {
 			isa = PBXGroup;
 			children = (
+				F35B4B1A2226434F00F8EBDC /* RestKit.framework */,
+				F35B4B192226434F00F8EBDC /* SVProgressHUD.framework */,
+				F35B4B182226434F00F8EBDC /* VisualRecognitionV3.framework */,
 				F335611A2213EC0200251FEC /* SeeFood */,
 				F33561192213EC0200251FEC /* Products */,
 			);
@@ -58,7 +99,7 @@
 		F335611A2213EC0200251FEC /* SeeFood */ = {
 			isa = PBXGroup;
 			children = (
-				F33561302214057B00251FEC /* Inceptionv3.mlmodel */,
+				F35B4B1522262DB100F8EBDC /* MachineLearning */,
 				F335611B2213EC0200251FEC /* AppDelegate.swift */,
 				F335611D2213EC0200251FEC /* ViewController.swift */,
 				F335611F2213EC0200251FEC /* Main.storyboard */,
@@ -68,6 +109,19 @@
 				F33561222213EC0200251FEC /* SeeFood.xcdatamodeld */,
 			);
 			path = SeeFood;
+			sourceTree = "<group>";
+		};
+		F35B4B1522262DB100F8EBDC /* MachineLearning */ = {
+			isa = PBXGroup;
+			children = (
+				F35B4B0D22262B2B00F8EBDC /* VisualRecognitionFactory.swift */,
+				F35B4B0F22262BD400F8EBDC /* Inceptionv3Model.swift */,
+				F35B4B1122262CA300F8EBDC /* DetectionDelegate.swift */,
+				F35B4B1322262DA400F8EBDC /* VisualRecognitionDelegate.swift */,
+				F33561302214057B00251FEC /* Inceptionv3.mlmodel */,
+				F35B4B1622263C9400F8EBDC /* WatsonVisualRecognition.swift */,
+			);
+			path = MachineLearning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +134,7 @@
 				F33561142213EC0200251FEC /* Sources */,
 				F33561152213EC0200251FEC /* Frameworks */,
 				F33561162213EC0200251FEC /* Resources */,
+				F35B4B212226435000F8EBDC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,10 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35B4B1022262BD400F8EBDC /* Inceptionv3Model.swift in Sources */,
+				F35B4B1222262CA300F8EBDC /* DetectionDelegate.swift in Sources */,
+				F35B4B1422262DA400F8EBDC /* VisualRecognitionDelegate.swift in Sources */,
 				F335611E2213EC0200251FEC /* ViewController.swift in Sources */,
 				F33561312214057B00251FEC /* Inceptionv3.mlmodel in Sources */,
 				F33561242213EC0200251FEC /* SeeFood.xcdatamodeld in Sources */,
 				F335611C2213EC0200251FEC /* AppDelegate.swift in Sources */,
+				F35B4B0E22262B2B00F8EBDC /* VisualRecognitionFactory.swift in Sources */,
+				F35B4B1722263C9400F8EBDC /* WatsonVisualRecognition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SeeFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -308,6 +372,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SeeFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

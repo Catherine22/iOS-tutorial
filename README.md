@@ -19,6 +19,7 @@
   - [Debugging wirelessly through the air](https://github.com/Catherine22/iOS-tutorial#debugging-wirelessly-through-the-air)    
 - [CocoaPods](https://github.com/Catherine22/iOS-tutorial#cocoapods)    
   - [Podfile](https://github.com/Catherine22/iOS-tutorial#podfile)    
+- [Carthage](https://github.com/Catherine22/iOS-tutorial#carthage)    
 - [The anatomy of an app](https://github.com/Catherine22/iOS-tutorial#the-anatomy-of-an-app)    
 - [Coding Style](https://github.com/Catherine22/iOS-tutorial#coding-style)    
   - [MARK](https://github.com/Catherine22/iOS-tutorial#mark)    
@@ -391,6 +392,26 @@ $pod install
 Open xcworkspace file instead which contains all of our CocoaPods.
 
 [Podfile example](https://github.com/Catherine22/iOS-tutorial/blob/master/Clima-iOS12/Podfile)
+
+# Carthage
+
+1. Install Carthage   
+```
+$brew update
+$brew install carthage
+```
+
+2. Create Cartfile file   
+Create a file called Cartfile, paste needed libraries. E.g. SVProgressHUD, and save it to project folder   
+```
+github "watson-developer-cloud/swift-sdk"
+github "SVProgressHUD/SVProgressHUD"
+```
+
+3. Run ```carthage update``` to install libraries   
+4. Import all the libraries you needed (the file path will be in /Carthage/Build/iOS/xxx.framework)   
+![Carthage](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/carthage.png)   
+
 
 # The anatomy of an app
 ![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
@@ -1115,10 +1136,22 @@ Machine Learning is usual split into 2 broke categories - Supervised Machine Lea
 3. Not encrypted
 
 Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)     
+
+Example1 - Inceptionv3: 
 1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
 2. Drag .mlmodel file into your project   
-3. 
+3. Check detection code here: [Inceptionv3Model.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/Inceptionv3Model.swift)
 
+Example2 - [Watson Visual Recognition](https://www.ibm.com/watson/services/visual-recognition/):   
+1. Install Carthage and download SDK    
+Add the dependency in our Cartfile:    
+```
+github "watson-developer-cloud/swift-sdk"
+```
+2. Register IBM cloud account   
+3. Add Visual Recognition to IBM console    
+4. Import VisualRecognition3.framework and Restkit.framework    
+5. 
 
 
 # Command Game
