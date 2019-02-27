@@ -29,8 +29,8 @@
 - [Applications](https://github.com/Catherine22/iOS-tutorial#applications)    
 - [Tips](https://github.com/Catherine22/iOS-tutorial#tips)    
   - [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)    
-  - [Load data from HTTP URLs](https://github.com/Catherine22/iOS-tutorial#load-data-from-http-urls)    
   - [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)    
+  - [Thread Handling](https://github.com/Catherine22/iOS-tutorial#thread-handling)    
 - [6 ways to persistent Local Data Storage](https://github.com/Catherine22/iOS-tutorial#6-ways-to-persistent-local-data-storage)    
   - [UserDefaults](https://github.com/Catherine22/iOS-tutorial#userdefaults)    
   - [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)    
@@ -563,7 +563,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - Swift tips: struct, if-let statement and guard-let statement    
 - [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
   - UIImagePickerController (Pick out images from users' photos or camera)   
-  - CoreML    
+  - CoreML (Machine learning)    
      
 
 # Tips
@@ -620,25 +620,6 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 
 Another example, in order to launch users' camera or open their photo albums, you need ```Privacy - Camera Usage Description``` and ```Privacy - Photo Library Usage Description```.
 
-### Load data from HTTP URLs   
-
-```xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSExceptionDomains</key>
-  <dict>
-    <key>openweathermap.org</key>
-    <dict>
-      <key>NSIncludesSubdomains</key>
-      <true/>
-      <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-      <true/>
-    </dict>
-  </dict>
-</dict>
-```
-![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
-
 ### Completion Handler
 Callback: Do something time consuming   
 
@@ -672,6 +653,21 @@ or
 let dataManager = DataManager()
 dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
   print("isSuccess:\(isSuccess), message:\(message)")
+}
+```
+
+### Thread Handling
+Run on background thread: 
+```swift
+DispatchQueue.global(qos: .background).async {
+  //do something
+}
+```
+
+Run on main(UI) thread:
+```swift
+DispatchQueue.main.async {
+  //do something
 }
 ```
 
@@ -1151,7 +1147,7 @@ github "watson-developer-cloud/swift-sdk"
 2. Register IBM cloud account   
 3. Add Visual Recognition to IBM console    
 4. Import VisualRecognition3.framework and Restkit.framework    
-5. 
+5. Check detection code here: [WatsonVisualRecognition.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/WatsonVisualRecognition.swift)
 
 
 # Command Game

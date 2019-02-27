@@ -18,16 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-js-pkj">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hotdogBackground" translatesAutoresizingMaskIntoConstraints="NO" id="pKd-Gv-zte">
+                                <rect key="frame" x="67" y="301" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJ1-oY-qjP">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T7x-Em-Wwz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3zT-se-ymI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g01-8b-Ykb">
+                                <rect key="frame" x="132" y="500" width="110" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onShareButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RCc-ts-WA5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="AqZ-js-pkj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="T6Z-PB-a1t"/>
-                            <constraint firstItem="AqZ-js-pkj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UaL-Kk-ErS"/>
-                            <constraint firstItem="AqZ-js-pkj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XGJ-wF-fMm"/>
-                            <constraint firstItem="AqZ-js-pkj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cuT-El-GHU"/>
+                            <constraint firstItem="T7x-Em-Wwz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CDa-ow-7Z2"/>
+                            <constraint firstItem="T7x-Em-Wwz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OWF-21-arD"/>
+                            <constraint firstItem="T7x-Em-Wwz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="l6s-7x-paF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -39,7 +61,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="AqZ-js-pkj" id="oAQ-yx-JaI"/>
+                        <outlet property="hotdogBackgroundImage" destination="pKd-Gv-zte" id="sBg-ZK-Blv"/>
+                        <outlet property="hotdogImage" destination="oJ1-oY-qjP" id="WuX-tP-j5Q"/>
+                        <outlet property="shareButton" destination="g01-8b-Ykb" id="HzT-Wh-V1k"/>
+                        <outlet property="topImageView" destination="T7x-Em-Wwz" id="la2-Ud-luC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -65,4 +90,7 @@
             <point key="canvasLocation" x="167" y="116"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hotdogBackground" width="91.680000305175781" height="68.639999389648438"/>
+    </resources>
 </document>
