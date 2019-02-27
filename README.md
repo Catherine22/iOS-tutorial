@@ -19,6 +19,7 @@
   - [Debugging wirelessly through the air](https://github.com/Catherine22/iOS-tutorial#debugging-wirelessly-through-the-air)    
 - [CocoaPods](https://github.com/Catherine22/iOS-tutorial#cocoapods)    
   - [Podfile](https://github.com/Catherine22/iOS-tutorial#podfile)    
+- [Carthage](https://github.com/Catherine22/iOS-tutorial#carthage)    
 - [The anatomy of an app](https://github.com/Catherine22/iOS-tutorial#the-anatomy-of-an-app)    
 - [Coding Style](https://github.com/Catherine22/iOS-tutorial#coding-style)    
   - [MARK](https://github.com/Catherine22/iOS-tutorial#mark)    
@@ -28,8 +29,8 @@
 - [Applications](https://github.com/Catherine22/iOS-tutorial#applications)    
 - [Tips](https://github.com/Catherine22/iOS-tutorial#tips)    
   - [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)    
-  - [Load data from HTTP URLs](https://github.com/Catherine22/iOS-tutorial#load-data-from-http-urls)    
   - [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)    
+  - [Thread Handling](https://github.com/Catherine22/iOS-tutorial#thread-handling)    
 - [6 ways to persistent Local Data Storage](https://github.com/Catherine22/iOS-tutorial#6-ways-to-persistent-local-data-storage)    
   - [UserDefaults](https://github.com/Catherine22/iOS-tutorial#userdefaults)    
   - [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)    
@@ -39,6 +40,10 @@
 - [Network Connection](https://github.com/Catherine22/iOS-tutorial#network-connection)    
   - [Alamofire](https://github.com/Catherine22/iOS-tutorial#alamofire)    
   - [URLSession](https://github.com/Catherine22/iOS-tutorial#urlsession)    
+- [Machine Learning](https://github.com/Catherine22/iOS-tutorial#machine-learning)    
+  - [Supervised Learning](https://github.com/Catherine22/iOS-tutorial#supervised-learning)    
+  - [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)    
+  - [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -391,6 +396,26 @@ Open xcworkspace file instead which contains all of our CocoaPods.
 
 [Podfile example](https://github.com/Catherine22/iOS-tutorial/blob/master/Clima-iOS12/Podfile)
 
+# Carthage
+
+1. Install Carthage   
+```
+$brew update
+$brew install carthage
+```
+
+2. Create Cartfile file   
+Create a file called Cartfile, paste needed libraries. E.g. SVProgressHUD, and save it to project folder   
+```
+github "watson-developer-cloud/swift-sdk"
+github "SVProgressHUD/SVProgressHUD"
+```
+
+3. Run ```carthage update``` to install libraries   
+4. Import all the libraries you needed (the file path will be in /Carthage/Build/iOS/xxx.framework)   
+![Carthage](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/carthage.png)   
+
+
 # The anatomy of an app
 ![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
 
@@ -537,8 +562,12 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
   - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
   - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
   - Customise NavigationController style   
+- [Calculator](https://github.com/Catherine22/iOS-tutorial/tree/master/Calculator)    
+  - Swift tips: struct, if-let statement and guard-let statement    
+- [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
+  - UIImagePickerController (Pick out images from users' photos or camera)   
+  - CoreML (Machine learning)    
      
-
 
 # Tips
 ### Breakpoint
@@ -559,6 +588,7 @@ override func viewDidLoad() {
   locationManager.requestWhenInUseAuthorization();
 }
 ```
+
 In Info.plist,     
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist1.png)
 
@@ -591,24 +621,7 @@ If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions 
 1. Run on an iPhone device    
 2. In your simulator, click Debug - Location, select Apple's headquarter or Custom Location
 
-### Load data from HTTP URLs   
-
-```xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSExceptionDomains</key>
-  <dict>
-    <key>openweathermap.org</key>
-    <dict>
-      <key>NSIncludesSubdomains</key>
-      <true/>
-      <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-      <true/>
-    </dict>
-  </dict>
-</dict>
-```
-![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist2.png)
+Another example, in order to launch users' camera or open their photo albums, you need ```Privacy - Camera Usage Description``` and ```Privacy - Photo Library Usage Description```.
 
 ### Completion Handler
 Callback: Do something time consuming   
@@ -643,6 +656,21 @@ or
 let dataManager = DataManager()
 dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
   print("isSuccess:\(isSuccess), message:\(message)")
+}
+```
+
+### Thread Handling
+Run on background thread: 
+```swift
+DispatchQueue.global(qos: .background).async {
+  //do something
+}
+```
+
+Run on main(UI) thread:
+```swift
+DispatchQueue.main.async {
+  //do something
 }
 ```
 
@@ -984,7 +1012,6 @@ Go to the following path to check the sqlite file via [Datum](https://itunes.app
 (8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".    
 
 ### Realm
-
 Realm example:   
 [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
 
@@ -1182,6 +1209,37 @@ Since iOS 9.0, app must follow App Transport Security:
 NSThirdPartyExceptionAllowsInsecureHTTPLoads
 NSThirdPartyExceptionMinimumTLSVersion
 NSThirdPartyExceptionRequiresForwardSecrecy
+
+
+# Machine Learning
+Machine Learning is usual split into 2 broke categories - Supervised Machine Learning or Unsupervised Machine Learning.   
+
+## Supervised Learning
+
+## Unsupervised Learning
+
+## CoreML
+1. Load a pre-trained model, i.e., no training   
+2. Make predictions   
+3. Not encrypted
+
+Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)     
+
+Example1 - Inceptionv3: 
+1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
+2. Drag .mlmodel file into your project   
+3. Check detection code here: [Inceptionv3Model.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/Inceptionv3Model.swift)
+
+Example2 - [Watson Visual Recognition](https://www.ibm.com/watson/services/visual-recognition/):   
+1. Install Carthage and download SDK    
+Add the dependency in our Cartfile:    
+```
+github "watson-developer-cloud/swift-sdk"
+```
+2. Register IBM cloud account   
+3. Add Visual Recognition to IBM console    
+4. Import VisualRecognition3.framework and Restkit.framework    
+5. Check detection code here: [WatsonVisualRecognition.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/WatsonVisualRecognition.swift)
 
 # Command Game
 ```
