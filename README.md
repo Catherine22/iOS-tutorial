@@ -570,6 +570,7 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [WhatFLower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFLower)    
   - UIImagePickerController (Pick out images from users' photos or camera)   
   - CoreML (Machine learning)    
+  - Display Web images via [SDWebImage](https://github.com/SDWebImage/SDWebImage)   
      
 
 # Tips
