@@ -1223,7 +1223,7 @@ Machine Learning is usual split into 2 broke categories - Supervised Machine Lea
 2. Make predictions   
 3. Not encrypted
 
-Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)     
+Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
 
 Example1 - Inceptionv3: 
 1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
@@ -1240,6 +1240,66 @@ github "watson-developer-cloud/swift-sdk"
 3. Add Visual Recognition to IBM console    
 4. Import VisualRecognition3.framework and Restkit.framework    
 5. Check detection code here: [WatsonVisualRecognition.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/WatsonVisualRecognition.swift)
+
+### Python Settings
+
+1. Install python, pip and virtualenv    
+```
+$pip install virtualenv
+```
+
+2. Create python2.7 environment in a specific directory
+```
+$mkdir Environments
+$cd Environments
+$virtualenv --python=/usr/bin/python2.7 python27
+```
+
+3. Now we have a python27 directory in Environments, to activate our python
+```
+$source python27/bin/activate
+```
+You will see ```(python27) xxxx Environments (git-branch-name) $ ```    
+
+4. Stop virtual environment if you want
+```
+$deactivate
+```
+
+5. Install CoreML tools
+```
+$pip install -U coremltools
+```
+```-U``` means install or update coremltools to the latest version    
+
+### Convert a Caffe model to Core ML format
+
+1. Download [Oxford 102 category flower dataset caffe model](https://udemy-assets-on-demand2.udemy.com/2018-07-02_18-48-43-c17b4a05c8f380a0c0a55d07b17b2b14/original.zip?nva=20190227142445&filename=Flower-Classifier.zip&download=True&token=0dc623fdf4c33a37fd2bf)   
+2. Convert a Caffe model to Core ML format ([doc](https://apple.github.io/coremltools/generated/coremltools.converters.caffe.convert.html))   
+
+    
+convert-script.py 
+```python
+import coremltools
+
+# Convert a caffe model to a classifier in Core ML
+caffe_model = ('oxford102.caffemodel', 'deploy.prototxt')
+labels = 'flower-labels.txt'
+
+coreml_model = coremltools.converters.caffe.convert(
+    caffe_model,
+    class_labels = labels,
+    image_input_names='data'
+)
+
+# Now save the model
+coreml_model.save('FlowerClassifier.mlmodel')
+```
+3. Execute convert-script.py    
+```
+python convert-script.py
+```
+
 
 # Command Game
 ```
