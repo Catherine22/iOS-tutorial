@@ -44,6 +44,7 @@
   - [Supervised Learning](https://github.com/Catherine22/iOS-tutorial#supervised-learning)    
   - [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)    
   - [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)    
+  - [CreateML](https://github.com/Catherine22/iOS-tutorial#createml)    
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -1305,6 +1306,10 @@ coreml_model.save('FlowerClassifier.mlmodel')
 ```
 python convert-script.py
 ```
+
+## CreateML
+You could train your own models since Xcode 10 and iOS 12. It allows us to take data such as texts, images or other types of files to fill in CreateML framework to create our very own CoreML models.    
+
 
 
 # Command Game
