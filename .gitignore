@@ -66,3 +66,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# What Flower
+# Including python2.7 environment, oxford 102 flowers dataset model and .mlmodel
+Python2-7/
+*.mlmodel
+Flower-Classifier/deploy.prototxt
+Flower-Classifier/flower-labels.txt
+Flower-Classifier/oxford102.caffemodel

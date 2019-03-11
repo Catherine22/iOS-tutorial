@@ -567,6 +567,10 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
   - UIImagePickerController (Pick out images from users' photos or camera)   
   - CoreML (Machine learning)    
+- [WhatFLower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFLower)    
+  - UIImagePickerController (Pick out images from users' photos or camera)   
+  - CoreML (Machine learning)    
+  - Display Web images via [SDWebImage](https://github.com/SDWebImage/SDWebImage)   
      
 
 # Tips
@@ -1259,7 +1263,7 @@ $virtualenv --python=/usr/bin/python2.7 python27
 ```
 $source python27/bin/activate
 ```
-You will see ```(python27) xxxx Environments (git-branch-name) $ ```    
+You will see ```(python27) username Environments (git-branch-name) $ ```    
 
 4. Stop virtual environment if you want
 ```
@@ -1271,6 +1275,8 @@ $deactivate
 $pip install -U coremltools
 ```
 ```-U``` means install or update coremltools to the latest version    
+
+6. Convert the caffe model to .mlmodel    
 
 ### Convert a Caffe model to Core ML format
 
