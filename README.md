@@ -1310,6 +1310,28 @@ python convert-script.py
 ## CreateML
 You could train your own models since Xcode 10 and iOS 12. It allows us to take data such as texts, images or other types of files to fill in CreateML framework to create our very own CoreML models.    
 
+1. Prepare for training and testing data (the classic ratio is 80:20) and divide them into different groups. Notice the folder name must be what category we are going to define.    
+
+In this case, I download 20 training images and 5 testing images per animals    
+```
+TrainingData/
+  Dog/a lot of dog images
+  Cat/a lot of cat images
+  Horse/a lot of horse images
+
+
+TestingData/
+  Dog/one quarter of dog training images
+  Cat/one quarter of cat training images
+  Horse/one quarter of horse training images
+```
+
+2. Create macOS Blank playground, show the assistant editor    
+3. Drag training and testing images sequentially into playground   
+
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/createml.png)  
+
+**NOTICE, you should prepare images Xcode has never seen before to make sure the evaluation (success rate) is accurate. Besides, if your evaluation is low, that means you need more training data.**    
 
 
 # Command Game
