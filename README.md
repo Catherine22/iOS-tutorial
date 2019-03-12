@@ -1333,6 +1333,7 @@ TestingData/
 
 **NOTICE, you should prepare images Xcode has never seen before to make sure the evaluation (success rate) is accurate. Besides, if your evaluation is low, that means you need more training data.**    
 
+4. Rename and save
 
 # Command Game
 ```
