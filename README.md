@@ -1335,6 +1335,39 @@ TestingData/
 
 4. Rename and save
 
+### Using CreateML for Natural Language Processing (NLP)    
+
+1. Download the [Twitter Sentiment Dataset](https://github.com/Catherine22/iOS-tutorial/tree/master/twitter-sanders-apple3.csv)   
+2. Train our own model by creating an macOS playground    
+```Swift
+import Cocoa
+import CreateML
+
+let data = try MLDataTable(contentsOf: URL(fileURLWithPath: "/Users/xxx/Workspace/iOS-tutorial/twitter-sanders-apple3.csv"))
+
+// training data : testing data = 80 : 20
+let (trainingData, testingData) = data.randomSplit(by: 0.8, seed: 5)
+
+// textColumn and labelColumn depend on the .csv file
+let sentimentClassfier = try MLTextClassifier(trainingData: trainingData, textColumn: "text", labelColumn: "class")
+
+// test the model
+let evaluationMetrics = sentimentClassfier.evaluation(on: testingData)
+let evaluationAccuracy = (1 - evaluationMetrics.classificationError) * 100
+
+// create our own mlmodel
+let metadata = MLModelMetadata(author: "Catherine", shortDescription: "A model trained to classify sentiment on Tweets", license: "MIT", version: "0.1")
+try sentimentClassfier.write(to: URL(fileURLWithPath: "/Users/xxx/Workspace/iOS-tutorial/tweetSentimentClassifer.mlmodel"), metadata: metadata)
+```
+
+3. Predict
+```Swift
+try sentimentClassfier.prediction(from: "@Apple is a terrible company") //Neg
+try sentimentClassfier.prediction(from: "I just found the best restaurant ever, and it's @Taco Bell") //Pos
+try sentimentClassfier.prediction(from: "I think @CocaCola ads are just ok") //Neutral
+```
+
+
 # Command Game
 ```
 $emacs -batch -l dunnet
