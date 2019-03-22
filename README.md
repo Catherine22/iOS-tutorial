@@ -45,6 +45,8 @@
   - [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)    
   - [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)    
   - [CreateML](https://github.com/Catherine22/iOS-tutorial#createml)    
+- [Explore more app services](https://github.com/Catherine22/iOS-tutorial#explore-more-app-services)   
+- [More useful resources](https://github.com/Catherine22/iOS-tutorial#more-useful-resources)   
 - [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
 - [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
 - [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
@@ -1366,6 +1368,18 @@ try sentimentClassfier.prediction(from: "@Apple is a terrible company") //Neg
 try sentimentClassfier.prediction(from: "I just found the best restaurant ever, and it's @Taco Bell") //Pos
 try sentimentClassfier.prediction(from: "I think @CocaCola ads are just ok") //Neutral
 ```
+
+# Explore more app services
+- Firebase    
+- crashlytics   
+- mapBox    
+- Sinch   
+
+# More useful resources
+- https://mobile-patterns.com/    
+- https://jgthms.com/web-design-in-4-minutes/#share   
+- colour palette websites such as https://coolors.co/   
+
 
 
 # Command Game
