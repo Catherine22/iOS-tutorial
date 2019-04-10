@@ -10,6 +10,14 @@
 		F35E87FD225DEAF7000C6E82 /* MySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35E87F3225DEAF7000C6E82 /* MySDK.framework */; };
 		F35E8802225DEAF7000C6E82 /* MySDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8801225DEAF7000C6E82 /* MySDKTests.swift */; };
 		F35E8804225DEAF7000C6E82 /* MySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F35E87F6225DEAF7000C6E82 /* MySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F35E880E225DEC7B000C6E82 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E880D225DEC7B000C6E82 /* Dashboard.swift */; };
+		F35E880F225DEC7B000C6E82 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E880D225DEC7B000C6E82 /* Dashboard.swift */; };
+		F35E8811225DECB8000C6E82 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8810225DECB8000C6E82 /* Member.swift */; };
+		F35E8812225DECB8000C6E82 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8810225DECB8000C6E82 /* Member.swift */; };
+		F35E8814225DEEB3000C6E82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8813225DEEB3000C6E82 /* Constants.swift */; };
+		F35E8815225DEEB3000C6E82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8813225DEEB3000C6E82 /* Constants.swift */; };
+		F35E8817225DEF75000C6E82 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8816225DEF75000C6E82 /* Logger.swift */; };
+		F35E8818225DEF75000C6E82 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E8816225DEF75000C6E82 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +37,10 @@
 		F35E87FC225DEAF7000C6E82 /* MySDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35E8801225DEAF7000C6E82 /* MySDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySDKTests.swift; sourceTree = "<group>"; };
 		F35E8803225DEAF7000C6E82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F35E880D225DEC7B000C6E82 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		F35E8810225DECB8000C6E82 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		F35E8813225DEEB3000C6E82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F35E8816225DEF75000C6E82 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,10 @@
 			children = (
 				F35E87F6225DEAF7000C6E82 /* MySDK.h */,
 				F35E87F7225DEAF7000C6E82 /* Info.plist */,
+				F35E880D225DEC7B000C6E82 /* Dashboard.swift */,
+				F35E8810225DECB8000C6E82 /* Member.swift */,
+				F35E8813225DEEB3000C6E82 /* Constants.swift */,
+				F35E8816225DEF75000C6E82 /* Logger.swift */,
 			);
 			path = MySDK;
 			sourceTree = "<group>";
@@ -148,6 +164,7 @@
 				TargetAttributes = {
 					F35E87F2225DEAF7000C6E82 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					F35E87FB225DEAF7000C6E82 = {
 						CreatedOnToolsVersion = 10.1;
@@ -194,6 +211,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35E880E225DEC7B000C6E82 /* Dashboard.swift in Sources */,
+				F35E8811225DECB8000C6E82 /* Member.swift in Sources */,
+				F35E8814225DEEB3000C6E82 /* Constants.swift in Sources */,
+				F35E8817225DEF75000C6E82 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +222,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35E8818225DEF75000C6E82 /* Logger.swift in Sources */,
+				F35E880F225DEC7B000C6E82 /* Dashboard.swift in Sources */,
+				F35E8812225DECB8000C6E82 /* Member.swift in Sources */,
 				F35E8802225DEAF7000C6E82 /* MySDKTests.swift in Sources */,
+				F35E8815225DEEB3000C6E82 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +366,7 @@
 		F35E8808225DEAF7000C6E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -357,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.CBB.MySDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +392,7 @@
 		F35E8809225DEAF7000C6E82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -389,6 +417,7 @@
 		F35E880B225DEAF7000C6E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MySDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +435,7 @@
 		F35E880C225DEAF7000C6E82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MySDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
