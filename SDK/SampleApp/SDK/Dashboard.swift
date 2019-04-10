@@ -9,8 +9,10 @@
 import Foundation
 
 public class Dashboard {
-    public var TAG = "Dashboard"
+    public let TAG = "Dashboard"
     private var members: [Member]?
+    
+    public init() {}
     
     public func getMembers() -> [Member]? {
         return members

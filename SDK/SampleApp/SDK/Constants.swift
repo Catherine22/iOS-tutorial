@@ -14,5 +14,5 @@ public class Constants {
     private init() {
         
     }
-    var SHOW_LOG = true
+    public var SHOW_LOG = false
 }
