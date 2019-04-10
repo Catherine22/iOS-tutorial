@@ -1,6 +1,6 @@
 //
 //  Dashboard.swift
-//  MySDK
+//  SampleApp
 //
 //  Created by Catherine Chen (RD-TW) on 10/04/2019.
 //  Copyright © 2019 Catherine Chen. All rights reserved.
