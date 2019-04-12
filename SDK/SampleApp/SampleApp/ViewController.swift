@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         let matthew = Member(name: "Matthew", age: 12)
         members = dashboard.addMember(matthew)
-        print(members!)
+        print(dashboard.getMembers()!)
         
     }
 }

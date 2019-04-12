@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F33F9EC52260318E002727CF /* Dashboard.swift in Headers */ = {isa = PBXBuildFile; fileRef = F35E883C225DF18A000C6E82 /* Dashboard.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		F33F9EC62260318E002727CF /* Member.swift in Headers */ = {isa = PBXBuildFile; fileRef = F35E883F225DF1BD000C6E82 /* Member.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		F33F9EC72260318E002727CF /* Constants.swift in Headers */ = {isa = PBXBuildFile; fileRef = F35E8841225DF1CE000C6E82 /* Constants.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		F35E8830225DF162000C6E82 /* SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F35E8820225DF162000C6E82 /* SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F35E8833225DF162000C6E82 /* SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35E881E225DF162000C6E82 /* SDK.framework */; };
 		F35E8834225DF162000C6E82 /* SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F35E881E225DF162000C6E82 /* SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -133,6 +136,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F35E8830225DF162000C6E82 /* SDK.h in Headers */,
+				F33F9EC52260318E002727CF /* Dashboard.swift in Headers */,
+				F33F9EC62260318E002727CF /* Member.swift in Headers */,
+				F33F9EC72260318E002727CF /* Constants.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,10 +294,13 @@
 		F35E8835225DF162000C6E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -303,9 +312,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.CBB.SDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -317,10 +330,13 @@
 		F35E8836225DF162000C6E82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,9 +348,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.CBB.SDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
