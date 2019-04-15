@@ -14,6 +14,14 @@
 ```sh
 sh build_framework.sh
 ```
+or
+```sh
+sh build_framework.sh Debug
+```
+or
+```sh
+sh build_framework.sh Release
+```
 Now, we have two frameworks - one for simulator, another for iPhone. The following instructions show how to merge two frameworks into a single framework.   
 9. Merge iphoneos and iphonesimulator frameworks by executing   
 ```sh

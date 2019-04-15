@@ -9,6 +9,27 @@ TARGET_APP="SampleApp"
 ## build configurations
 DEBUG_CONFIGURATION="Debug"
 RELEASE_CONFIGURATION="Release"
+declare -a configs
+if [ "$#" = "0" ]
+then
+    echo "Using default settings"
+else
+  count=0
+  for argu in "$@"
+  do
+    if [ \( "$argu" = ${DEBUG_CONFIGURATION} \) -o \( "$argu" = ${RELEASE_CONFIGURATION} \) ]
+    then
+      configs[count]="$argu"
+      count=${count}+1
+    fi
+  done
+fi
+
+if [ "${#configs[@]}" = "0" ]
+then
+  configs=(${DEBUG_CONFIGURATION} ${RELEASE_CONFIGURATION})
+fi
+echo Configurations: [${configs[*]}]
 
 ## schemes
 APP_SCHEME="SampleApp"
@@ -40,16 +61,20 @@ cd ${SDK_SCHEME}
 cd ..
 xcodebuild clean -project ${TARGET_APP}.xcodeproj -scheme ${APP_SCHEME}
 
-# build a new framework (debug)
-xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${DEBUG_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphoneos12.1 BUILD_DIR=${BUILD_DIR}/${OUTPUT_DIR}/ BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
-xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${DEBUG_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphonesimulator12.1 BUILD_DIR=${BUILD_DIR}/${OUTPUT_DIR}/ BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
+for config in "${configs[@]}"
+do
+  # build a new framework
+  xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration $config -scheme ${SDK_SCHEME} -sdk iphoneos12.1 BUILD_DIR=${BUILD_DIR}/${OUTPUT_DIR}/ BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
+  xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration $config -scheme ${SDK_SCHEME} -sdk iphonesimulator12.1 BUILD_DIR=${BUILD_DIR}/${OUTPUT_DIR}/ BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
 
-# merge iPhone and simulator frameworks (debug)
-cd ${OUTPUT_DIR}
-lipo -create ${DEBUG_CONFIGURATION}-iphoneos/${SDK_SCHEME}.framework/${SDK_SCHEME}  ${DEBUG_CONFIGURATION}-iphonesimulator/${SDK_SCHEME}.framework/${SDK_SCHEME} -output ${SDK_SCHEME}
+  # merge iPhone and simulator frameworks
+  cd ${OUTPUT_DIR}
+  lipo -create $config-iphoneos/${SDK_SCHEME}.framework/${SDK_SCHEME}  $config-iphonesimulator/${SDK_SCHEME}.framework/${SDK_SCHEME} -output $config-${SDK_SCHEME}
 
-mkdir ${SDK_SCHEME}.framework
-cp -r ${DEBUG_CONFIGURATION}-iphoneos/${SDK_SCHEME}.framework ${BUILD_DIR}/${SDK_SCHEME}.framework
+  mkdir $config-${SDK_SCHEME}.framework
+  cp -r $config-iphoneos/${SDK_SCHEME}.framework $config-${SDK_SCHEME}.framework
 
-mv ${SDK_SCHEME} ${SDK_SCHEME}.framework/
+  mv $config-${SDK_SCHEME} $config-${SDK_SCHEME}.framework/
+  cd ..
+done
 echo "Done"
