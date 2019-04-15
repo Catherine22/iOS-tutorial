@@ -22,7 +22,7 @@ OUTPUT_DIR="output"
 xcodebuild -list
 /usr/bin/xcodebuild -version
 swift --version
-xcodebuild -list -project SampleApp.xcodeproj
+xcodebuild -list -project ${TARGET_APP}.xcodeproj
 
 # clean junk files
 rm -rf ${OUTPUT_DIR}
@@ -49,7 +49,7 @@ cd ${OUTPUT_DIR}
 lipo -create ${DEBUG_CONFIGURATION}-iphoneos/${SDK_SCHEME}.framework/${SDK_SCHEME}  ${DEBUG_CONFIGURATION}-iphonesimulator/${SDK_SCHEME}.framework/${SDK_SCHEME} -output ${SDK_SCHEME}
 
 mkdir ${SDK_SCHEME}.framework
-cp -r ${DEBUG_CONFIGURATION}-iphoneos/${SDK_SCHEME}.framework `pwd`/${SDK_SCHEME}.framework
+cp -r ${DEBUG_CONFIGURATION}-iphoneos/${SDK_SCHEME}.framework ${BUILD_DIR}/${SDK_SCHEME}.framework
 
 mv ${SDK_SCHEME} ${SDK_SCHEME}.framework/
 echo "Done"

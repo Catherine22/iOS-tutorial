@@ -10,17 +10,19 @@
 6. Have a simulator or your iPhone device selected, then build    
 7. Find where the framework we just build is    
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sdk3.png)   
-8. You can either build frameworks manually or do it via [build script], the frameworks will be saved in [Output] directory   
+8. You could either build frameworks manually or do it via [build script], the frameworks will be saved in [Output] directory   
 ```sh
 sh build_framework.sh
 ```
+Now, we have two frameworks - one for simulator, another for iPhone. The following instructions show how to merge two frameworks into a single framework.   
 9. Merge iphoneos and iphonesimulator frameworks by executing   
 ```sh
 lipo -create Debug-iphoneos/SDK.framework/SDK  Debug-iphonesimulator/SDK.framework/SDK -output SDK
 ```
 10. Replace SDK file in iphoneos framework, and this framework will be the final version    
 
-NOTICE: Drag the framework to your app's physical directory before import.
+
+**NOTICE: Drag the framework to your app's physical directory before import.**
 
 # Build settings
 | config | description | value |
