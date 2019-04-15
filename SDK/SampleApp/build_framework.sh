@@ -43,7 +43,7 @@ cd ..
 xcodebuild clean -project ${TARGET_APP}.xcodeproj -scheme ${APP_SCHEME}
 
 # build a new framework
-xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${RELEASE_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphoneos12.1 BUILD_DIR=${OUTPUT_DIR} BUILD_ROOT=${BUILD_DIR}
-xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${RELEASE_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphonesimulator12.1 BUILD_DIR=${OUTPUT_DIR} BUILD_ROOT=${BUILD_DIR}
+xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${DEBUG_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphoneos12.1 BUILD_DIR=${OUTPUT_DIR} BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
+xcodebuild build -target ${TARGET_APP}.xcodeproj -configuration ${DEBUG_CONFIGURATION} -scheme ${SDK_SCHEME} -sdk iphonesimulator12.1 BUILD_DIR=${OUTPUT_DIR} BUILD_ROOT=${BUILD_DIR} THE_KEY=Info.plist
 
 echo "Done"

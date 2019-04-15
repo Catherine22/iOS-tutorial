@@ -8,9 +8,12 @@
 5. Expose public files    
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sdk2.png)  
 6. Have a simulator or your iPhone device selected, then build    
-
-
-
+7. Find where the framework we just build is    
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sdk3.png)   
+8. You can either build frameworks manually or do it via [build script], the frameworks will be saved in [Output] directory   
+```sh
+sh build_framework.sh
+```
 
 
 # Build settings
@@ -21,3 +24,9 @@
 | Mach-O Type | | Static Library |
 | Architectures | | $(ARCHS_STANDARD), armv7s |
 | Build Active Architecture Only | | No |
+
+
+
+[SampleApp](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp)
+[build script](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/build_framework.sh)
+[Output](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/output)
