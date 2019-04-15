@@ -14,7 +14,13 @@
 ```sh
 sh build_framework.sh
 ```
+9. Merge iphoneos and iphonesimulator frameworks by executing   
+```sh
+lipo -create Debug-iphoneos/SDK.framework/SDK  Debug-iphonesimulator/SDK.framework/SDK -output SDK
+```
+10. Replace SDK file in iphoneos framework, and this framework will be the final version    
 
+NOTICE: Drag the framework to your app's physical directory before import.
 
 # Build settings
 | config | description | value |
@@ -26,7 +32,11 @@ sh build_framework.sh
 | Build Active Architecture Only | | No |
 
 
+# Reference
+[How to build iOS with command](https://medium.com/@marksiu/how-to-build-ios-project-with-command-82f20fda5ec5)
+[How to create your own dynamic frameworks](https://www.jianshu.com/p/62e22ee6f59e)
 
-[SampleApp](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp)
-[build script](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/build_framework.sh)
-[Output](https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/output)
+
+[SampleApp]:<https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp>
+[build script]:<https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/build_framework.sh>
+[Output]:<https://github.com/Catherine22/iOS-tutorial/blob/master/SDK/SampleApp/output>
