@@ -233,7 +233,7 @@ func configureTableView() {
 3. Implement ```UISearchBarDelegate``` in our ViewController    
 ```Swift
 extension TodoListViewController: UISearchBarDelegate {
-    
+
     // This method will be triggered as "Enter" is typed
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //      queryData(text: searchBar.text!)
@@ -271,23 +271,23 @@ class ItemViewController: UIViewController {
 }
 
 extension ItemViewController: UISearchControllerDelegate, UISearchBarDelegate {
-    
+
     // This method will be triggered as "Enter" is typed
     //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     //        updateTableView(text: searchBar.text!)
     //    }
-    
+
     func initUISearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.dimsBackgroundDuringPresentation = true
-        
+
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Reload all the data as users clear the Search Bar
         if searchBar.text?.count == 0 {
@@ -463,7 +463,7 @@ class TodoListViewController: UISearchBarDelegate {
 Split up the functionality of our ViewController, and we can have specific parts that are responsible for specific things.    
 ```Swift
 class TodoListViewController {
-  
+
 }
 
 //MARK: - SearchBar methods
@@ -570,11 +570,11 @@ Once the ```LocationManager``` finds a location, it will send it out to the dele
 - [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
   - UIImagePickerController (Pick out images from users' photos or camera)   
   - CoreML (Machine learning)    
-- [WhatFLower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFLower)    
+- [WhatFlower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFlower)    
   - UIImagePickerController (Pick out images from users' photos or camera)   
   - CoreML (Machine learning)    
   - Display Web images via [SDWebImage](https://github.com/SDWebImage/SDWebImage)   
-     
+
 
 # Tips
 ### Breakpoint
@@ -667,7 +667,7 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 ```
 
 ### Thread Handling
-Run on background thread: 
+Run on background thread:
 ```swift
 DispatchQueue.global(qos: .background).async {
   //do something
@@ -829,10 +829,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-    
-    
+
+
     // MARK: - Core Data stack
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -845,7 +845,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -859,9 +859,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-    
+
     // MARK: - Core Data Saving support
-    
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -898,7 +898,7 @@ You might get ```CoreData: error:  Failed to load model named xxx``` if you forg
 6. Change the module from 'Global namespace' to 'Current Product Module'
 ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)   
 
-7. (Optional) You could either skip this step by setting 'Class Definition' as default, or select Category/Extension in Codegen if you are going to customise your entities, i.e. You have to create classes that are identically named to you entities. 
+7. (Optional) You could either skip this step by setting 'Class Definition' as default, or select Category/Extension in Codegen if you are going to customise your entities, i.e. You have to create classes that are identically named to you entities.
 
 Now you might notice that we essentially replace the TodoeyItem class with     
 TodoeyItem class:   
@@ -909,7 +909,7 @@ import Foundation
 class TodoeyItem: Codable {
     var title: String
     var done: Bool
-    
+
     init(title: String, done: Bool) {
         self.title = title
         self.done = done
@@ -1032,7 +1032,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         // MARK: Realm - initialising
         do {
             realm = try Realm()
@@ -1067,7 +1067,7 @@ import RealmSwift
 class Item: Object {
     // dynamic is a declaration modifier, it basically tells the runtime to use dynamic dispatch over the standard which is a static dispatch.This allows the property "name" to be monitered for change at runtime.
     @objc dynamic var name: String = ""
-    
+
     // If we just simpily wrote "Category", then this is just a class. In order to make it the type of "Category", we have to say ",self"
     // property: what the parent list named in Category
     var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
@@ -1131,7 +1131,7 @@ do {
 
 # Network Connection
 You could either use ```URLSession``` or popular third-party SDK like Alamofire    
-The following features are included in 
+The following features are included in
 [IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations)   
 - SSL certificate validation (Read the documentation: [HTTPS Server Trust Evaluation](https://developer.apple.com/library/archive/technotes/tn2232/_index.html))    
   - Using ```openssl s_client -connect www.apple.com:443```   
@@ -1232,7 +1232,7 @@ Machine Learning is usual split into 2 broke categories - Supervised Machine Lea
 
 Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
 
-Example1 - Inceptionv3: 
+Example1 - Inceptionv3:
 1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
 2. Drag .mlmodel file into your project   
 3. Check detection code here: [Inceptionv3Model.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/Inceptionv3Model.swift)
@@ -1286,8 +1286,8 @@ $pip install -U coremltools
 1. Download [Oxford 102 category flower dataset caffe model](https://udemy-assets-on-demand2.udemy.com/2018-07-02_18-48-43-c17b4a05c8f380a0c0a55d07b17b2b14/original.zip?nva=20190227142445&filename=Flower-Classifier.zip&download=True&token=0dc623fdf4c33a37fd2bf)   
 2. Convert a Caffe model to Core ML format ([doc](https://apple.github.io/coremltools/generated/coremltools.converters.caffe.convert.html))   
 
-    
-convert-script.py 
+
+convert-script.py
 ```python
 import coremltools
 
