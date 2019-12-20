@@ -1,99 +1,109 @@
 # iOS Development Tutorial
-[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)      
+
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)
 
 # Navigation
-- [Resolution](https://github.com/Catherine22/iOS-tutorial#resolution)    
-  - [Auto Layout](https://github.com/Catherine22/iOS-tutorial#auto-layout)    
-- [Segues](https://github.com/Catherine22/iOS-tutorial#segues)    
-- [Navigation Controller](https://github.com/Catherine22/iOS-tutorial#navigation-controller)    
-  - [Create the Navigation Controller](https://github.com/Catherine22/iOS-tutorial#create-the-navigation-controller)    
-  - [Another way to trigger segues](https://github.com/Catherine22/iOS-tutorial#another-way-to-trigger-segues)    
-- [Protocol and Delegate](https://github.com/Catherine22/iOS-tutorial#protocol-and-delegate)    
-- [View](https://github.com/Catherine22/iOS-tutorial#view)    
-  - [TableView](https://github.com/Catherine22/iOS-tutorial#tableview)    
-  - [UISearchBar](https://github.com/Catherine22/iOS-tutorial#uisearchbar)    
-- [Create Classes and Objects from Scratch](https://github.com/Catherine22/iOS-tutorial#create-classes-and-objects-from-scratch)    
-- [Useful tools](https://github.com/Catherine22/iOS-tutorial#useful-tools)    
-- [Sideloading](https://github.com/Catherine22/iOS-tutorial#sideloading)    
-  - [Settings](https://github.com/Catherine22/iOS-tutorial#settings)    
-  - [Debugging wirelessly through the air](https://github.com/Catherine22/iOS-tutorial#debugging-wirelessly-through-the-air)    
-- [CocoaPods](https://github.com/Catherine22/iOS-tutorial#cocoapods)    
-  - [Podfile](https://github.com/Catherine22/iOS-tutorial#podfile)    
-- [Carthage](https://github.com/Catherine22/iOS-tutorial#carthage)    
-- [The anatomy of an app](https://github.com/Catherine22/iOS-tutorial#the-anatomy-of-an-app)    
-- [Coding Style](https://github.com/Catherine22/iOS-tutorial#coding-style)    
-  - [MARK](https://github.com/Catherine22/iOS-tutorial#mark)    
-  - [Extension](https://github.com/Catherine22/iOS-tutorial#extension)   
-  - [Internal and external parameters](https://github.com/Catherine22/iOS-tutorial#internal-and-external-parameters)    
-- [Delegation](https://github.com/Catherine22/iOS-tutorial#delegation)    
-- [Applications](https://github.com/Catherine22/iOS-tutorial#applications)    
-- [Tips](https://github.com/Catherine22/iOS-tutorial#tips)    
-  - [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)    
-  - [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)    
-  - [Thread Handling](https://github.com/Catherine22/iOS-tutorial#thread-handling)    
-- [6 ways to persistent Local Data Storage](https://github.com/Catherine22/iOS-tutorial#6-ways-to-persistent-local-data-storage)    
-  - [UserDefaults](https://github.com/Catherine22/iOS-tutorial#userdefaults)    
-  - [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)    
-- [Databases](https://github.com/Catherine22/iOS-tutorial#databases)    
-  - [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)    
-  - [Realm](https://github.com/Catherine22/iOS-tutorial#realm)    
-- [Network Connection](https://github.com/Catherine22/iOS-tutorial#network-connection)    
-  - [Alamofire](https://github.com/Catherine22/iOS-tutorial#alamofire)    
-  - [URLSession](https://github.com/Catherine22/iOS-tutorial#urlsession)    
-- [Machine Learning](https://github.com/Catherine22/iOS-tutorial#machine-learning)    
-  - [Supervised Learning](https://github.com/Catherine22/iOS-tutorial#supervised-learning)    
-  - [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)    
-  - [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)    
-  - [CreateML](https://github.com/Catherine22/iOS-tutorial#createml)    
-- [Explore more app services](https://github.com/Catherine22/iOS-tutorial#explore-more-app-services)   
-- [More useful resources](https://github.com/Catherine22/iOS-tutorial#more-useful-resources)   
-- [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)    
-- [Swift](https://github.com/Catherine22/iOS-tutorial#swift)    
-- [Reference](https://github.com/Catherine22/iOS-tutorial#reference)    
 
+-   [Resolution](https://github.com/Catherine22/iOS-tutorial#resolution)
+    -   [Auto Layout](https://github.com/Catherine22/iOS-tutorial#auto-layout)
+-   [Segues](https://github.com/Catherine22/iOS-tutorial#segues)
+-   [Navigation Controller](https://github.com/Catherine22/iOS-tutorial#navigation-controller)
+    -   [Create the Navigation Controller](https://github.com/Catherine22/iOS-tutorial#create-the-navigation-controller)
+    -   [Another way to trigger segues](https://github.com/Catherine22/iOS-tutorial#another-way-to-trigger-segues)
+-   [Protocol and Delegate](https://github.com/Catherine22/iOS-tutorial#protocol-and-delegate)
+-   [View](https://github.com/Catherine22/iOS-tutorial#view)
+    -   [TableView](https://github.com/Catherine22/iOS-tutorial#tableview)
+    -   [UISearchBar](https://github.com/Catherine22/iOS-tutorial#uisearchbar)
+-   [Create Classes and Objects from Scratch](https://github.com/Catherine22/iOS-tutorial#create-classes-and-objects-from-scratch)
+-   [Useful tools](https://github.com/Catherine22/iOS-tutorial#useful-tools)
+-   [Sideloading](https://github.com/Catherine22/iOS-tutorial#sideloading)
+    -   [Settings](https://github.com/Catherine22/iOS-tutorial#settings)
+    -   [Debugging wirelessly through the air](https://github.com/Catherine22/iOS-tutorial#debugging-wirelessly-through-the-air)
+-   [CocoaPods](https://github.com/Catherine22/iOS-tutorial#cocoapods)
+    -   [Podfile](https://github.com/Catherine22/iOS-tutorial#podfile)
+-   [Carthage](https://github.com/Catherine22/iOS-tutorial#carthage)
+-   [The anatomy of an app](https://github.com/Catherine22/iOS-tutorial#the-anatomy-of-an-app)
+-   [Coding Style](https://github.com/Catherine22/iOS-tutorial#coding-style)
+    -   [MARK](https://github.com/Catherine22/iOS-tutorial#mark)
+    -   [Extension](https://github.com/Catherine22/iOS-tutorial#extension)
+    -   [Internal and external parameters](https://github.com/Catherine22/iOS-tutorial#internal-and-external-parameters)
+-   [Delegation](https://github.com/Catherine22/iOS-tutorial#delegation)
+-   [Applications](https://github.com/Catherine22/iOS-tutorial#applications)
+-   [Tips](https://github.com/Catherine22/iOS-tutorial#tips)
+    -   [Ask the user for permissions](https://github.com/Catherine22/iOS-tutorial#ask-the-user-for-permissions)
+    -   [Completion Handler](https://github.com/Catherine22/iOS-tutorial#completion-handler)
+    -   [Thread Handling](https://github.com/Catherine22/iOS-tutorial#thread-handling)
+-   [6 ways to persistent Local Data Storage](https://github.com/Catherine22/iOS-tutorial#6-ways-to-persistent-local-data-storage)
+    -   [UserDefaults](https://github.com/Catherine22/iOS-tutorial#userdefaults)
+    -   [FileManager](https://github.com/Catherine22/iOS-tutorial#filemanager)
+-   [Databases](https://github.com/Catherine22/iOS-tutorial#databases)
+    -   [Core Data](https://github.com/Catherine22/iOS-tutorial#core-data)
+    -   [Realm](https://github.com/Catherine22/iOS-tutorial#realm)
+-   [Network Connection](https://github.com/Catherine22/iOS-tutorial#network-connection)
+    -   [Alamofire](https://github.com/Catherine22/iOS-tutorial#alamofire)
+    -   [URLSession](https://github.com/Catherine22/iOS-tutorial#urlsession)
+-   [Machine Learning](https://github.com/Catherine22/iOS-tutorial#machine-learning)
+    -   [Supervised Learning](https://github.com/Catherine22/iOS-tutorial#supervised-learning)
+    -   [Unsupervised Learning](https://github.com/Catherine22/iOS-tutorial#unsupervised-learning)
+    -   [CoreML](https://github.com/Catherine22/iOS-tutorial#coreml)
+    -   [CreateML](https://github.com/Catherine22/iOS-tutorial#createml)
+-   [Explore more app services](https://github.com/Catherine22/iOS-tutorial#explore-more-app-services)
+-   [App distribution](https://github.com/Catherine22/iOS-tutorial#app-distribution)
+-   [More useful resources](https://github.com/Catherine22/iOS-tutorial#more-useful-resources)
+-   [Command Game](https://github.com/Catherine22/iOS-tutorial#command-game)
+-   [Swift](https://github.com/Catherine22/iOS-tutorial#swift)
+-   [Reference](https://github.com/Catherine22/iOS-tutorial#reference)
 
 # Resolution
-If we want to display beautiful, then we need to ensure that the resolution is height
-- Pixel (Pix-El, Picture Element)       
-- Point     
-- ppi - e.g. 72 ppi = 72 pixels per inch       
 
-**1 Inch = 72 Point**       
-1x: In normal screens, 1 pixel = 1 point.       
-2x: In Retina screens, 4 pixels = 1 point.      
+If we want to display beautiful, then we need to ensure that the resolution is height
+
+-   Pixel (Pix-El, Picture Element)
+-   Point
+-   ppi - e.g. 72 ppi = 72 pixels per inch
+
+**1 Inch = 72 Point**  
+1x: In normal screens, 1 pixel = 1 point.  
+2x: In Retina screens, 4 pixels = 1 point.  
 3x: 9 pixels = 1 point.
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/resolution.png)  
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/resolution.png)
 
 ## Auto Layout
+
 [See More](https://github.com/Catherine22/iOS-tutorial/blob/master/AutoLayout.md)
 
 # Segues
-For example, I'd like to click "next" button to navigate to another page. In this case, I need segues.    
 
-1. Create a UIViewController with a "next" button   
-2. Create another UIViewController by searching "uiviewcontroller" in the object libraries.   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue.png)    
-3. Click ```⌃``` and the "next" button, drag to another UIViewController, select "show"    
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue1.png)   
-**Now when you click the Next button, it will jump to the second page**   
+For example, I'd like to click "next" button to navigate to another page. In this case, I need segues.
 
-4. In order to customise the second page, go to File - New - File to create a new Cocoa Touch Class, named "SecondViewController"    
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue2.png)   
-5. Link the segue we just created to SecondViewController   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue3.png)   
+1. Create a UIViewController with a "next" button
+2. Create another UIViewController by searching "uiviewcontroller" in the object libraries.  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue.png)
+3. Click `⌃` and the "next" button, drag to another UIViewController, select "show"  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue1.png)  
+   **Now when you click the Next button, it will jump to the second page**
+
+4. In order to customise the second page, go to File - New - File to create a new Cocoa Touch Class, named "SecondViewController"  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue2.png)
+5. Link the segue we just created to SecondViewController  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue3.png)
 
 # Navigation Controller
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller.png)  
+
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller.png)
 
 ## Create the Navigation Controller
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller1.png)  
-1. Select the initial ViewController    
-2. Editor - Embed in - Navigation Controller    
+
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/navigation_viewcontroller1.png)
+
+1. Select the initial ViewController
+2. Editor - Embed in - Navigation Controller
 
 ## Another way to trigger segues
-1. Click ```⌃``` and the "View Controller" button, drag to another UIViewController, select "show"    
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue4.png)   
-2. Set ```IBAction``` of the Next button, and jump to another segue by calling ```performSegue```, select the segue to name Identifier    
+
+1. Click `⌃` and the "View Controller" button, drag to another UIViewController, select "show"  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue4.png)
+2. Set `IBAction` of the Next button, and jump to another segue by calling `performSegue`, select the segue to name Identifier
 
 ```Swift
 @IBAction func buttonPressed(_ sender: Any) {
@@ -109,25 +119,28 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     destinationVC.textPassedOver = textField.text
   }
 }
-```    
-Who initialised the segue will be the ```sender```, which in this case, will be the ```ViewController```.   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)   
+```
+
+Who initialised the segue will be the `sender`, which in this case, will be the `ViewController`.  
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/segue5.png)
 
 # Protocol and Delegate
-Inside the [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima) application, we have a ```ChangeCityDelegate``` delegate on the second ViewController.    
+
+Inside the [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/Clima) application, we have a `ChangeCityDelegate` delegate on the second ViewController.
+
 ```Swift
 protocol ChangeCityDelegate{
     func userEnteredANewCityName(name: String)
 }
 ```
 
-We also defined the delegate variable in the class   
+We also defined the delegate variable in the class
 
 ```Swift
 var delegate: ChangeCityDelegate?
 ```
 
-While user clicks the button, sending data to the first ViewController and the second ViewController will be dismissed and go back to the first ViewController   
+While user clicks the button, sending data to the first ViewController and the second ViewController will be dismissed and go back to the first ViewController
 
 ```Swift
 if (delegate != nil) {
@@ -138,17 +151,20 @@ if (delegate != nil) {
 ```
 
 # View
+
 ## TableView
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView4.png)   
+
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView4.png)
 
 1. Drag a TableView into your storyboard
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView1.png)   
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView1.png)
 
-2. Create ```.xib``` file, and define the identifier and class    
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView2.png)   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView3.png)   
+2. Create `.xib` file, and define the identifier and class  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView2.png)  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/tableView3.png)
 
-3. The class example   
+3. The class example
+
 ```swift
 import UIKit
 
@@ -165,7 +181,8 @@ class CustomMessageCell: UITableViewCell {
 }
 ```
 
-4. Import the TableView in the UIViewController   
+4. Import the TableView in the UIViewController
+
 ```swift
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet var messageTableView: UITableView!
@@ -200,6 +217,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 ```
 
 5. Resize the cells. Let's say we want to reset the height
+
 ```swift
 override func viewDidLoad() {
   super.viewDidLoad()
@@ -223,14 +241,16 @@ func configureTableView() {
 ## UISearchBar
 
 ### UISearchBar in UIViewController
-[Example: CategorySheetFloatingPanel.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/CategorySheetFloatingPanel.swift)   
 
-1. Drag a Search Bar in to main.storyboard    
+[Example: CategorySheetFloatingPanel.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/CategorySheetFloatingPanel.swift)
 
-2. Indicate the delegate    
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/searchBar.png)    
+1. Drag a Search Bar in to main.storyboard
 
-3. Implement ```UISearchBarDelegate``` in our ViewController    
+2. Indicate the delegate  
+   ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/searchBar.png)
+
+3. Implement `UISearchBarDelegate` in our ViewController
+
 ```Swift
 extension TodoListViewController: UISearchBarDelegate {
 
@@ -253,10 +273,12 @@ extension TodoListViewController: UISearchBarDelegate {
 ```
 
 ### UISearchBar inside NavigationController
-[Example: ItemViewController.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/ItemViewController.swift)   
 
-1. Embed your UIViewController in Navigation Controller   
-2. Implement delegates    
+[Example: ItemViewController.swift](https://github.com/Catherine22/iOS-tutorial/blob/master/RealmExample/RealmExample/Controllers/ItemViewController.swift)
+
+1. Embed your UIViewController in Navigation Controller
+2. Implement delegates
+
 ```Swift
 class ItemViewController: UIViewController {
 
@@ -304,60 +326,72 @@ extension ItemViewController: UISearchControllerDelegate, UISearchBarDelegate {
 ```
 
 # Create Classes and Objects from Scratch
+
 ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/scratch.png)
 
 # Useful tools
-- Xcode   
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)        
-- [Scale images from mobile development](https://appicon.co/#image-sets)        
-- [Flat UI colors](https://flatuicolors.com/)      
-- [Canva](https://www.canva.com/)         
+
+-   Xcode  
+    ![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/xcode.png)
+-   [Scale images from mobile development](https://appicon.co/#image-sets)
+-   [Flat UI colors](https://flatuicolors.com/)
+-   [Canva](https://www.canva.com/)
 
 # Sideloading
-Install your apps on your physical iPhone for free.     
+
+Install your apps on your physical iPhone for free.
 
 ### Settings
-1. Ensure your Xcode version matches with your iOS version on your iPhone. E.g. Xcode 10.**0** -> iOS 12.**0**, Xcode 10.**1** -> iOS 12.**1**      
-2. Go to Xcode, you need:       
+
+1. Ensure your Xcode version matches with your iOS version on your iPhone. E.g. Xcode 10.**0** -> iOS 12.**0**, Xcode 10.**1** -> iOS 12.**1**
+2. Go to Xcode, you need:
     - A unique bundle identifier
     - "Automatically manage signing" is ticked
-    - Create a team     
-    - Go to Product -> Destination -> Choose your device        
-3. Run the app on your iPhone       
-4. On your iPhone, go to Settings -> General -> Device Management -> Trust      
+    - Create a team
+    - Go to Product -> Destination -> Choose your device
+3. Run the app on your iPhone
+4. On your iPhone, go to Settings -> General -> Device Management -> Trust
 5. Run the app on your iPhone again
 
-### Debugging wirelessly through the air        
-1. Have your iPhone plug in through USB     
+### Debugging wirelessly through the air
+
+1. Have your iPhone plug in through USB
 2. Go to Window -> Devices and Simulators -> Find your phone and select "Connect via network"
-3. Unplug yor phone     
+3. Unplug yor phone
 4. Run the app on your iPhone
 
 # CocoaPods
-[https://cocoapods.org/](https://cocoapods.org/)    
+
+[https://cocoapods.org/](https://cocoapods.org/)  
 CocoaPods is what's known as dependency manager for Xcode project.
 
 1. Install CocoaPods on your computer
+
 ```
 $sudo gem install cocoapods
 ```
+
 ```
 $pod setup --verbose
 ```
 
-2. Install new pods in my Xcode project   
-Go to your Xcode project, e.g. /Users/catherine/Workspace/Clima-iOS12/, initialise CocoaPods.
+2. Install new pods in my Xcode project  
+   Go to your Xcode project, e.g. /Users/catherine/Workspace/Clima-iOS12/, initialise CocoaPods.
+
 ```
 $pod init
 ```
 
 3. You have a Podfile now. Open it by Xcode
+
 ```
 $open -a Xcode Podfile
 ```
 
 ## Podfile
-In Ruby, we don't use ```{}``` as code block, instead, we use
+
+In Ruby, we don't use `{}` as code block, instead, we use
+
 ```Ruby
 do
 
@@ -365,6 +399,7 @@ end
 ```
 
 Add CocoaPods, the Pods we will use for our app
+
 ```Ruby
 do
   pod 'SwiftyJSON'
@@ -374,11 +409,13 @@ end
 ```
 
 Check the current version of CocoaPods
+
 ```
 $pod --version
 ```
 
 Fix for CocoaPods v1.0.1 and below, add the following code in your Podfile
+
 ```Ruby
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -391,6 +428,7 @@ end
 ```
 
 Install all the CocoaPods that we specified earlier in our Podfile
+
 ```
 $pod install
 ```
@@ -401,35 +439,40 @@ Open xcworkspace file instead which contains all of our CocoaPods.
 
 # Carthage
 
-1. Install Carthage   
+1. Install Carthage
+
 ```
 $brew update
 $brew install carthage
 ```
 
-2. Create Cartfile file   
-Create a file called Cartfile, paste needed libraries. E.g. SVProgressHUD, and save it to project folder   
+2. Create Cartfile file  
+   Create a file called Cartfile, paste needed libraries. E.g. SVProgressHUD, and save it to project folder
+
 ```
 github "watson-developer-cloud/swift-sdk"
 github "SVProgressHUD/SVProgressHUD"
 ```
 
-3. Run ```carthage update``` to install libraries   
-4. Import all the libraries you needed (the file path will be in /Carthage/Build/iOS/xxx.framework)   
-![Carthage](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/carthage.png)   
-
+3. Run `carthage update` to install libraries
+4. Import all the libraries you needed (the file path will be in /Carthage/Build/iOS/xxx.framework)  
+   ![Carthage](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/carthage.png)
 
 # The anatomy of an app
-![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)       
 
-- View: What you see or what appear on the screen.      
-- ViewController: This goes behind the scene. This is the code that controls what should happen when the user taps a button, or what will happen when you have a piece of data to display on screen.        
-- Model: Model is what controls the data. It manipulates the data and prepares the date to be served up to the ViewController.
+![MVC](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/MVC.png)
+
+-   View: What you see or what appear on the screen.
+-   ViewController: This goes behind the scene. This is the code that controls what should happen when the user taps a button, or what will happen when you have a piece of data to display on screen.
+-   Model: Model is what controls the data. It manipulates the data and prepares the date to be served up to the ViewController.
 
 # Coding Style
+
 ## MARK
-![Sections](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sections.png)   
+
+![Sections](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/sections.png)  
 We can separate our code into describe sections by adding
+
 ```Swift
 //MARK: - Networking
 func retrieveMessage() {
@@ -445,13 +488,16 @@ func retrieveMessage() {
 ```
 
 ## Fold code block
+
 ```
 ⌘ + ⌥ + ←
 ```
 
 ## Extension
-Instead of implement delegates directly, creating an ```extension```    
+
+Instead of implement delegates directly, creating an `extension`  
 E.g. The original code might be:
+
 ```Swift
 class TodoListViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -460,7 +506,8 @@ class TodoListViewController: UISearchBarDelegate {
 }
 ```
 
-Split up the functionality of our ViewController, and we can have specific parts that are responsible for specific things.    
+Split up the functionality of our ViewController, and we can have specific parts that are responsible for specific things.
+
 ```Swift
 class TodoListViewController {
 
@@ -474,11 +521,12 @@ extension TodoListViewController: UISearchBarDelegate {
 }
 ```
 
-![Extension](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/extension.png)   
+![Extension](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/extension.png)
 
 # Internal and external parameters
 
 Let's say we have a function
+
 ```Swift
 func fetchRequest(request: NSFetchRequest<MyTodoeyItem>) {
   do {
@@ -489,16 +537,18 @@ func fetchRequest(request: NSFetchRequest<MyTodoeyItem>) {
   }
 ```
 
-Modify 'request' parameter with an external parameter.    
-The external parameter is ```with``` whereas the internal parameter: ```request```.   
-Instead of calling the ```fetchRequest``` function with ```fetchRequest(request: request)```, we are using    
+Modify 'request' parameter with an external parameter.  
+The external parameter is `with` whereas the internal parameter: `request`.  
+Instead of calling the `fetchRequest` function with `fetchRequest(request: request)`, we are using
+
 ```Swift
 fetchRequest(with: request)
 ```
 
-
 # Delegation
+
 Let's say there's a property data in B, and we are going to pass data from class A to class B, the easiest way is to create an instance of B.
+
 ```Swift
 class A {
   let b = B()
@@ -506,86 +556,90 @@ class A {
 }
 ```
 
-But what if we cannot access properties in class A which is provided by Apple lick ```UIButton```, ```CoreLocation``` and so forth? For example, once the ```LocationManager``` has found the user's current location, it will send out an address, and how do we pass that address from the ```LocationManager``` (class A) into our own ```ViewController``` (class B)?   
+But what if we cannot access properties in class A which is provided by Apple lick `UIButton`, `CoreLocation` and so forth? For example, once the `LocationManager` has found the user's current location, it will send out an address, and how do we pass that address from the `LocationManager` (class A) into our own `ViewController` (class B)?
 
-That's what delegation comes in.    
+That's what delegation comes in.
 
-Once the ```LocationManager``` finds a location, it will send it out to the delegation, if the delegation happens to be nil, then nothing happens to the information. But if the delegation happens to be sat, it will handle the data from the ```LocationManager```.
+Once the `LocationManager` finds a location, it will send it out to the delegation, if the delegation happens to be nil, then nothing happens to the information. But if the delegation happens to be sat, it will handle the data from the `LocationManager`.
 
 # Applications
-- [I Am Rich](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Rich), [I Am Poor](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Poor)    
-- [Magic8Ball](https://github.com/Catherine22/iOS-tutorial/tree/master/Magic8Ball), [Dicee](https://github.com/Catherine22/iOS-tutorial/tree/master/Dicee)    
-  - Random number   
-  - AutoLayout    
-- [Quizzler](https://github.com/Catherine22/iOS-tutorial/tree/master/Quizzler-iOS12), [Destini](https://github.com/Catherine22/iOS-tutorial/tree/master/Destini-iOS12)    
-  - MVC   
-  - ProgressHUD   
-  - Alert   
-- [Xylophone](https://github.com/Catherine22/iOS-tutorial/tree/master/Xylophone-iOS12/Xylophone)    
-  - Play wav audio    
-  - ```do catch```    
-- [Stack View Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Stack%20View%20Practice), [Auto Layout Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Auto-Layout-Practice)   
-  - AutoLayout    
-  - Stack View    
-- [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)    
-  - Segue example   
-  - Navigation ViewController   
-- [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)    
-  - Pass data between View Controllers    
-  - Segues    
-- [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/)    
-  - Ask for permissions
-  - Geo Location    
-  - Delegation    
-  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
-- [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)   
-  - UIPickerViewDelegate, UIPickerViewDataSource    
-  - Fetching data via ```Alamofire``` and handling JSON by ```SwiftyJSON```   
-- [FlashChat](https://github.com/Catherine22/iOS-tutorial/tree/master/Flash-Chat-iOS12)   
-  - Authenticate with Firebase    
-  - Firebase Realtime Database    
-  - Completion Handler    
-  - Navigation ViewController   
-  - UITableView   
-  - Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)   
-  - ```ProgressHUD``` (Loading + alert)   
-  - Get more colours via ```ChameleonFramework```    
-- [CoreData Example](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)    
-  - Persistent standard types and object array with ```UserDefaults``` and ```CoreData``` respectively.   
-  - Persistent data with CoreData.    
-  - UISearchBar   
-  - UITableView   
-  - [Swift] Error handling (```guard else```, ```do catch``` and ```if try```)    
-  - [Swift] Internal, external and default parameters (```loadItems``` in ```TodoListViewController```)    
-  - [Swift] extension   
-- [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)    
-  - Persistent data with Realm    
-  - 2 ways to use UISearchBar (put UISearchBar inside NavigationController or UIViewController)   
-  - UITableView   
-  - [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)   
-  - [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color    
-  - Customise NavigationController style   
-- [Calculator](https://github.com/Catherine22/iOS-tutorial/tree/master/Calculator)    
-  - Swift tips: struct, if-let statement and guard-let statement    
-- [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
-  - UIImagePickerController (Pick out images from users' photos or camera)   
-  - CoreML (Machine learning)    
-- [WhatFlower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFlower)    
-  - UIImagePickerController (Pick out images from users' photos or camera)   
-  - CoreML (Machine learning)    
-  - Display Web images via [SDWebImage](https://github.com/SDWebImage/SDWebImage)   
 
+-   [I Am Rich](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Rich), [I Am Poor](https://github.com/Catherine22/iOS-tutorial/tree/master/I%20Am%20Poor)
+-   [Magic8Ball](https://github.com/Catherine22/iOS-tutorial/tree/master/Magic8Ball), [Dicee](https://github.com/Catherine22/iOS-tutorial/tree/master/Dicee)
+    -   Random number
+    -   AutoLayout
+-   [Quizzler](https://github.com/Catherine22/iOS-tutorial/tree/master/Quizzler-iOS12), [Destini](https://github.com/Catherine22/iOS-tutorial/tree/master/Destini-iOS12)
+    -   MVC
+    -   ProgressHUD
+    -   Alert
+-   [Xylophone](https://github.com/Catherine22/iOS-tutorial/tree/master/Xylophone-iOS12/Xylophone)
+    -   Play wav audio
+    -   `do catch`
+-   [Stack View Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Stack%20View%20Practice), [Auto Layout Practice](https://github.com/Catherine22/iOS-tutorial/tree/master/Auto-Layout-Practice)
+    -   AutoLayout
+    -   Stack View
+-   [Segues](https://github.com/Catherine22/iOS-tutorial/tree/master/Segues)
+    -   Segue example
+    -   Navigation ViewController
+-   [Delegates and Protocols](https://github.com/Catherine22/iOS-tutorial/tree/master/Delegates%20and%20Protocols)
+    -   Pass data between View Controllers
+    -   Segues
+-   [Clima](https://github.com/Catherine22/iOS-tutorial/tree/master/Clima-iOS12/)
+    -   Ask for permissions
+    -   Geo Location
+    -   Delegation
+    -   Fetching data via `Alamofire` and handling JSON by `SwiftyJSON`
+-   [BitcoinTicker](https://github.com/Catherine22/iOS-tutorial/tree/master/BitcoinTicker-iOS12/)
+    -   UIPickerViewDelegate, UIPickerViewDataSource
+    -   Fetching data via `Alamofire` and handling JSON by `SwiftyJSON`
+-   [FlashChat](https://github.com/Catherine22/iOS-tutorial/tree/master/Flash-Chat-iOS12)
+    -   Authenticate with Firebase
+    -   Firebase Realtime Database
+    -   Completion Handler
+    -   Navigation ViewController
+    -   UITableView
+    -   Popup keyboard animation (UI Animations + UITextFieldDelegate + UITapGestureRecognizer)
+    -   `ProgressHUD` (Loading + alert)
+    -   Get more colours via `ChameleonFramework`
+-   [CoreData Example](https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey)
+    -   Persistent standard types and object array with `UserDefaults` and `CoreData` respectively.
+    -   Persistent data with CoreData.
+    -   UISearchBar
+    -   UITableView
+    -   [Swift] Error handling (`guard else`, `do catch` and `if try`)
+    -   [Swift] Internal, external and default parameters (`loadItems` in `TodoListViewController`)
+    -   [Swift] extension
+-   [Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)
+    -   Persistent data with Realm
+    -   2 ways to use UISearchBar (put UISearchBar inside NavigationController or UIViewController)
+    -   UITableView
+    -   [FloatingPanel](https://cocoapods.org/pods/FloatingPanel)
+    -   [ChameleonFramework](https://cocoapods.org/pods/ChameleonFramework) gradient color + random flat color
+    -   Customise NavigationController style
+-   [Calculator](https://github.com/Catherine22/iOS-tutorial/tree/master/Calculator)
+    -   Swift tips: struct, if-let statement and guard-let statement
+-   [SeeFood](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)
+    -   UIImagePickerController (Pick out images from users' photos or camera)
+    -   CoreML (Machine learning)
+-   [WhatFlower](https://github.com/Catherine22/iOS-tutorial/tree/master/WhatFlower)
+    -   UIImagePickerController (Pick out images from users' photos or camera)
+    -   CoreML (Machine learning)
+    -   Display Web images via [SDWebImage](https://github.com/SDWebImage/SDWebImage)
 
 # Tips
+
 ### Breakpoint
-1. Set breakpoints    
-![Breakpoint1](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint1.png)   
 
-2. Step over    
-![Breakpoint2](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint2.png)   
+1. Set breakpoints  
+   ![Breakpoint1](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint1.png)
 
-### Ask the user for permissions   
+2. Step over  
+   ![Breakpoint2](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/breakpoint2.png)
+
+### Ask the user for permissions
+
 For example, Location Permissions.
+
 ```Swift
 let locationManager = CLLocationManager()
 override func viewDidLoad() {
@@ -596,10 +650,11 @@ override func viewDidLoad() {
 }
 ```
 
-In Info.plist,     
+In Info.plist,  
 ![info.plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/Info_plist1.png)
 
 **Update Locations**
+
 ```Swift
 // Asynchronous method (It works in the background), call didUpdateLocations and didFailWithError methods to handle callbacks
 locationManager.startUpdatingLocation()
@@ -624,14 +679,16 @@ func locationManager(_ manager: CLLocationManager, didFailWithError error: Error
 }
 ```
 
-If you get ```Error Domain=kCLErrorDomain Code=0 "(null)"``` error, 2 solutions to fix this:    
-1. Run on an iPhone device    
+If you get `Error Domain=kCLErrorDomain Code=0 "(null)"` error, 2 solutions to fix this:
+
+1. Run on an iPhone device
 2. In your simulator, click Debug - Location, select Apple's headquarter or Custom Location
 
-Another example, in order to launch users' camera or open their photo albums, you need ```Privacy - Camera Usage Description``` and ```Privacy - Photo Library Usage Description```.
+Another example, in order to launch users' camera or open their photo albums, you need `Privacy - Camera Usage Description` and `Privacy - Photo Library Usage Description`.
 
 ### Completion Handler
-Callback: Do something time consuming   
+
+Callback: Do something time consuming
 
 ```Swift
 class DataManager {
@@ -659,6 +716,7 @@ class MyViewController: UIViewController {
 ```
 
 or
+
 ```Swift
 let dataManager = DataManager()
 dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
@@ -667,7 +725,9 @@ dataManager.save(key: "name", value: "Nick") { (isSuccess, message) in
 ```
 
 ### Thread Handling
+
 Run on background thread:
+
 ```swift
 DispatchQueue.global(qos: .background).async {
   //do something
@@ -675,6 +735,7 @@ DispatchQueue.global(qos: .background).async {
 ```
 
 Run on main(UI) thread:
+
 ```swift
 DispatchQueue.main.async {
   //do something
@@ -682,11 +743,13 @@ DispatchQueue.main.async {
 ```
 
 ## 6 ways to persistent Local Data Storage
-![databases](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/databases.png)    
 
-### UserDefaults    
+![databases](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/databases.png)
+
+### UserDefaults
 
 Persistent an array
+
 ```Swift
 let defaults = UserDefaults.standard
 defaults.set(0.24, forKey: "volumn")
@@ -698,6 +761,7 @@ defaults.set(Date(), forKey: "appLastOpenedByUser")
 ```
 
 Retrieve the array from the local storage (plist)
+
 ```Swift
 if let volumn = defaults.float(forKey: "volumn") as? Float {
   print("volumn:\(volumn)")
@@ -720,6 +784,7 @@ if let mission = defaults.dictionary(forKey: "mission") as? Dictionary<String, S
 ```
 
 To print the simulator and application path in AppDelegate
+
 ```Swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
@@ -727,28 +792,32 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-We gonna get    
+We gonna get
+
 ```
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Documents
 ```
 
-And the plist file is going to be actually saved in    
+And the plist file is going to be actually saved in
+
 ```
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/E927D9CE-FAF9-4229-8D6A-2D2B82EBF832/Library/Preferences/com.CBB.Todoey.plist
 ```
 
 ![Todoey plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist.png)
 
-> Notice: Object array is not allowed to persistent in local storage directly. Why not create our own plist by using ```FileManager```.    
+> Notice: Object array is not allowed to persistent in local storage directly. Why not create our own plist by using `FileManager`.
 
-### FileManager   
+### FileManager
 
 Initialise the file with a reasonable name
+
 ```Swift
 let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
 ```
 
 Make the object encodable
+
 ```Swift
 import Foundation
 
@@ -764,6 +833,7 @@ class TodoeyItem: Encodable {
 ```
 
 Encode the item array and save
+
 ```Swift
 do {
   let encoder = PropertyListEncoder()
@@ -774,7 +844,8 @@ do {
   }
 ```
 
-Make the object decodable (```Encodabe``` + ```Decodable``` = ```Codable```)
+Make the object decodable (`Encodabe` + `Decodable` = `Codable`)
+
 ```Swift
 import Foundation
 
@@ -790,6 +861,7 @@ class TodoeyItem: Codable {
 ```
 
 Retrieve and decode the item array
+
 ```Swift
 if let data = try? Data(contentsOf: dataFilePath!) {
   let decoder = PropertyListDecoder()
@@ -808,15 +880,15 @@ if let data = try? Data(contentsOf: dataFilePath!) {
 
 Cp. The difference between UserDefaults and FileManager plist is the type of Root directory, and that's why UserDefaults is supposed to keep standard types rather than Object.
 ![UserDefaults plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist2.png)
-![FileManager plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist3.png)   
+![FileManager plist](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/todoey_plist3.png)
 
 ## Databases
 
 ### Core Data
 
-1. Create a new project with CoreData   
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData0.png)    
-Or paste the following code in [AppDelegate]    
+1. Create a new project with CoreData  
+   ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData0.png)  
+   Or paste the following code in [AppDelegate]
 
 ```Swift
 import UIKit
@@ -878,30 +950,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-2. Add a Core Data model [DataModel]      
-File -> New -> File, scroll to Core Data section    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData1.png)    
+2. Add a Core Data model [DataModel]  
+   File -> New -> File, scroll to Core Data section  
+   ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData1.png)
 
-3. Match the file name to NSPersistentContainer in [AppDelegate]   
+3. Match the file name to NSPersistentContainer in [AppDelegate]
+
 ```Swift
 let container = NSPersistentContainer(name: "DataModel")
 ```
-You might get ```CoreData: error:  Failed to load model named xxx``` if you forget to update the name.    
 
-4. Go to [DataModel], add a new Entity named ```MyTodoeyItem```    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData2.png)    
+You might get `CoreData: error: Failed to load model named xxx` if you forget to update the name.
 
-5. Add attributes and make them optional if you need    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData3.png)    
+4. Go to [DataModel], add a new Entity named `MyTodoeyItem`  
+   ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData2.png)
 
+5. Add attributes and make them optional if you need  
+   ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData3.png)
 
-6. Change the module from 'Global namespace' to 'Current Product Module'
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)   
+6) Change the module from 'Global namespace' to 'Current Product Module'
+   ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData4.png)
 
-7. (Optional) You could either skip this step by setting 'Class Definition' as default, or select Category/Extension in Codegen if you are going to customise your entities, i.e. You have to create classes that are identically named to you entities.
+7) (Optional) You could either skip this step by setting 'Class Definition' as default, or select Category/Extension in Codegen if you are going to customise your entities, i.e. You have to create classes that are identically named to you entities.
 
-Now you might notice that we essentially replace the TodoeyItem class with     
-TodoeyItem class:   
+Now you might notice that we essentially replace the TodoeyItem class with  
+TodoeyItem class:
 
 ```Swift
 import Foundation
@@ -917,8 +990,8 @@ class TodoeyItem: Codable {
 }
 ```
 
+8. Save data (Class name refers to the entity name)
 
-8. Save data (Class name refers to the entity name)    
 ```Swift
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 let newItem = MyTodoeyItem(context: context)
@@ -935,7 +1008,8 @@ do {
 }
 ```
 
-9. Load data    
+9. Load data
+
 ```Swift
 import CoreData
 
@@ -952,7 +1026,8 @@ class TodoListViewController: UITableViewController {
 }
 ```
 
-10. Update data    
+10. Update data
+
 ```Swift
 itemArray[indexPath.row].setValue("new value", forKey: "title")
 itemArray[indexPath.row].setValue(true, forKey: "done")
@@ -963,9 +1038,10 @@ do {
   }
 ```
 
-11. Delete data   
-This is a little tricky, we cannot delete the item like updating data we was doing.    
-We are going to call ```context.delete()``` and ```context.save()```.
+11. Delete data  
+    This is a little tricky, we cannot delete the item like updating data we was doing.  
+    We are going to call `context.delete()` and `context.save()`.
+
 ```Swift
 // Delete data from our Core Data, then call 'context.save()' to save data
 context.delete(itemArray[indexPath.row])
@@ -980,11 +1056,11 @@ itemArray.remove(at: indexPath.row)
 ```
 
 12. Query data
-Have a look at [NSPredicate Cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/) and [NSHelper](https://nshipster.com/nspredicate/).    
+    Have a look at [NSPredicate Cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/) and [NSHelper](https://nshipster.com/nspredicate/).
 
+13) Check the DB file if you want  
+    To print the simulator and application path in AppDelegate
 
-13. Check the DB file if you want    
-To print the simulator and application path in AppDelegate
 ```Swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
@@ -993,38 +1069,43 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ```
 
 Then we got
+
 ```
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Documents
 ```
 
 Go to the following path to check the sqlite file via [Datum](https://itunes.apple.com/us/app/datum-free/id901631046?mt=12)
+
 ```
 /Users/catherine/Library/Developer/CoreSimulator/Devices/C2161038-1255-44C0-88EA-E61BEDD0EDE3/data/Containers/Data/Application/D6149CD2-A9F4-4051-AB2E-0314F26082B7/Library/Application\ Support/DataModel.sqlite
 ```
 
-14. Edit Data model like a pro    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData5.png)   
+14. Edit Data model like a pro  
+    ![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData5.png)
 
-(1) Switch to Graph style   
-(2) Add a new entity    
-(3) Select the entity   
-(4) Add an attribute    
-(5) Select the attribute    
+(1) Switch to Graph style  
+(2) Add a new entity  
+(3) Select the entity  
+(4) Add an attribute  
+(5) Select the attribute  
 (6) Update attribute's name and type. Check the optional box if you want
 
-**Build the relationship between Category and MyTodoeyItem**    
-![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData6.png)   
+**Build the relationship between Category and MyTodoeyItem**  
+![CoreData](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/coreData6.png)
 
-(7) Press ```Control``` and drag the Category to MyTodoeyItem   
-(8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".    
+(7) Press `Control` and drag the Category to MyTodoeyItem  
+(8)(9)(10) Update relations. Each Category can have many MyTodoeyItems associated with it. Therefore, the type should be "To Many". On the contrary, each MyTodoeyItem belongs to one single Category, so we set "To one".
 
 ### Realm
-Realm example:   
-[Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)   
+
+Realm example:  
+[Todoey with Realm](https://github.com/Catherine22/iOS-tutorial/tree/master/RealmExample)
 
 0. Install, setup and configure Realm
-  - Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).    
-  - Download [Realm browser]() to open .realm file. The realm would be saved in:   
+
+-   Go to [realm.io](https://realm.io/docs/swift/latest/) to download SDK (Dynamic framework / CocoaPods / Carthage).
+-   Download [Realm browser]() to open .realm file. The realm would be saved in:
+
 ```Swift
 class ViewController: UIViewController {
     var realm: Realm? = nil
@@ -1045,10 +1126,11 @@ class ViewController: UIViewController {
 }
 ```
 
-1. Add a new piece of data   
-Let's say, we have some categories and items, each item belongs to one single category.   
+1. Add a new piece of data  
+   Let's say, we have some categories and items, each item belongs to one single category.
 
 Create Category
+
 ```Swift
 import Foundation
 import RealmSwift
@@ -1060,6 +1142,7 @@ class Category: Object {
 ```
 
 Create Item
+
 ```Swift
 import Foundation
 import RealmSwift
@@ -1075,7 +1158,8 @@ class Item: Object {
 ```
 
 2. Save data
-Save data in the database
+   Save data in the database
+
 ```Swift
 do {
     try realm?.write {
@@ -1089,6 +1173,7 @@ do {
 ```
 
 3. Update data
+
 ```Swift
 do {
     try realm?.write {
@@ -1100,7 +1185,8 @@ do {
 ```
 
 4. Read data
-For example, in ViewController
+   For example, in ViewController
+
 ```Swift
 var categories: Results<Category>?
 class ViewController: UIViewController {
@@ -1117,8 +1203,9 @@ class ViewController: UIViewController {
 }
 ```
 
-5. Delete data    
-Notice: no need to remove items from the Results list, Realm would automatically do it.
+5. Delete data  
+   Notice: no need to remove items from the Results list, Realm would automatically do it.
+
 ```Swift
 do {
   try realm?.write {
@@ -1130,37 +1217,44 @@ do {
 ```
 
 # Network Connection
-You could either use ```URLSession``` or popular third-party SDK like Alamofire    
+
+You could either use `URLSession` or popular third-party SDK like Alamofire  
 The following features are included in
-[IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations)   
-- SSL certificate validation (Read the documentation: [HTTPS Server Trust Evaluation](https://developer.apple.com/library/archive/technotes/tn2232/_index.html))    
-  - Using ```openssl s_client -connect www.apple.com:443```   
-  - Get the full certificate by ```openssl s_client -showcerts -host www.apple.com -port 443```   
-  - Copying the text (the -----BEGIN CERTIFICATE----- line through to the -----END CERTIFICATE----- line) into a text file with the .pem extension
+[IO Operations](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations)
 
-- Generic request/response types with associatedtype   
+-   SSL certificate validation (Read the documentation: [HTTPS Server Trust Evaluation](https://developer.apple.com/library/archive/technotes/tn2232/_index.html))
 
-Tools you might need:   
-  - (Check SSL online)[https://www.ssllabs.com/ssltest/]    
-  - Convert .pem file to .crt file via ```openssl x509 -outform der -in xxxx.pem -out xxxx.crt```   
+    -   Using `openssl s_client -connect www.apple.com:443`
+    -   Get the full certificate by `openssl s_client -showcerts -host www.apple.com -port 443`
+    -   Copying the text (the -----BEGIN CERTIFICATE----- line through to the -----END CERTIFICATE----- line) into a text file with the .pem extension
+
+-   Generic request/response types with associatedtype
+
+Tools you might need:
+
+-   (Check SSL online)[https://www.ssllabs.com/ssltest/]
+-   Convert .pem file to .crt file via `openssl x509 -outform der -in xxxx.pem -out xxxx.crt`
 
 ## Alamofire
-- [Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)    
 
+-   [Alamofire](https://cocoapods.org/pods/Alamofire) + [SwiftyJSON](https://cocoapods.org/pods/SwiftyJSON)
 
 ## URLSession
-- Generic request/response types with ```associatedtype```    
+
+-   Generic request/response types with `associatedtype`
 
 Check how exactly SSL pinning does on [HttpClient.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/IOOperations/IOOperations/Utils/Network/HttpClient.swift)
 
-
 ### ATS, App Transport Security
-Since iOS 9.0, app must follow App Transport Security:    
-1. At least TLS 1.2   
-2. HTTP is not allowed    
-3. Apple will heavily censor when app infringes ATS settings (```NSAllowsArbitraryLoads```).
 
-[Info.plist settings](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity):    
+Since iOS 9.0, app must follow App Transport Security:
+
+1. At least TLS 1.2
+2. HTTP is not allowed
+3. Apple will heavily censor when app infringes ATS settings (`NSAllowsArbitraryLoads`).
+
+[Info.plist settings](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity):
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -1217,45 +1311,52 @@ NSThirdPartyExceptionAllowsInsecureHTTPLoads
 NSThirdPartyExceptionMinimumTLSVersion
 NSThirdPartyExceptionRequiresForwardSecrecy
 
-
 # Machine Learning
-Machine Learning is usual split into 2 broke categories - Supervised Machine Learning or Unsupervised Machine Learning.   
+
+Machine Learning is usual split into 2 broke categories - Supervised Machine Learning or Unsupervised Machine Learning.
 
 ## Supervised Learning
 
 ## Unsupervised Learning
 
 ## CoreML
-1. Load a pre-trained model, i.e., no training   
-2. Make predictions   
+
+1. Load a pre-trained model, i.e., no training
+2. Make predictions
 3. Not encrypted
 
-Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)    
+Get started from scratch [Sample code](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood)
 
 Example1 - Inceptionv3:
-1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)   
-2. Drag .mlmodel file into your project   
+
+1. Download pre-trained models from Apple website: [https://developer.apple.com/machine-learning/build-run-models/](https://developer.apple.com/machine-learning/build-run-models/)
+2. Drag .mlmodel file into your project
 3. Check detection code here: [Inceptionv3Model.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/Inceptionv3Model.swift)
 
-Example2 - [Watson Visual Recognition](https://www.ibm.com/watson/services/visual-recognition/):   
-1. Install Carthage and download SDK    
-Add the dependency in our Cartfile:    
+Example2 - [Watson Visual Recognition](https://www.ibm.com/watson/services/visual-recognition/):
+
+1. Install Carthage and download SDK  
+   Add the dependency in our Cartfile:
+
 ```
 github "watson-developer-cloud/swift-sdk"
 ```
-2. Register IBM cloud account   
-3. Add Visual Recognition to IBM console    
-4. Import VisualRecognition3.framework and Restkit.framework    
+
+2. Register IBM cloud account
+3. Add Visual Recognition to IBM console
+4. Import VisualRecognition3.framework and Restkit.framework
 5. Check detection code here: [WatsonVisualRecognition.swift](https://github.com/Catherine22/iOS-tutorial/tree/master/SeeFood/SeeFood/MachineLearning/WatsonVisualRecognition.swift)
 
 ### Python Settings
 
-1. Install python, pip and virtualenv    
+1. Install python, pip and virtualenv
+
 ```
 $pip install virtualenv
 ```
 
 2. Create python2.7 environment in a specific directory
+
 ```
 $mkdir Environments
 $cd Environments
@@ -1263,31 +1364,36 @@ $virtualenv --python=/usr/bin/python2.7 python27
 ```
 
 3. Now we have a python27 directory in Environments, to activate our python
+
 ```
 $source python27/bin/activate
 ```
-You will see ```(python27) username Environments (git-branch-name) $ ```    
+
+You will see `(python27) username Environments (git-branch-name) $`
 
 4. Stop virtual environment if you want
+
 ```
 $deactivate
 ```
 
 5. Install CoreML tools
+
 ```
 $pip install -U coremltools
 ```
-```-U``` means install or update coremltools to the latest version    
 
-6. Convert the caffe model to .mlmodel    
+`-U` means install or update coremltools to the latest version
+
+6. Convert the caffe model to .mlmodel
 
 ### Convert a Caffe model to Core ML format
 
-1. Download [Oxford 102 category flower dataset caffe model](https://udemy-assets-on-demand2.udemy.com/2018-07-02_18-48-43-c17b4a05c8f380a0c0a55d07b17b2b14/original.zip?nva=20190227142445&filename=Flower-Classifier.zip&download=True&token=0dc623fdf4c33a37fd2bf)   
-2. Convert a Caffe model to Core ML format ([doc](https://apple.github.io/coremltools/generated/coremltools.converters.caffe.convert.html))   
-
+1. Download [Oxford 102 category flower dataset caffe model](https://udemy-assets-on-demand2.udemy.com/2018-07-02_18-48-43-c17b4a05c8f380a0c0a55d07b17b2b14/original.zip?nva=20190227142445&filename=Flower-Classifier.zip&download=True&token=0dc623fdf4c33a37fd2bf)
+2. Convert a Caffe model to Core ML format ([doc](https://apple.github.io/coremltools/generated/coremltools.converters.caffe.convert.html))
 
 convert-script.py
+
 ```python
 import coremltools
 
@@ -1304,17 +1410,21 @@ coreml_model = coremltools.converters.caffe.convert(
 # Now save the model
 coreml_model.save('FlowerClassifier.mlmodel')
 ```
-3. Execute convert-script.py    
+
+3. Execute convert-script.py
+
 ```
 python convert-script.py
 ```
 
 ## CreateML
-You could train your own models since Xcode 10 and iOS 12. It allows us to take data such as texts, images or other types of files to fill in CreateML framework to create our very own CoreML models.    
 
-1. Prepare for training and testing data (the classic ratio is 80:20) and divide them into different groups. Notice the folder name must be what category we are going to define.    
+You could train your own models since Xcode 10 and iOS 12. It allows us to take data such as texts, images or other types of files to fill in CreateML framework to create our very own CoreML models.
 
-In this case, I download 20 training images and 5 testing images per animals    
+1. Prepare for training and testing data (the classic ratio is 80:20) and divide them into different groups. Notice the folder name must be what category we are going to define.
+
+In this case, I download 20 training images and 5 testing images per animals
+
 ```
 TrainingData/
   Dog/a lot of dog images
@@ -1328,19 +1438,20 @@ TestingData/
   Horse/one quarter of horse training images
 ```
 
-2. Create macOS Blank playground, show the assistant editor    
-3. Drag training and testing images sequentially into playground   
+2. Create macOS Blank playground, show the assistant editor
+3. Drag training and testing images sequentially into playground
 
-![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/createml.png)  
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/createml.png)
 
-**NOTICE, you should prepare images Xcode has never seen before to make sure the evaluation (success rate) is accurate. Besides, if your evaluation is low, that means you need more training data.**    
+**NOTICE, you should prepare images Xcode has never seen before to make sure the evaluation (success rate) is accurate. Besides, if your evaluation is low, that means you need more training data.**
 
 4. Rename and save
 
-### Using CreateML for Natural Language Processing (NLP)    
+### Using CreateML for Natural Language Processing (NLP)
 
-1. Download the [Twitter Sentiment Dataset](https://github.com/Catherine22/iOS-tutorial/tree/master/twitter-sanders-apple3.csv)   
-2. Train our own model by creating an macOS playground    
+1. Download the [Twitter Sentiment Dataset](https://github.com/Catherine22/iOS-tutorial/tree/master/twitter-sanders-apple3.csv)
+2. Train our own model by creating an macOS playground
+
 ```Swift
 import Cocoa
 import CreateML
@@ -1363,6 +1474,7 @@ try sentimentClassfier.write(to: URL(fileURLWithPath: "/Users/xxx/Workspace/iOS-
 ```
 
 3. Predict
+
 ```Swift
 try sentimentClassfier.prediction(from: "@Apple is a terrible company") //Neg
 try sentimentClassfier.prediction(from: "I just found the best restaurant ever, and it's @Taco Bell") //Pos
@@ -1370,30 +1482,63 @@ try sentimentClassfier.prediction(from: "I think @CocaCola ads are just ok") //N
 ```
 
 # Explore more app services
-- Firebase    
-- crashlytics   
-- mapBox    
-- Sinch   
+
+-   Firebase
+-   crashlytics
+-   mapBox
+-   Sinch
+
+# App distribution
+
+## Distribution methods
+
+| methods     | developer                   | access          | lifetimes                                                                             | user                                                                      | distribution                                    |
+| ----------- | --------------------------- | --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------- |
+| Ad Hoc      | individuals                 | limited private | short, unscalable                                                                     | Distribute your app to testers on registered devices (100 devices limits) | ipa installed by xCode, Apple configurator, OTA |
+| App Store   | individuals / organisations | public          | 90 days                                                                               | 25 internal testers; 10,000 testers via links                             | testFlight, email, links                        |
+| In-House    | organisations               | limited private | distribution certificates expire every 3 years, provisioning profiles expire annually | Proprietary apps built by internal developers for their employees         | MDM                                             |
+| Custom Apps | organisations               | limited private | Apps won't expire                                                                     | Proprietary apps built by internal developers for their employees         | MDM or Redemption codes                         |
+
+### In-House vs. Custom Apps
+
+-   Apps distributed via In-House distribution expires annually, developers have to resign and re-deploy apps.
+-   Custom Apps, on the other hand, is part of the Apple Developer Program. The apps won't expire and you can have TestFlight, additional App Store features and App Store Connect tools.
+
+Examples:
+
+-   App Store: Restaurant A wants to build their app with their apple developer account, they hire freelance app developer Micheal to help them.  
+    -> Micheal has to join A's developer program to build the app for A to submit to app store. [Role doc](https://developer.apple.com/support/roles/)
+
+-   In-House / Custom App: Companies want to build an app for employees.
+
+![screenshot](https://raw.githubusercontent.com/Catherine22/iOS-tutorial/master/screenshots/distribution_solutions.png)
+[video](https://developer.apple.com/videos/play/wwdc2019/304/)
+
+# Apple Business Manager
+
+As an Apple Business Manager, you can buy apps, custom apps and books in bulk
 
 # More useful resources
-- https://mobile-patterns.com/    
-- https://jgthms.com/web-design-in-4-minutes/#share   
-- colour palette websites such as https://coolors.co/   
 
-
+-   https://mobile-patterns.com/
+-   https://jgthms.com/web-design-in-4-minutes/#share
+-   colour palette websites such as https://coolors.co/
 
 # Command Game
+
 ```
 $emacs -batch -l dunnet
 ```
 
 # Swift
+
 [Tutorial](https://github.com/Catherine22/iOS-tutorial/tree/master/Swift%20Playground)
 
 # Reference
-[Swift.org](https://swift.org/getting-started/)     
-[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)        
-[Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)       
 
-[AppDelegate]:<https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/AppDelegate.swift>
-[DataModel]:<https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/Data%20Model/DataModel.xcdatamodeld>
+[Swift.org](https://swift.org/getting-started/)  
+[iOS 12 & Swift - The Complete iOS App Development Bootcamp](https://www.udemy.com/ios-12-app-development-bootcamp/)  
+[Apple human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)
+
+[appdelegate]: https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/AppDelegate.swift
+[datamodel]: https://github.com/Catherine22/iOS-tutorial/tree/master/Todoey/Todoey/Todoey/Data%20Model/DataModel.xcdatamodeld
